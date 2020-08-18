@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">Myclock</string>
-    <string name="todo">TODO</string>
+    <string name="app_name">PlanningApp</string>
+    <string name="add">اضافه کردن</string>
+    <string name="remove">حذف</string>
+    <string name="edit">ویرایش</string>
+    <string name="details">جزئیات</string>
 </resources>
