@@ -22,5 +22,6 @@ public class MainActivity extends AppCompatActivity {
         EasyCountDownTextview countDownTextview = (EasyCountDownTextview) findViewById(R.id.easyCountDownTextview);
         Typeface typeface = ResourcesCompat.getFont(this, R.font.iransans);
         countDownTextview.setTypeFace(typeface);
+        //Easter Egg :/
     }
 }
