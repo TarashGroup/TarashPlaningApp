@@ -34,6 +34,15 @@
         android:layout_width="280dp"
         android:layout_height="280dp"
         />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="121dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:paddingTop="30dp"
+            app:srcCompat="@drawable/triple_back_counter" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="180dp"
             android:layout_height="wrap_content"
@@ -54,34 +63,34 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 />
-        <ir.samanjafari.easycountdowntimer.EasyCountDownTextview
-            android:id="@+id/easyCountDownTextview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            app:colonColor="@color/DarkLight"
-            app:days="1"
-            app:daysLabel="D"
-            app:digitBackground="@drawable/timer_background"
-            app:hours="۱۲"
-            app:minute="۱۲"
-            app:second="1۲"
-            app:setAnimation="true"
-            app:showDays="false"
-            app:showHours="true"
-            app:start_automatically="true"
-            app:textColor="@color/DarkLight"
-            app:textSize="18sp"
-            app:useFarsiNumeral="true"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_day"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+
+            <ir.samanjafari.easycountdowntimer.EasyCountDownTextview
+                android:id="@+id/easyCountDownTextview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:addStatesFromChildren="false"
+                android:gravity="center"
+                app:colonColor="@color/DarkLight"
+                app:days="1"
+                app:daysLabel="D"
+                app:digitBackground="@drawable/bg"
+                app:hours="12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_day"
+                app:minute="12"
+                app:second="12"
+                app:setAnimation="true"
+                app:showDays="false"
+                app:showHours="true"
+                app:start_automatically="true"
+                app:textColor="@color/DarkLight"
+                app:textSize="14sp"
+                app:useFarsiNumeral="false" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </FrameLayout>
-
-
 
 
     <ImageView
@@ -89,10 +98,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/group_251"
-        tools:layout_editor_absoluteX="-2dp"
-         />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/group_251" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
