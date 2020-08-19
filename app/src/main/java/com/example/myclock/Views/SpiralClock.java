@@ -60,10 +60,10 @@ public class SpiralClock extends View {
         path = new Path();
         init=true;
         float[] arr={-90  , 180 , 0} , arr2 = {90 , 180 , 1 }, arr3={-90  , 180 , 2} , arr4 = {90 , 180 , 3 };
-        First.add(arr);
-        Second.add(arr2);
-        Third.add(arr3);
-        Fourth.add(arr4);
+        //First.add(arr);
+        //Second.add(arr2);
+        //Third.add(arr3);
+        //Fourth.add(arr4);
     }
 
     @Override
