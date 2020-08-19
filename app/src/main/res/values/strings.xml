@@ -4,4 +4,6 @@
     <string name="remove">حذف</string>
     <string name="edit">ویرایش</string>
     <string name="details">جزئیات</string>
+    <string name="todayPlan">برنامه امروز</string>
+
 </resources>
