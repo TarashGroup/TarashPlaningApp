@@ -29,58 +29,129 @@
         android:layout_marginTop="36dp"
         app:layout_constraintHorizontal_bias="0.496"
         >
-    <com.example.myclock.Views.SpiralClock
-        android:id="@+id/spiralClock"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
-        />
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.example.myclock.Views.SpiralClock
+            android:id="@+id/spiralClock"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+
+            />
+        <LinearLayout
+            android:id="@+id/cl_clock"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp">
             <TextView
                 android:id="@+id/tv_day"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="۳۳۳ روز"
-                android:fontFamily="@font/iransans"
+                app:fontFamily="@font/iransans"
                 android:textSize="18sp"
                 android:textColor="@color/DarkLight"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/easyCountDownTextview"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
                 />
-        <ir.samanjafari.easycountdowntimer.EasyCountDownTextview
-            android:id="@+id/easyCountDownTextview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            app:colonColor="@color/DarkLight"
-            app:days="1"
-            app:daysLabel="D"
-            app:digitBackground="@drawable/timer_background"
-            app:hours="۱۲"
-            app:minute="۱۲"
-            app:second="1۲"
-            app:setAnimation="true"
-            app:showDays="false"
-            app:showHours="true"
-            app:start_automatically="true"
-            app:textColor="@color/DarkLight"
-            app:textSize="18sp"
-            app:useFarsiNumeral="true"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_day"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <ir.samanjafari.easycountdowntimer.EasyCountDownTextview
+                android:id="@+id/easyCountDownTextview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                app:colonColor="@color/DarkLight"
+                app:days="333"
+                app:daysLabel="D"
+                app:digitBackground="@drawable/timer_background"
+                app:hours="12"
+                app:minute="12"
+                app:second="12"
+                app:setAnimation="true"
+                app:showDays="false"
+                app:showHours="true"
+                app:start_automatically="true"
+                app:textColor="@color/DarkLight"
+                app:textSize="18sp"
+                app:useFarsiNumeral="true"
+                />
+
+            <TextView
+                android:id="@+id/tv_day_of_week"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="چهارشنبه"
+                android:textColor="@color/DarkLight"
+                android:textSize="15sp"
+                app:fontFamily="@font/iransans"
+                />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="۱۳۹۹/۱۲/۱۲"
+                app:fontFamily="@font/iransans"
+                android:textSize="13sp"
+                android:textColor="@color/DarkLight"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+
     </FrameLayout>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fl_clock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@android:color/white"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_today_plan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/todayPlan"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/Bar"
+                app:fontFamily="@font/iransans"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="18sp"
+
+                />
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/button2"
+                android:text="@string/add"
+                app:fontFamily="@font/iransans"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
 
 
 
@@ -93,6 +164,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:srcCompat="@drawable/group_251"
         tools:layout_editor_absoluteX="-2dp"
-         />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
