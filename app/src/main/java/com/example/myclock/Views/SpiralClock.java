@@ -7,7 +7,9 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.icu.text.IDNA;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import androidx.annotation.Nullable;
@@ -59,7 +61,7 @@ public class SpiralClock extends View {
         rectf = new RectF();
         path = new Path();
         init=true;
-        float[] arr={-90  , 180 , 0} , arr2 = {90 , 180 , 1 }, arr3={-90  , 180 , 2} , arr4 = {90 , 180 , 3 };
+        float[] arr={-40  , 56 , 1} , arr2 = {124 , 56 , 2 }, arr3={-56  , 100 , 3} , arr4 = {100 , 49 , 2 };
         First.add(arr);
         Second.add(arr2);
         Third.add(arr3);
@@ -129,7 +131,7 @@ public class SpiralClock extends View {
         path.addArc(rectf , 85 , 180 );
         canvas.drawArc(rectf , 90 , 182 , false , paint );
         SetLights(Second , canvas);
-        SetNumbers(canvas  , SecondNumbers , 90 , OffSet);
+        SetNumbers(canvas  , SecondNumbers , 91 , OffSet);
         //********Third
         OffSet=(0.5f/215)*Height;
         SetPaintForBGSpiral();
@@ -140,7 +142,7 @@ public class SpiralClock extends View {
         path.addArc(rectf , -90 , 180 );
         canvas.drawArc(rectf , -90 , 182 , false , paint );
         SetLights(Third , canvas);
-        SetNumbers(canvas  , ThirdNumbers , -91 , OffSet);
+        SetNumbers(canvas  , ThirdNumbers , -90 , OffSet);
         //********Fourth
         OffSet=(1f/215)*Height;
         SetPaintForBGSpiral();
@@ -151,7 +153,7 @@ public class SpiralClock extends View {
         path.addArc(rectf , 90 , 180 );
         canvas.drawArc(rectf , 90 , 185.5f , false , paint );
         SetLights(Fourth , canvas);
-        SetNumbers(canvas  , FourthNumbers , 89 , OffSet);
+        SetNumbers(canvas  , FourthNumbers , 90 , OffSet);
     }
 
     //************************************************************************lights
@@ -159,7 +161,7 @@ public class SpiralClock extends View {
         for(float[] StartEnd : arrayList){
             SetColorForLights(StartEnd[2]);
             paint.setStrokeWidth((4/215f)*Height);
-            paint.setMaskFilter(new BlurMaskFilter((3f/215)*Height, BlurMaskFilter.Blur.NORMAL));
+            paint.setMaskFilter(new BlurMaskFilter((2f/215)*Height, BlurMaskFilter.Blur.NORMAL));
             canvas.drawArc(rectf , StartEnd[0] , StartEnd[1] ,false , paint);
             paint.setMaskFilter(null);
             paint.setStrokeWidth((5/215f)*Height);
@@ -186,14 +188,26 @@ public class SpiralClock extends View {
         for(String number : Numbers){
             string = number;
             path.reset();
+
+            if (Integer.parseInt(Numbers[0]) == 6)
+                path.addArc(rectf , angle - 5f , 10 );
+            else if (Integer.parseInt(Numbers[0]) == 12)
+            path.addArc(rectf , angle - 5f , 10 );
+            else if (Integer.parseInt(Numbers[0]) == 18)
+                path.addArc(rectf , angle - 4.7f , 10 );
+            else
+                path.addArc(rectf , angle-4.8f , 10 );
+
+
+            setBackgroundforNumbers(canvas , path);
+
+            path.reset();
             path.addArc(rectf , angle-4 , 10 );
             angle+=30;
-            SetBackgroundforNumbers(canvas , path);
-
             paint.reset();
             paint.setAntiAlias(true);
-            paint.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,(4/215f)*Height,
-                    getResources().getDisplayMetrics()));
+            float scaledSizeInPixels = 11 * getResources().getDisplayMetrics().scaledDensity;
+            paint.setTextSize(scaledSizeInPixels);
             paint.setColor(Color.BLACK);
             paint.setTypeface(typeface);
             if(string.equals("10") )
@@ -201,10 +215,10 @@ public class SpiralClock extends View {
             canvas.drawTextOnPath(string , path ,OffSet , (4/215f)*Height , paint);
         }
     }
-    private void SetBackgroundforNumbers(Canvas canvas , Path path){
+    private void setBackgroundforNumbers(Canvas canvas , Path path){
         paint.reset();
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth((10/215f)*Height);
+        paint.setStrokeWidth((9/215f)*Height);
         paint.setMaskFilter(new BlurMaskFilter((1/215f)*Height, BlurMaskFilter.Blur.SOLID));
         paint.setColor(Color.WHITE);
         canvas.drawPath(path , paint);
@@ -221,7 +235,7 @@ public class SpiralClock extends View {
         paint.reset();
         paint.setAntiAlias(true);
         paint.setColor((Color.WHITE));
-        paint.setStrokeWidth((12/215f)*Height);
+        paint.setStrokeWidth((11/215f)*Height);
         paint.setStyle(Paint.Style.STROKE);
     }
     //************************************************************************Paints
