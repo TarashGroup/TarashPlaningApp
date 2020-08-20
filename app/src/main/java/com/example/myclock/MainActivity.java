@@ -1,14 +1,17 @@
 package com.example.myclock;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 
-import com.example.myclock.Helper.FormatHelper;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+
 import com.example.myclock.Views.SpiralClock;
 import com.hanks.htextview.base.HTextView;
 
@@ -30,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
 
         //Easter Egg :/
         //who is this Kosnamak?
+        //kos nagin :)
+
+
+
+    }
+    public void addCourse(View view){
+        /*Intent intent = new Intent(MainActivity.this , MainActivity2.class);
+        startActivity(intent);
+        finish();*/
     }
     private void calculateMainTimer(){
         int tempTime = timeInSecondsUntilKonkur ;

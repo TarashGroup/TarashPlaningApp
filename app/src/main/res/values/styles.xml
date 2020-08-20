@@ -4,5 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimaryDark">@color/Bar</item>
     </style>
-
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@android:color/black</item>
+    </style>
 </resources>
