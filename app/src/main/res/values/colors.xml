@@ -13,4 +13,7 @@
     <color name="DarkLight">#1B3851</color>
     <color name="peach">#FEE4D9</color>
 
+    <color name="BarColor">#FF834B</color>
+    <color name="RimColor">#FFBC9D</color>
+    <color name="ContourColor">#B5643E</color>
 </resources>

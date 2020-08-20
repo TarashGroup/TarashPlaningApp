@@ -18,10 +18,11 @@ buildscript {
 allprojects {
     repositories {
         maven {
-            url 'https://dl.bintray.com/samanjafaridotir/easyCountDownTimerTextview'
-        }
+            url "https://jitpack.io"
+            }
         google()
         jcenter()
+        maven { url 'https://dl.bintray.com/samanjafaridotir/easyCountDownTimerTextview' }
     }
 }
 

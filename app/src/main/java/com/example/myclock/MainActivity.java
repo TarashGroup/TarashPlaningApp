@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -19,6 +21,8 @@ import com.hanks.htextview.base.HTextView;
 public class MainActivity extends AppCompatActivity {
     private int timeInSecondsUntilKonkur = 722000 , seconds , minutes , hours , days ;
     private Handler mainTimerHandler = new Handler();
+    private LinearLayout dailySchedule;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
 
         calculateMainTimer();
         startMainTimer();
+        addProgressBars(typeface);
 
         //Easter Egg :/
         //who is this Kosnamak?
         //kos nagin :)
-
+        //True KosNamak can never change ...
 
 
     }
@@ -43,6 +48,28 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();*/
     }
+
+    private void addProgressBars (Typeface typeface) {
+        ProgressBuilder progressBuilder = new ProgressBuilder(this, temp);
+        View view = progressBuilder.getView("Sand King", typeface, 0.80f, 2.30f, 0);
+        View view1 = progressBuilder.getView("is so", typeface, 0.80f, 2.30f, 1);
+        View view2 = progressBuilder.getView("FUCKING", typeface, 0.80f, 2.30f, 2);
+        View view3 = progressBuilder.getView("lovely", typeface, 0.80f, 2.30f, 3);
+
+        dailySchedule = findViewById(R.id.DailyScheduleContainer);
+        dailySchedule.addView(view);
+        dailySchedule.addView(view1);
+        dailySchedule.addView(view2);
+        dailySchedule.addView(view3);
+    }
+
+    View.OnClickListener temp = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(MainActivity.this, view.getTag() + "", Toast.LENGTH_SHORT).show();
+        }
+    };
+
     private void calculateMainTimer(){
         int tempTime = timeInSecondsUntilKonkur ;
 

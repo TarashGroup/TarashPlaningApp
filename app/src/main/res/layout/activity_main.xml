@@ -137,47 +137,14 @@
         app:layout_constraintTop_toBottomOf="@id/fl_clock"
         >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:id="@+id/DailyScheduleContainer"
+            android:orientation="horizontal"
             >
 
-            <TextView
-                android:id="@+id/tv_today_plan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/todayPlan"
-                android:textColor="@color/Bar"
-                android:textSize="16sp"
-                app:fontFamily="@font/iransans"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-
-                />
-
-            <Button
-                android:id="@+id/btn_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/button2"
-                android:gravity="center"
-                android:text="@string/add"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                app:fontFamily="@font/iransans"
-                android:onClick="addCourse"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
