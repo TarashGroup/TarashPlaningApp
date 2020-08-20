@@ -43,11 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void addCourse(View view){
-        /*Intent intent = new Intent(MainActivity.this , MainActivity2.class);
-        startActivity(intent);
-        finish();*/
-    }
 
     private void addProgressBars (Typeface typeface) {
         ProgressBuilder progressBuilder = new ProgressBuilder(this, temp);

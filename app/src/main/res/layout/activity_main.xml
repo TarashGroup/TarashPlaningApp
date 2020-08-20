@@ -55,7 +55,7 @@
                     android:layout_marginEnd="10dp"
                     android:textColor="@color/DarkLight"
                     android:textSize="24sp"
-                     />
+                    />
 
                 <com.hanks.htextview.evaporate.EvaporateTextView
                     android:id="@+id/days"
@@ -125,7 +125,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         app:cardCornerRadius = "15dp"
@@ -136,20 +136,85 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fl_clock"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/todayPlan"
+            android:textSize="18sp"
+            android:textColor="@color/Bar"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/iransans"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/DailyScheduleContainer"
             android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
             >
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            >
+            <Button
+                android:id="@+id/btn_remove"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button1"
+                android:gravity="center"
+                android:text="@string/remove"
+                android:textSize="12sp"
+                android:fontFamily="@font/iransans"
+                android:textColor="@color/Bar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btn_edit"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+            <Button
+                android:id="@+id/btn_edit"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button1"
+                android:gravity="center"
+                android:text="@string/edit"
+                android:textSize="12sp"
+                android:fontFamily="@font/iransans"
+                android:textColor="@color/Bar"
+                app:layout_constraintLeft_toRightOf="@id/btn_remove"
+                app:layout_constraintRight_toLeftOf="@id/btn_add"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button2"
+                android:gravity="center"
+                android:text="@string/add"
+                android:textSize="12sp"
+                android:fontFamily="@font/iransans"
+                android:textColor="@android:color/white"
+                app:layout_constraintLeft_toRightOf="@id/btn_edit"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-
     </androidx.cardview.widget.CardView>
-
-
 
     <ImageView
         android:id="@+id/imageView"
