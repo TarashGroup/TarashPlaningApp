@@ -40,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
         //who is this Kosnamak?
         //kos nagin :)
         //True KosNamak can never change ...
-
-
+        Button btnAddPlan = findViewById(R.id.btn_add);
+        btnAddPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,AddPlanActivity.class));
+                finish();
+            }
+        });
     }
 
     private void addProgressBars (Typeface typeface) {
