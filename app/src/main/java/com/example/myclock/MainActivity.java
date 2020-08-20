@@ -12,7 +12,6 @@ import com.example.myclock.Helper.FormatHelper;
 import com.example.myclock.Views.SpiralClock;
 import com.hanks.htextview.base.HTextView;
 
-import ir.samanjafari.easycountdowntimer.EasyCountDownTextview;
 
 public class MainActivity extends AppCompatActivity {
     private int timeInSecondsUntilKonkur = 722000 , seconds , minutes , hours , days ;

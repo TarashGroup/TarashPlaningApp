@@ -8,17 +8,6 @@
     tools:context=".MainActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="434dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="280dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/curvedline" />
-
     <FrameLayout
         android:id="@+id/fl_clock"
         android:layout_width="280dp"
@@ -33,33 +22,130 @@
             android:id="@+id/spiralClock"
             android:layout_width="280dp"
             android:layout_height="280dp"
-
             />
+        <LinearLayout
+            android:id="@+id/inClock"
+            android:layout_width="170dp"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="روز"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/DarkLight"
+                    android:textSize="24sp"
+                     />
+
+                <com.hanks.htextview.evaporate.EvaporateTextView
+                    android:id="@+id/days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="335"
+                    android:textColor="@color/DarkLight"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/countDownTimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.hanks.htextview.evaporate.EvaporateTextView
+                    android:id="@+id/hours"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/path_558"
+                    android:gravity="center"
+                    android:text="10"
+                    android:textColor="@color/DarkLight"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text=":"
+                    android:textColor="@color/DarkLight"
+                    android:textSize="24sp" />
+
+                <com.hanks.htextview.evaporate.EvaporateTextView
+                    android:id="@+id/minutes"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/path_558"
+                    android:gravity="center"
+                    android:text="10"
+                    android:textColor="@color/DarkLight"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text=":"
+                    android:textColor="@color/DarkLight"
+                    android:textSize="24sp" />
+
+                <com.hanks.htextview.evaporate.EvaporateTextView
+                    android:id="@+id/seconds"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/path_558"
+                    android:gravity="center"
+                    android:text="10"
+                    android:textColor="@color/DarkLight"
+                    android:textSize="18sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
     </FrameLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_margin="20dp"
-        android:background="@android:color/white"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:cardCornerRadius = "15dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_clock"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <TextView
                 android:id="@+id/tv_today_plan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/todayPlan"
                 android:textColor="@color/Bar"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:fontFamily="@font/iransans"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -101,101 +187,5 @@
         tools:layout_editor_absoluteX="-2dp"
         />
 
-    <LinearLayout
-        android:id="@+id/inClock"
-        android:layout_width="409dp"
-        android:layout_height="98dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="130dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingRight="10dp"
-                android:text="روز"
-                android:textColor="@color/DarkLight"
-                android:textSize="24sp" />
-
-            <com.hanks.htextview.evaporate.EvaporateTextView
-                android:id="@+id/days"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="10dp"
-                android:text="335"
-                android:textColor="@color/DarkLight"
-                android:textSize="24sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/countDownTimer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <com.hanks.htextview.evaporate.EvaporateTextView
-                android:id="@+id/hours"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/path_558"
-                android:gravity="center"
-                android:paddingRight="1.5dp"
-                android:paddingBottom="3dp"
-                android:text="10"
-                android:textColor="@color/DarkLight"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:text=":"
-                android:textColor="@color/DarkLight"
-                android:textSize="24sp" />
-
-            <com.hanks.htextview.evaporate.EvaporateTextView
-                android:id="@+id/minutes"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/path_558"
-                android:gravity="center"
-                android:paddingRight="1.5dp"
-                android:paddingBottom="3dp"
-                android:text="10"
-                android:textColor="@color/DarkLight"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:text=":"
-                android:textColor="@color/DarkLight"
-                android:textSize="24sp" />
-
-            <com.hanks.htextview.evaporate.EvaporateTextView
-                android:id="@+id/seconds"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/path_558"
-                android:gravity="center"
-                android:paddingRight="1.5dp"
-                android:paddingBottom="3dp"
-                android:text="10"
-                android:textColor="@color/DarkLight"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
