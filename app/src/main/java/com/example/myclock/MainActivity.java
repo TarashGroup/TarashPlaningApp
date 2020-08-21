@@ -37,10 +37,6 @@ public class MainActivity extends AppCompatActivity {
         startMainTimer();
         addProgressBars(typeface);
 
-        //Easter Egg :/
-        //who is this Kosnamak?
-        //kos nagin :)
-        //True KosNamak can never change ...
 
         Button btnAddPlan = findViewById(R.id.btn_add);
         btnAddPlan.setOnClickListener(new View.OnClickListener() {

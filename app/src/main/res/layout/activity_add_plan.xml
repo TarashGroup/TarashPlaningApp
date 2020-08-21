@@ -70,7 +70,7 @@
                     android:id="@+id/sp_hour"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/spiiner_bacground"
+                    android:background="@drawable/rectengle_bar_2_5"
                     android:textAlignment="center"
                     android:textColor="@color/Bar"
                     android:gravity="center"
@@ -88,7 +88,7 @@
                     android:id="@+id/sp_minute"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/spiiner_bacground"
+                    android:background="@drawable/rectengle_bar_2_5"
                     android:textAlignment="center"
                     android:textColor="@color/Bar"
                     android:gravity="center" />
@@ -145,14 +145,15 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@drawable/spiiner_bacground"
+                android:background="@drawable/rectengle_bar_2_5"
                 android:layout_marginTop="5dp"
                 android:layout_marginHorizontal="20dp">
-            <ListView
-                android:id="@+id/lv_check_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center|bottom"
+                    android:background="@drawable/group_365"
+                    />
 
             </FrameLayout>
 
