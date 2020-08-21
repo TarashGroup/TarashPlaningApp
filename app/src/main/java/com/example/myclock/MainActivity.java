@@ -1,6 +1,5 @@
 package com.example.myclock;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.myclock.Views.ProgressBuilder;
 import com.example.myclock.Views.SpiralClock;
 import com.hanks.htextview.base.HTextView;
 
@@ -52,21 +51,18 @@ public class MainActivity extends AppCompatActivity {
         ProgressBuilder progressBuilder = new ProgressBuilder(this, temp);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(dp2px(0), dp2px(10), dp2px(17), dp2px(10));
+        params.setMargins(dp2px(10), dp2px(10), dp2px(10), dp2px(10));
 
-        View view = progressBuilder.getView("Sand King", typeface, 2f, 2.30f, 0);
-        View view1 = progressBuilder.getView("is so", typeface, 0.80f, 2.30f, 1);
-        View view2 = progressBuilder.getView("FUCKING", typeface, 0.80f, 2.30f, 2);
-        View view3 = progressBuilder.getView("lovely", typeface, 0.80f, 2.30f, 3);
+        View view = progressBuilder.getView("Sand King", 2f, 2.30f, 0);
+        View view1 = progressBuilder.getView("is so", 0.80f, 2.30f, 1);
+        View view2 = progressBuilder.getView("FUCKING", 0.80f, 2.30f, 2);
+        View view3 = progressBuilder.getView("lovely", 0.80f, 2.30f, 3);
 
         dailySchedule = findViewById(R.id.DailyScheduleContainer);
         dailySchedule.addView(view, params);
         dailySchedule.addView(view1, params);
         dailySchedule.addView(view2, params);
         dailySchedule.addView(view3, params);
-        //dailySchedule.addView(view3, params);
-        ///dailySchedule.addView(view3, params);
-       // dailySchedule.addView(view3, params);
     }
 
     View.OnClickListener temp = new View.OnClickListener() {
