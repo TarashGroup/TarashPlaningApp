@@ -7,4 +7,9 @@
     <string name="todayPlan">برنامه امروز</string>
     <string name="chooseCourse">انتخاب درس</string>
     <string name="duration">مدت زمان</string>
+    <string name="addPlan">اضافه کردن برنامه</string>
+    <string name="percentage">درصد‌گیری</string>
+    <string name="alarm">آلارم</string>
+    <string name="daily">روزمره</string>
+    <string name="checkList">تعریف چک لیست</string>
 </resources>

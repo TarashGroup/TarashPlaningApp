@@ -23,12 +23,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/addPlan"
+                android:gravity="start"
+                android:textColor="@color/Bar"
+                android:textSize="22sp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/iransans"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/Bar"
+                android:layout_marginHorizontal="15dp"
+                />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button1"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:text="@string/chooseCourse"
@@ -41,14 +57,14 @@
                 android:text="@string/duration"
                 android:gravity="center"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="25sp"
-                android:layout_marginTop="15dp"
+                android:textSize="22sp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/iransans"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:gravity="center">
                 <Spinner
                     android:id="@+id/sp_hour"
@@ -77,6 +93,76 @@
                     android:textColor="@color/Bar"
                     android:gravity="center" />
             </LinearLayout>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/sw_daily"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:text="@string/daily"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="@font/iransans"
+                android:textSize="18sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                />
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/sw_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:text="@string/alarm"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="@font/iransans"
+                android:textSize="18sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                />
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/sw_percentage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:text="@string/percentage"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="@font/iransans"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/checkList"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="22sp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/iransans"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/spiiner_bacground"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="20dp">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutDirection="rtl"
+                />
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="start|bottom"
+                    android:layout_margin="10dp"
+                    android:foregroundGravity="right"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/icon_plus"/>
+            </FrameLayout>
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
