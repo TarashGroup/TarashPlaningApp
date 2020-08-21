@@ -54,15 +54,16 @@ public class MainActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(dp2px(10), dp2px(10), dp2px(10), dp2px(10));
 
-        View view = progressBuilder.getView("Sand King", typeface, 2f, 2.30f, 0);
-        View view1 = progressBuilder.getView("is so", typeface, 0.80f, 2.30f, 1);
-        View view2 = progressBuilder.getView("FUCKING", typeface, 0.80f, 2.30f, 2);
-        View view3 = progressBuilder.getView("lovely", typeface, 0.80f, 2.30f, 3);
+        View view = progressBuilder.getView("فیزیک", typeface, 2f, 2.30f, 0);
+        View view1 = progressBuilder.getView("ریاضی", typeface, 0.80f, 2.30f, 1);
+        View view2 = progressBuilder.getView("شیمی", typeface, 0.80f, 2.30f, 2);
+        View view3 = progressBuilder.getView("ادبیات", typeface, 0.80f, 2.30f, 3);
 
         dailySchedule = findViewById(R.id.DailyScheduleContainer);
         dailySchedule.addView(view, params);
         dailySchedule.addView(view1, params);
         dailySchedule.addView(view2, params);
+        dailySchedule.addView(view3, params);
     }
 
     View.OnClickListener temp = new View.OnClickListener() {
