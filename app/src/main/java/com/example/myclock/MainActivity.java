@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         dailySchedule.addView(view, params);
         dailySchedule.addView(view1, params);
         dailySchedule.addView(view2, params);
-        //dailySchedule.addView(view3, params);
+        dailySchedule.addView(view3, params);
         //dailySchedule.addView(view3, params);
         ///dailySchedule.addView(view3, params);
        // dailySchedule.addView(view3, params);
