@@ -42,8 +42,8 @@ public class ProgressBuilder{
         progressView.setText(Math.round(pMaxValue * 100) / 100.0 + " Hrs");
         progressView.setOuterContourSize(0);
         progressView.setInnerContourSize((int) dp2px(1f, context));
-        progressView.setBarWidth((int) dp2px(7f, context));
-        progressView.setRimWidth((int) dp2px(12f, context));
+        progressView.setBarWidth((int) dp2px(5f, context));
+        progressView.setRimWidth((int) dp2px(9f, context));
         progressView.setBarColor(ContextCompat.getColor(context, R.color.BarColor));
         progressView.setRimColor(ContextCompat.getColor(context, R.color.RimColor));
         progressView.setInnerContourColor(ContextCompat.getColor(context, R.color.ContourColor));
@@ -53,7 +53,7 @@ public class ProgressBuilder{
         progressView.setAutoTextSize(true);
 
         TextView title = new TextView(context);
-        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
         title.setTypeface(pTitleTypeface);
         title.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
         title.setText(pTitle);
