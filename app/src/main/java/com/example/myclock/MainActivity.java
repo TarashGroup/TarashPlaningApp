@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void addProgressBars (Typeface typeface) {
         ProgressBuilder progressBuilder = new ProgressBuilder(this, temp);
-        View view = progressBuilder.getView("Sand King", typeface, 0.80f, 2.30f, 0);
+        View view = progressBuilder.getView("Sand King", typeface, 2f, 2.30f, 0);
         View view1 = progressBuilder.getView("is so", typeface, 0.80f, 2.30f, 1);
         View view2 = progressBuilder.getView("FUCKING", typeface, 0.80f, 2.30f, 2);
         View view3 = progressBuilder.getView("lovely", typeface, 0.80f, 2.30f, 3);

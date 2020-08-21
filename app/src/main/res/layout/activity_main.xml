@@ -118,6 +118,7 @@
                     android:textColor="@color/DarkLight"
                     android:textSize="18sp"
                     />
+
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
@@ -128,7 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        app:cardCornerRadius = "15dp"
+        app:cardCornerRadius = "30dp"
         app:cardElevation="8dp"
         app:cardBackgroundColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -146,16 +147,21 @@
             android:text="@string/todayPlan"
             android:textSize="18sp"
             android:textColor="@color/Bar"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="27dp"
             android:fontFamily="@font/iransans"
             />
-        <LinearLayout
+
+
+            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/DailyScheduleContainer"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
+
+            
             >
         </LinearLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -226,6 +232,8 @@
         app:srcCompat="@drawable/group_251"
         tools:layout_editor_absoluteX="-2dp"
         />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

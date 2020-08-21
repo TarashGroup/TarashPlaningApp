@@ -37,10 +37,13 @@ public class ProgressBuilder{
         CircleProgressView progressView = new CircleProgressView(context, null);
         progressView.setSeekModeEnabled(false);
         progressView.setTextMode(TextMode.TEXT);
+        progressView.setTextColorAuto(false);
+        progressView.setTextColor(ContextCompat.getColor(context, R.color.DarkLight));
         progressView.setText(Math.round(pMaxValue * 100) / 100.0 + " Hrs");
         progressView.setOuterContourSize(0);
-        progressView.setBarWidth((int) dp2px(10f, context));
-        progressView.setRimWidth((int) dp2px(14f, context));
+        progressView.setInnerContourSize((int) dp2px(1f, context));
+        progressView.setBarWidth((int) dp2px(7f, context));
+        progressView.setRimWidth((int) dp2px(12f, context));
         progressView.setBarColor(ContextCompat.getColor(context, R.color.BarColor));
         progressView.setRimColor(ContextCompat.getColor(context, R.color.RimColor));
         progressView.setInnerContourColor(ContextCompat.getColor(context, R.color.ContourColor));
@@ -48,15 +51,14 @@ public class ProgressBuilder{
         progressView.setMaxValue(pMaxValue);
         progressView.setTextTypeface(pTitleTypeface);
         progressView.setAutoTextSize(true);
-        progressView.setTextColorAuto(true);
 
         TextView title = new TextView(context);
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         title.setTypeface(pTitleTypeface);
-        title.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        title.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
         title.setText(pTitle);
         title.setSingleLine();
-        title.setTextColor(Color.rgb(0,0,0));
+        title.setTextColor(Color.rgb(27,56,81));
 
         LinearLayout.LayoutParams progressBarParams = new LinearLayout.LayoutParams(
                 (int) dp2px(116, context), (int) dp2px(116, context));
