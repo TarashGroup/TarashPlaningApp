@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class AddPlanActivity extends AppCompatActivity {
     int limit = 15;
+    Dialog checkListDialog = new Dialog(this);
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,37 +50,23 @@ public class AddPlanActivity extends AppCompatActivity {
         finish();
     }
     public void addPlan(View view){
-       showCheckListDialog();
-    }
-
-    private void showCheckListDialog(){
-        final Dialog checkListDialog = new Dialog(this);
+        checkListDialog = new Dialog(this);
         checkListDialog.setContentView(R.layout.add_check_list);
         checkListDialog.show();
-        ImageView imageView = findViewById(R.id.commit);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText editText = findViewById(R.id.editText);
-                String checkListString = editText.getText().toString();
-                if (checkListString.length() > limit ){
-                    Toast.makeText(AddPlanActivity.this, "توضیح بیش از حد مجاز", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    addCheckList(checkListString);
-                    checkListDialog.dismiss();    
-                }
-                
-            }
-        });
-        
-        imageView = findViewById(R.id.cancel);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkListDialog.dismiss();
-            }
-        });
-        
     }
+    public void commit(View view){
+        EditText editText = findViewById(R.id.editText);
+        String checkListString = editText.getText().toString();
+        if (checkListString.length() > limit ){
+            Toast.makeText(AddPlanActivity.this, "توضیح بیش از حد مجاز", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            // addCheckList(checkListString);
+            checkListDialog.dismiss();
+        }
+    }
+    public void cancel(View view){
+        checkListDialog.dismiss();
+    }
+
 }
