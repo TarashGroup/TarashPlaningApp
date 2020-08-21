@@ -61,7 +61,7 @@ public class ProgressBuilder{
         title.setTextColor(Color.rgb(27,56,81));
 
         LinearLayout.LayoutParams progressBarParams = new LinearLayout.LayoutParams(
-                (int) dp2px(116, context), (int) dp2px(116, context));
+                (int) dp2px(100, context), (int) dp2px(100, context));
 
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

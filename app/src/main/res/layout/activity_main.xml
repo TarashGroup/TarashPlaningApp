@@ -129,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="45dp"
         app:cardCornerRadius = "30dp"
         app:cardElevation="8dp"
         app:cardBackgroundColor="@android:color/white"
@@ -164,8 +165,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/DailyScheduleContainer"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 >
             </LinearLayout>
         </HorizontalScrollView>
@@ -173,13 +174,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="20dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             >
             <Button
                 android:id="@+id/btn_remove"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
                 android:background="@drawable/button1"
                 android:gravity="center"
                 android:text="@string/remove"
@@ -193,8 +194,8 @@
                 />
             <Button
                 android:id="@+id/btn_edit"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
                 android:background="@drawable/button1"
                 android:gravity="center"
                 android:text="@string/edit"
@@ -208,8 +209,8 @@
                 />
             <Button
                 android:id="@+id/btn_add"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
                 android:background="@drawable/button2"
                 android:gravity="center"
                 android:text="@string/add"
