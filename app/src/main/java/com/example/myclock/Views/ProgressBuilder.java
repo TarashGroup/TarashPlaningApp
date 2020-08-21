@@ -1,4 +1,4 @@
-package com.example.myclock;
+package com.example.myclock.Views;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,6 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+
+import com.example.myclock.R;
 
 import at.grabner.circleprogress.CircleProgressView;
 import at.grabner.circleprogress.TextMode;
@@ -23,12 +26,14 @@ public class ProgressBuilder{
     private View.OnClickListener onClickListener;
     private Context context;
 
-    ProgressBuilder(Context context, View.OnClickListener onClickListener) {
+    public ProgressBuilder(Context context, View.OnClickListener onClickListener) {
         this.context = context;
         this.onClickListener = onClickListener;
     }
 
-    View getView(String pTitle, Typeface pTitleTypeface, float pValue, float pMaxValue, int TAG_ID) {
+    public View getView(String pTitle, float pValue, float pMaxValue, int TAG_ID) {
+        Typeface typeface = ResourcesCompat.getFont(context, R.font.iransans);
+
         LinearLayout progressLayout = new LinearLayout(context);
         progressLayout.setTag(pTitle);
         progressLayout.setOrientation(LinearLayout.VERTICAL);
@@ -49,12 +54,12 @@ public class ProgressBuilder{
         progressView.setInnerContourColor(ContextCompat.getColor(context, R.color.ContourColor));
         progressView.setValueAnimated(pValue);
         progressView.setMaxValue(pMaxValue);
-        progressView.setTextTypeface(pTitleTypeface);
+        progressView.setTextTypeface(typeface);
         progressView.setAutoTextSize(true);
 
         TextView title = new TextView(context);
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-        title.setTypeface(pTitleTypeface);
+        title.setTypeface(typeface);
         title.setTextAlignment(View.TEXT_ALIGNMENT_GRAVITY);
         title.setText(pTitle);
         title.setSingleLine();
