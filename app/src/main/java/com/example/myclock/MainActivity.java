@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         ProgressBuilder progressBuilder = new ProgressBuilder(this, temp);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(dp2px(0), dp2px(10), dp2px(17), dp2px(10));
+        params.setMargins(dp2px(10), dp2px(10), dp2px(10), dp2px(10));
 
         View view = progressBuilder.getView("Sand King", typeface, 2f, 2.30f, 0);
         View view1 = progressBuilder.getView("is so", typeface, 0.80f, 2.30f, 1);
@@ -63,10 +63,6 @@ public class MainActivity extends AppCompatActivity {
         dailySchedule.addView(view, params);
         dailySchedule.addView(view1, params);
         dailySchedule.addView(view2, params);
-        dailySchedule.addView(view3, params);
-        //dailySchedule.addView(view3, params);
-        ///dailySchedule.addView(view3, params);
-       // dailySchedule.addView(view3, params);
     }
 
     View.OnClickListener temp = new View.OnClickListener() {
