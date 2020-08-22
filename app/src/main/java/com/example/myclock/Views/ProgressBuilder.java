@@ -31,7 +31,7 @@ public class ProgressBuilder{
         this.onClickListener = onClickListener;
     }
 
-    public View getView(String pTitle, float pValue, float pMaxValue, int TAG_ID) {
+    public View getView(String pTitle, float pValue, float pMaxValue) {
         Typeface typeface = ResourcesCompat.getFont(context, R.font.vazir);
 
         LinearLayout progressLayout = new LinearLayout(context);
@@ -87,7 +87,7 @@ public class ProgressBuilder{
         progressLayout.addView(title, titleParams);
 
         progressLayout.setOnClickListener(onClickListener);
-        progressLayout.setTag(TAG_ID);
+        progressLayout.setTag(pTitle);
 
         return progressLayout;
     }

@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
     private int timeInSecondsUntilKonkur = 722000 , seconds , minutes , hours , days ;
     private Handler mainTimerHandler = new Handler();
     private LinearLayout dailySchedule;
+    private Animation shakeAnimation;
+    private boolean isRemoving = false;
+    private Button deleteButton;
+    private Button btnAddPlan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +37,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Another Easter Egg
         //kodoom koskeshi ino pak kard ?
+        shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake_that);
 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.iransans);
 
         calculateMainTimer();
         startMainTimer();
-        addProgressBars(typeface);
+        addProgressBars();
 
-
-        Button btnAddPlan = findViewById(R.id.btn_add);
+       // deleteButton = findViewById(R.id.btn_remove);
+        btnAddPlan = findViewById(R.id.btn_add);
         btnAddPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,37 +56,30 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void addProgressBars (Typeface typeface) {
-        ProgressBuilder progressBuilder = new ProgressBuilder(this, temp);
+    private void addProgressBars() {
+        ProgressBuilder progressBuilder = new ProgressBuilder(this, progressListener);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(dp2px(10), dp2px(10), dp2px(10), dp2px(10));
 
-        View view4 = progressBuilder.getView("فیزیک", 60f, 120f, 0);
-        View view1 = progressBuilder.getView("شیمی", 30f, 90f, 1);
-        View view2 = progressBuilder.getView("ریاضی", 100f, 145f, 2);
-        View view3 = progressBuilder.getView("ادبیات", 0f, 15f, 3);
+        View view4 = progressBuilder.getView("فیزیک", 60f, 120f);
+        View view1 = progressBuilder.getView("شیمی", 30f, 90f);
+        View view2 = progressBuilder.getView("ریاضی", 100f, 145f);
+        View view3 = progressBuilder.getView("ادبیات", 0f, 15f);
 
         dailySchedule = findViewById(R.id.DailyScheduleContainer);
         dailySchedule.addView(view4, params);
         dailySchedule.addView(view1, params);
         dailySchedule.addView(view2, params);
         dailySchedule.addView(view3, params);
+        deleteButton = findViewById(R.id.btn_remove);
 
         CardView cardView = findViewById(R.id.cardView);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
         animation.setDuration(1000);
         cardView.startAnimation(animation);
-
-
     }
 
-    View.OnClickListener temp = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(MainActivity.this, view.getTag() + "", Toast.LENGTH_SHORT).show();
-        }
-    };
 
     private void calculateMainTimer(){
         int tempTime = timeInSecondsUntilKonkur ;
@@ -141,6 +139,49 @@ public class MainActivity extends AppCompatActivity {
             }
         } );
     }
+
+    public void removeFromDailySchedule (View view) {
+        if (isRemoving) {
+            deleteButton.setText("حذف");
+            isRemoving = false;
+            shakeProgressBars(false);
+        }
+        else {
+            deleteButton.setText("بازگشت");
+            isRemoving = true;
+            shakeProgressBars(true);
+        }
+    }
+
+    private void shakeProgressBars (boolean shake) {
+        if (shake) {
+            for (int i = 0; i < dailySchedule.getChildCount(); i++) {
+                dailySchedule.getChildAt(i).startAnimation(shakeAnimation);
+            }
+        }
+        else {
+            for (int i = 0; i < dailySchedule.getChildCount(); i++) {
+                dailySchedule.getChildAt(i).clearAnimation();
+            }
+        }
+    }
+
+
+    View.OnClickListener progressListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (isRemoving) {
+                String name = view.getTag().toString();
+                for (int i = 0; i < dailySchedule.getChildCount(); i++) {
+                    if (dailySchedule.getChildAt(i).getTag().toString().equals(name)) {
+                        dailySchedule.getChildAt(i).clearAnimation();
+                        dailySchedule.removeViewAt(i);
+                        return;
+                    }
+                }
+            }
+        }
+    };
 
     private int dp2px(float dp){
         return (int) (dp * ((float) this.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
