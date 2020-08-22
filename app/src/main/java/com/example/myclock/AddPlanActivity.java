@@ -34,27 +34,6 @@ public class AddPlanActivity extends AppCompatActivity {
         checkListContainer = findViewById(R.id.CheckListContainer);
         checkListView = new CheckListView(this, checkListListener);
 
-        //***************************************** Spinner
-        Spinner spHour = findViewById(R.id.sp_hour);
-        Spinner spMinute = findViewById(R.id.sp_minute);
-        String[] hours = new String[25];
-        String[] minutes = new String[60];
-        for (int i = 0; i <= 24; i++) {
-            if (i < 10){
-                hours[i] = "0" + i;
-                minutes[i] = "0" + i;
-            }
-            else{
-                hours[i] = Integer.toString(i);
-                minutes[i] = Integer.toString(i);;
-            }
-        }
-        for (int i = 25; i < 60; i++)
-            minutes[i] = Integer.toString(i);;
-        spHour.setAdapter( new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,hours));
-        spMinute.setAdapter(new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,minutes));
-        //*****************************************************
-
     }
 
     public void addCheckList(String title) {
