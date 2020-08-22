@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(dp2px(10), dp2px(10), dp2px(10), dp2px(10));
 
-        View view = progressBuilder.getView("Sand King", 2f, 2.30f, 0);
-        View view1 = progressBuilder.getView("is so", 0.80f, 2.30f, 1);
-        View view2 = progressBuilder.getView("FUCKING", 0.80f, 2.30f, 2);
-        View view3 = progressBuilder.getView("lovely", 0.80f, 2.30f, 3);
+        View view = progressBuilder.getView("فیزیک", 60f, 120f, 0);
+        View view1 = progressBuilder.getView("شیمی", 30f, 90f, 1);
+        View view2 = progressBuilder.getView("ریاضی", 100f, 145f, 2);
+        View view3 = progressBuilder.getView("ادبیات", 0f, 15f, 3);
 
         dailySchedule = findViewById(R.id.DailyScheduleContainer);
         dailySchedule.addView(view, params);

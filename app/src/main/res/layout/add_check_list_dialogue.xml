@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectengle_for_add_check_list"
+    android:background="@drawable/bounds_for_add_check_list"
     android:clipChildren="false"
     android:orientation="vertical">
 

@@ -14,6 +14,6 @@
     </style>
     
     <style name="add_check_list" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowBackground">@drawable/rectengle_for_add_check_list</item>
+        <item name="android:windowBackground">@drawable/bounds_for_add_check_list</item>
     </style>
 </resources>

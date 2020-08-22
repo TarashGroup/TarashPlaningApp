@@ -4,30 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.example.myclock.Views.CheckListView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.zip.Inflater;
-
-import kotlin.jvm.internal.Intrinsics;
 
 public class AddPlanActivity extends AppCompatActivity {
     private ArrayList<String> checklists = new ArrayList<>();
@@ -110,7 +98,7 @@ public class AddPlanActivity extends AppCompatActivity {
     public void addPlan(View view) {
 
         checkListDialogBuilder = new AlertDialog.Builder(this);
-        checkListDialogBuilder.setView(getLayoutInflater().inflate(R.layout.add_check_list , null));
+        checkListDialogBuilder.setView(getLayoutInflater().inflate(R.layout.add_check_list_dialogue, null));
         checkListDialog = checkListDialogBuilder.create();
         checkListDialog.show();
     }

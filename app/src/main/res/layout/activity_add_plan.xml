@@ -37,6 +37,7 @@
                 android:textSize="20sp" />
 
             <View
+                android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginHorizontal="15dp"
@@ -84,7 +85,7 @@
                     android:id="@+id/sp_hour"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/rectengle_for_clock"
+                    android:background="@drawable/bounds_for_clock_spinner"
                     android:gravity="center"
                     android:textAlignment="center"
                     android:textColor="@color/Bar" />
@@ -102,7 +103,7 @@
                     android:id="@+id/sp_minute"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/rectengle_for_clock"
+                    android:background="@drawable/bounds_for_clock_spinner"
                     android:gravity="center"
                     android:textAlignment="center"
                     android:textColor="@color/Bar" />
@@ -162,7 +163,7 @@
                 android:layout_height="150dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/rectengle_for_add_check_list">
+                android:background="@drawable/bounds_for_add_check_list">
 
                 <ScrollView
                     android:layout_width="match_parent"
