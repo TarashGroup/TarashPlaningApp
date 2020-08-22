@@ -6,7 +6,9 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -14,8 +16,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myclock.Views.CheckListView;
+import com.google.android.material.animation.AnimationUtils;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class AddPlanActivity extends AppCompatActivity {
     private ArrayList<String> checklists = new ArrayList<>();
@@ -60,6 +64,7 @@ public class AddPlanActivity extends AppCompatActivity {
         addCheckList("اند");
         addCheckList("ایز");
         addCheckList("یه ویو همیشه خالی");
+
     }
 
     public void addCheckList(String title) {
@@ -100,7 +105,9 @@ public class AddPlanActivity extends AppCompatActivity {
         checkListDialogBuilder = new AlertDialog.Builder(this);
         checkListDialogBuilder.setView(getLayoutInflater().inflate(R.layout.add_check_list_dialogue, null));
         checkListDialog = checkListDialogBuilder.create();
+        Objects.requireNonNull(checkListDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
         checkListDialog.show();
+
     }
     public void cancel(View view) {
         checkListDialog.dismiss();

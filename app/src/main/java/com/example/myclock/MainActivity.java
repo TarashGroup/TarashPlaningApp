@@ -7,14 +7,17 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.example.myclock.Views.ProgressBuilder;
-import com.example.myclock.Views.SpiralClock;
+
 import com.hanks.htextview.base.HTextView;
 
 
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         String a = "F android studio & git";
         setContentView(R.layout.activity_main);
         //Another Easter Egg
-        SpiralClock spiralClock = new SpiralClock(this);
+
         Typeface typeface = ResourcesCompat.getFont(this, R.font.iransans);
 
         calculateMainTimer();
@@ -53,16 +56,23 @@ public class MainActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(dp2px(10), dp2px(10), dp2px(10), dp2px(10));
 
-        View view = progressBuilder.getView("فیزیک", 60f, 120f, 0);
+        View view4 = progressBuilder.getView("فیزیک", 60f, 120f, 0);
         View view1 = progressBuilder.getView("شیمی", 30f, 90f, 1);
         View view2 = progressBuilder.getView("ریاضی", 100f, 145f, 2);
         View view3 = progressBuilder.getView("ادبیات", 0f, 15f, 3);
 
         dailySchedule = findViewById(R.id.DailyScheduleContainer);
-        dailySchedule.addView(view, params);
+        dailySchedule.addView(view4, params);
         dailySchedule.addView(view1, params);
         dailySchedule.addView(view2, params);
         dailySchedule.addView(view3, params);
+
+        CardView cardView = findViewById(R.id.cardView);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
+        animation.setDuration(1000);
+        cardView.startAnimation(animation);
+
+
     }
 
     View.OnClickListener temp = new View.OnClickListener() {
