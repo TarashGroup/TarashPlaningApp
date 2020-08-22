@@ -59,7 +59,7 @@ public class AddPlanActivity extends AppCompatActivity {
         addCheckList("لایک");
         addCheckList("اند");
         addCheckList("ایز");
-        addCheckList("زدن 20 تست ارایه ادبیات");
+        addCheckList("یه ویو همیشه خالی");
     }
 
     public void addCheckList(String title) {

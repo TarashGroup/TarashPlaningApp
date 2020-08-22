@@ -40,7 +40,7 @@ public class CheckListView {
         TextView text = new TextView(context);
         text.setText(title);
         text.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
-        text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+        text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         text.setTypeface(typeface);
 
         LinearLayout.LayoutParams text_Params = new LinearLayout.LayoutParams(
