@@ -19,35 +19,42 @@
 
 
         >
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:fontFamily="@font/vazir"
+            android:gravity="start"
+            android:text="@string/addPlan"
+            android:textColor="@color/Bar"
+            android:textSize="20sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-                android:fontFamily="@font/vazir"
-                android:gravity="start"
-                android:text="@string/addPlan"
-                android:textColor="@color/Bar"
-                android:textSize="20sp" />
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="44dp"
+            android:background="@color/Bar" />
 
-            <View
-                android:id="@+id/line"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginHorizontal="15dp"
-                android:background="@color/Bar" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            >
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="18sp"
+                android:layout_marginTop="18dp"
                 android:fontFamily="@font/vazir"
                 android:text="@string/chooseCourse"
                 android:textColor="@color/colorPrimaryDark"
@@ -74,40 +81,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:gravity="center"
-                android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/sp_hour"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bounds_for_clock_spinner"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:textColor="@color/Bar" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:fontFamily="@font/vazir"
-                    android:text=":"
-                    android:textColor="@color/Bar"
-                    android:textSize="30dp" />
-
-                <Spinner
-                    android:id="@+id/sp_minute"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bounds_for_clock_spinner"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:textColor="@color/Bar" />
-            </LinearLayout>
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/sw_daily"
@@ -193,6 +167,7 @@
 
 
         </LinearLayout>
+        </ScrollView>
     </androidx.cardview.widget.CardView>
 
 

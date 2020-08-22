@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         String a = "F android studio & git";
         setContentView(R.layout.activity_main);
         //Another Easter Egg
+        //kodoom koskeshi ino pak kard ?
 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.iransans);
 

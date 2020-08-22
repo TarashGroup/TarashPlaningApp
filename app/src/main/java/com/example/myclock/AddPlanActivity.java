@@ -1,22 +1,20 @@
 package com.example.myclock;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myclock.Views.CheckListView;
-import com.google.android.material.animation.AnimationUtils;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -56,14 +54,6 @@ public class AddPlanActivity extends AppCompatActivity {
         spHour.setAdapter( new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,hours));
         spMinute.setAdapter(new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,minutes));
         //*****************************************************
-        addCheckList("زدن 20 تست ارایه ادبیات");
-        addCheckList("کینگ");
-        addCheckList("ایز");
-        addCheckList("گاد");
-        addCheckList("لایک");
-        addCheckList("اند");
-        addCheckList("ایز");
-        addCheckList("یه ویو همیشه خالی");
 
     }
 
@@ -77,11 +67,9 @@ public class AddPlanActivity extends AppCompatActivity {
         for (int i = 0; i < checklists.size(); i++) {
 
             View child = checkListContainer.getChildAt(i);
-            Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
-
             if ((child.getTag()).equals(title)) {
                 checkListContainer.removeViewAt(i);
-                checklists.remove( child.getTag());
+                checklists.remove((String) child.getTag());
                 break;
             }
         }
@@ -103,8 +91,10 @@ public class AddPlanActivity extends AppCompatActivity {
     public void addPlan(View view) {
 
         checkListDialogBuilder = new AlertDialog.Builder(this);
-        checkListDialogBuilder.setView(getLayoutInflater().inflate(R.layout.add_check_list_dialogue, null));
+        checkListDialogBuilder.setView(getLayoutInflater().inflate(R.layout.add_check_list_dialogue,null));
         checkListDialog = checkListDialogBuilder.create();
+        checkListDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
         Objects.requireNonNull(checkListDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
         checkListDialog.show();
 
