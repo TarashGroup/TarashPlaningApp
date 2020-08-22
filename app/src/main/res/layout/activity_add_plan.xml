@@ -6,18 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".AddPlanActivity"
     android:background="@color/peach"
+    android:orientation="vertical"
     >
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cd_add_plan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginVertical="20dp"
         app:cardCornerRadius="20dp"
-
-
+        android:layout_marginHorizontal="30dp"
         >
         <TextView
             android:layout_width="match_parent"
@@ -42,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
+            android:layout_marginBottom="36dp"
             >
             <LinearLayout
             android:layout_width="match_parent"
@@ -61,15 +60,11 @@
                 android:textSize="20sp" />
 
             <Button
+                android:id="@+id/btn_choose_course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="30dp"
                 android:background="@drawable/button1"
-                android:fontFamily="@font/iransans"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp" />
+                android:layout_marginHorizontal="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,14 +76,20 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp" />
 
-
+                <TimePicker
+                    android:id="@+id/timePicker1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="140dp"
+                    android:timePickerMode="spinner"
+                    android:layout_gravity="center"
+                    android:numbersInnerTextColor="@color/colorPrimaryDark"
+                    />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/sw_daily"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
                 android:fontFamily="@font/iransans"
                 android:gravity="center_vertical"
                 android:layoutDirection="rtl"
@@ -109,20 +110,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/sw_percentage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/iransans"
-                android:gravity="center_vertical"
-                android:layoutDirection="rtl"
-                android:text="@string/percentage"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp" />
-
-            <TextView
+                <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -143,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="30dp"
                     android:overScrollMode="never"
                     android:scrollbars="none">
 
@@ -160,16 +148,51 @@
                     android:layout_width="50dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center|bottom"
-                    android:background="@drawable/add_button"
+                    android:background="@drawable/button1"
+                    android:text="@string/plus"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="@color/Bar"
+                    android:layout_marginBottom="5dp"
                     android:onClick="addPlan" />
 
             </FrameLayout>
 
-
         </LinearLayout>
         </ScrollView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="10dp"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="@drawable/button2"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/confirm"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:fontFamily="@font/iransans"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="@drawable/button1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/back"
+            android:textColor="@color/Bar"
+            android:textSize="18sp"
+            android:fontFamily="@font/iransans"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-
-
+<include layout="@layout/choose_course_dialog"
+    android:visibility="invisible"/>
 </LinearLayout>

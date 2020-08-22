@@ -12,4 +12,11 @@
     <string name="alarm">آلارم</string>
     <string name="daily">روزمره</string>
     <string name="checkList">تعریف چک لیست</string>
+    <string name="confirm">تایید</string>
+    <string name="back">بازگشت</string>
+    <string name="courseList">لیست دروس</string>
+    <string name="explains">اضافه کردن</string>
+    <string name="plus">+</string>
+    <string name="addNewCourse">تعریف درس جدید</string>
+    <string name="select">انتخاب</string>
 </resources>
