@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/DarkLight</item>
         <item name="colorPrimaryDark">@color/DarkLight</item>
@@ -11,5 +11,9 @@
         <item name="colorPrimary">@color/BGMain</item>
         <item name="colorPrimaryDark">@color/BGMain</item>
         <item name="colorAccent">@color/BGMain</item>
+    </style>
+    
+    <style name="add_check_list" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/rectengle_for_add_check_list</item>
     </style>
 </resources>

@@ -27,21 +27,20 @@ public class CheckListView {
     }
 
     public View getCheckList (String title) {
+
         Typeface typeface = ResourcesCompat.getFont(context, R.font.iransans);
-
-
         LinearLayout layout = new LinearLayout(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(dp2px(8), dp2px(8), dp2px(12), 0);
+        params.setMargins(dp2px(8), dp2px(8), dp2px(14), 0);
         params.gravity = Gravity.CENTER;
         layout.setLayoutParams(params);
         layout.setOrientation(LinearLayout.HORIZONTAL);
 
         TextView text = new TextView(context);
         text.setText(title);
-        text.setTextColor(ContextCompat.getColor(context, R.color.DarkLight));
-        text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+        text.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
+        text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         text.setTypeface(typeface);
 
         LinearLayout.LayoutParams text_Params = new LinearLayout.LayoutParams(
@@ -52,7 +51,7 @@ public class CheckListView {
         image.setImageResource(R.drawable.group_376);
 
         LinearLayout.LayoutParams image_Params = new LinearLayout.LayoutParams(
-                dp2px(35), dp2px(35));
+                dp2px(58), dp2px(35));
         image_Params.gravity = Gravity.CENTER_VERTICAL;
 
         image.setOnClickListener(onClickListener);
