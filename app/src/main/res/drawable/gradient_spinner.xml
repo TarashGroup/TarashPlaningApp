@@ -9,8 +9,7 @@
 
             <padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />
         </shape></item>
-        <item ><bitmap android:gravity="center|right" android:src="@drawable/spinner_arrow" /> <!--for test-->
-        </item>
+
     </layer-list></item>
 
 </selector>

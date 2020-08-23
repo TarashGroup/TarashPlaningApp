@@ -243,5 +243,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/group_251" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="104dp"
+        android:layout_height="117dp"
+        android:onClick="test"
+        android:text="test"
+        android:textColor="@color/BGMain"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="594dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

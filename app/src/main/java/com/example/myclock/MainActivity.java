@@ -1,7 +1,8 @@
 package com.example.myclock;
-
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
@@ -10,15 +11,16 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
-
 import com.example.myclock.Views.ProgressBuilder;
-
 import com.hanks.htextview.base.HTextView;
+import java.util.Objects;
+import yuku.ambilwarna.AmbilWarnaDialog;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +31,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean isRemoving = false;
     private Button deleteButton;
     private Button btnAddPlan;
-
+    //test
+    AmbilWarnaDialog dialog;
+    AlertDialog alertDialog;
+    //test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Another Easter Egg
         //kodoom koskeshi ino pak kard ?
+        //me
+        //now the question is :
+        //who is me?
+        // :)
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake_that);
 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.iransans);
@@ -76,10 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
         CardView cardView = findViewById(R.id.cardView);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
-        animation.setDuration(1000);
+        animation.setDuration(700);
         cardView.startAnimation(animation);
     }
-
 
     private void calculateMainTimer(){
         int tempTime = timeInSecondsUntilKonkur ;
@@ -94,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         seconds = tempTime % (60);
 
     }
+
     private void startMainTimer(){
 
         mainTimerHandler.post(new Runnable() {
@@ -165,7 +174,38 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+//*************************************************************************************test
+    public void test(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(R.layout.add_course_dialogue);
+        alertDialog = builder.create();
+        Objects.requireNonNull(alertDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        Objects.requireNonNull(alertDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
+        alertDialog.show();
+    }
+    public void openColorPicker(View view){
+        dialog = new AmbilWarnaDialog(this, Color.WHITE, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                // color is the color selected by the user.
+                changeColor(color);
+            }
 
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+                // cancel was selected by the user
+            }
+            //https://github.com/yukuku/ambilwarna
+        });
+        dialog.show();
+
+    }
+    private void changeColor(int color){
+
+        ImageView imageView = alertDialog.findViewById(R.id.colorPicker);
+        imageView.setColorFilter(color);
+    }
+//*************************************************************************************test
 
     View.OnClickListener progressListener = new View.OnClickListener() {
         @Override

@@ -19,4 +19,11 @@
     <string name="plus">+</string>
     <string name="addNewCourse">تعریف درس جدید</string>
     <string name="select">انتخاب</string>
+    <string name="reset">حالت پیش فرض</string>
+    <string name="commit">تایید</string>
+    <string name="courseName">نام درس</string>
+    <string name="linkWriting">لینک نوشته</string>
+    <string name="defineLesson">تعریف بخش</string>
+    <string name="selectCourseColor">انتخاب رنگ درس</string>
+
 </resources>
