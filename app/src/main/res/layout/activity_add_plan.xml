@@ -149,15 +149,16 @@
                 </ScrollView>
 
                 <Button
-                    android:layout_width="50dp"
+                    android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_gravity="center|bottom"
+                    android:layout_gravity="start|bottom"
                     android:background="@drawable/button1"
                     android:text="@string/plus"
                     android:textSize="20sp"
                     android:gravity="center"
                     android:textColor="@color/Bar"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginStart="5dp"
                     android:onClick="addPlan" />
 
             </FrameLayout>
