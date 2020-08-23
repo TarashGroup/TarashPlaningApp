@@ -165,6 +165,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginHorizontal="50dp">
 
                     <ImageView
@@ -178,23 +179,21 @@
 
                     <ImageView
                         android:id="@+id/colorPicker"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_marginStart="30dp"
+                        android:layout_marginStart="10dp"
                         app:srcCompat="@drawable/color_picker_drawable" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
 
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="30dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
@@ -203,21 +202,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/amir_button"
+                android:background="@drawable/button3"
                 android:fontFamily="@font/vazir"
                 android:text="@string/back"
-                android:textAlignment="center"
-                android:textColor="@color/Bar" />
-
-            <Button
-                android:id="@+id/defaultButton"
-                android:layout_width="130dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/amir_button"
-                android:fontFamily="@font/vazir"
-                android:text="@string/reset"
+                android:gravity="center"
                 android:textColor="@color/Bar"
-                android:textSize="12sp" />
+                android:layout_gravity="start"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
 
             <Button
                 android:id="@+id/commitButton"
@@ -227,8 +221,12 @@
                 android:background="@drawable/button2"
                 android:fontFamily="@font/vazir"
                 android:text="@string/commit"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
+                android:textColor="@android:color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,12 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         String a = "F android studio & git";
         setContentView(R.layout.activity_main);
-        //Another Easter Egg
-        //kodoom koskeshi ino pak kard ?
-        //me
-        //now the question is :
-        //who is me?
-        // :)
+
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake_that);
 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.iransans);

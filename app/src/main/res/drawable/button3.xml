@@ -6,5 +6,5 @@
             <solid android:color="@android:color/black"/>
         </shape>
     </item>
-    <item android:drawable="@drawable/button1_normal"/>
+    <item android:drawable="@drawable/button3_normal"/>
 </ripple>

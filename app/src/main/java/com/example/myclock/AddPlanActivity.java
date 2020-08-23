@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.fonts.Font;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -30,6 +32,7 @@ public class AddPlanActivity extends AppCompatActivity {
     private ArrayList<String> checklists = new ArrayList<>();
     private LinearLayout checkListContainer;
     private CheckListView checkListView;
+    AlertDialog chooseCourseDialog;
     int limit = 20;
     AlertDialog.Builder checkListDialogBuilder ;
     AlertDialog checkListDialog;
@@ -45,45 +48,61 @@ public class AddPlanActivity extends AppCompatActivity {
 
         TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
         picker.setIs24HourView(true);
-
-
-        Button btnAddCourse = (Button)findViewById(R.id.btn_choose_course);
-        final Dialog chooseCourseDialog = new Dialog(this);
-        btnAddCourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                chooseCourseDialog.setContentView(R.layout.choose_course_dialog);
-                setCoursesButtons();
-                chooseCourseDialog.show();
-            }
-        });
-    }
-    private void setCoursesButtons(){
+        //*********************************************test
         courses.add("ریاضی");
         courses.add("شیمی");
         courses.add("عربی");
         courses.add("زبان");
         courses.add("فیزیک");
-        LinearLayout llCourses = (LinearLayout)findViewById(R.id.ll_courses);
+        //*********************************************/test
+
+    }
+
+    public void chooseCourse(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(R.layout.choose_course_dialog);
+        chooseCourseDialog = builder.create();
+        Objects.requireNonNull(chooseCourseDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        Objects.requireNonNull(chooseCourseDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
+        LinearLayout chooseCourseLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.choose_course_dialog,null);
+        LinearLayout llCourses  = chooseCourseLayout.findViewById(R.id.ll_courses);
+        setCoursesButtons(llCourses);
+        chooseCourseDialog.setView(chooseCourseLayout);
+        chooseCourseDialog.show();
+    }
+    private void setCoursesButtons(LinearLayout llCourses){
+        llCourses.removeAllViews();
         ArrayList<Button> coursesButtons = new ArrayList<>();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        params.setMargins(20, 10, 20, 10);
+        params.setMargins(40, 20, 40, 20);
+        params.gravity = Gravity.CENTER;
         for (int i = 0; i < courses.size(); i++) {
             Button button = new Button(this);
             button.setText(courses.get(i));
             button.setGravity(Gravity.CENTER);
-            button.setTypeface(ResourcesCompat.getFont(this, R.font.iransans));
-            button.setBackgroundResource(R.drawable.button3);
+            Typeface font = ResourcesCompat.getFont(this, R.font.vazir);
+            button.setTypeface(font);
+            button.setBackgroundResource(R.drawable.button1);
             button.setHeight((int) getResources().getDimension(R.dimen.button_height));
-            button.setWidth(llCourses.getWidth());
             button.setLayoutParams(params);
+            button.setTextColor(getResources().getColor(R.color.Bar));
             coursesButtons.add(button);
             llCourses.addView(button);
+            button.setOnClickListener(courseButtonOnClick);
         }
     }
+    View.OnClickListener courseButtonOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Button btnChooseCourse = findViewById(R.id.btn_choose_course);
+            Button btnSelectedCourse = (Button)view;
+            btnChooseCourse.setText(btnSelectedCourse.getText());
+            chooseCourseDialog.dismiss();
+        }
+    };
 
     public void addCheckList(String title) {
         View view = checkListView.getCheckList(title);
@@ -142,5 +161,9 @@ public class AddPlanActivity extends AppCompatActivity {
             addCheckList(checkListString);
             checkListDialog.dismiss();
         }
+    }
+
+    public void back(View view) {
+        onBackPressed();
     }
 }

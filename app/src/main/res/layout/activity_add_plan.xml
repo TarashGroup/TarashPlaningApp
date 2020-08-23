@@ -64,6 +64,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button1"
+                android:onClick="chooseCourse"
+                android:fontFamily="@font/vazir"
+                android:textSize="18sp"
+                android:textColor="@color/Bar"
                 android:layout_marginHorizontal="20dp"/>
 
             <TextView
@@ -190,9 +194,8 @@
             android:textColor="@color/Bar"
             android:textSize="18sp"
             android:fontFamily="@font/iransans"
+            android:onClick="back"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-<include layout="@layout/choose_course_dialog"
-    android:visibility="invisible"/>
 </LinearLayout>
