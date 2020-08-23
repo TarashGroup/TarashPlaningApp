@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         startMainTimer();
         addProgressBars();
 
-       // deleteButton = findViewById(R.id.btn_remove);
+        deleteButton = findViewById(R.id.btn_remove);
         btnAddPlan = findViewById(R.id.btn_add);
         btnAddPlan.setOnClickListener(new View.OnClickListener() {
             @Override
