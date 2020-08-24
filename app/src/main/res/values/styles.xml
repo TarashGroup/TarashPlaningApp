@@ -16,6 +16,12 @@
         <item name="android:windowEnterAnimation">@anim/slide_up</item>
         <item name="android:windowExitAnimation">@anim/slide_down</item>
     </style>
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+    <style name="vaziriFont">
+        <item name="android:fontFamily">@font/vazir</item>
+    </style>
 
 
 </resources>

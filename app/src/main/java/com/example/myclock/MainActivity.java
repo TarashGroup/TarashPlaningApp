@@ -193,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
             //https://github.com/yukuku/ambilwarna
         });
         dialog.show();
-
     }
     private void changeColor(int color){
 

@@ -1,28 +1,22 @@
 package com.example.myclock;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.fonts.Font;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
+import android.widget.Toolbar;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-
 import com.example.myclock.Views.CheckListView;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -36,15 +30,30 @@ public class AddPlanActivity extends AppCompatActivity {
     int limit = 20;
     AlertDialog.Builder checkListDialogBuilder ;
     AlertDialog checkListDialog;
-    @SuppressLint("ResourceType")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plan);
+
+        //****************************************toolbar
+
+        androidx.appcompat.widget.Toolbar tbAddPlan = findViewById(R.id.tb_addPlan_activity);
+        ActionBar actionbar = getSupportActionBar();
+        if (actionbar != null)
+            actionbar.setDisplayHomeAsUpEnabled(true);
+        tbAddPlan.setTitleTextAppearance(this, R.style.vaziriFont);
+        tbAddPlan.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        //*****************************************--toolbar
+
+
         checkListContainer = findViewById(R.id.CheckListContainer);
         checkListView = new CheckListView(this, checkListListener);
-
-
 
         TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
         picker.setIs24HourView(true);
