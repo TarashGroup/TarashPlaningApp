@@ -25,5 +25,6 @@
     <string name="linkWriting">لینک نوشته</string>
     <string name="defineLesson">تعریف بخش</string>
     <string name="selectCourseColor">انتخاب رنگ درس</string>
+    <string name="tick">✓</string>
 
 </resources>

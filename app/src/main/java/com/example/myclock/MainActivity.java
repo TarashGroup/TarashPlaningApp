@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         Typeface typeface = ResourcesCompat.getFont(this, R.font.iransans);
 
-        calculateMainTimer();
-        startMainTimer();
+        //calculateMainTimer();
+        //startMainTimer();     //felan in kirio stop kardam ta ap sari tar run beshe ta bad ye fekri bokonim darmordesh.
         addProgressBars();
 
         deleteButton = findViewById(R.id.btn_remove);
