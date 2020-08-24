@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -116,7 +117,8 @@ public class AddPlanActivity extends AppCompatActivity {
     public void addCheckList(String title) {
         View view = checkListView.getCheckList(title);
         checklists.add(title);
-        checkListContainer.addView(view);
+        Log.i("childs" , Integer.toString(checkListContainer.getChildCount()));
+        checkListContainer.addView(view,checkListContainer.getChildCount()-1);
     }
 
     public void removeFromCheckList(String title) {
