@@ -147,7 +147,6 @@ public void onClick(View view) {
         for ( CheckListView checkListView : checklistsViews){
             String inputText = checkListView.getEditText().getText().toString();
             String number = Integer.toString(checklistsViews.indexOf(checkListView) + 1);
-
             if ( inputText.length() > limit){
                 Toast.makeText(this, "برای چک لیست " + number + " عنوان کوتاهتر وارد کن.", Toast.LENGTH_SHORT).show();
                 break;
@@ -156,9 +155,7 @@ public void onClick(View view) {
                 Toast.makeText(AddPlanActivity.this, "برای چک لیست " + number + " عنوان رو وارد کن.", Toast.LENGTH_SHORT).show();
                 break;
             }
-
         }
-
     }
     @Override
     public void onBackPressed() {
