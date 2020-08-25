@@ -8,7 +8,7 @@
     android:orientation="vertical"
     app:cardElevation="8dp">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_addPlan_activity"
+        android:id="@+id/tb_choose_course_dialog"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:theme="@style/ToolbarTheme"
