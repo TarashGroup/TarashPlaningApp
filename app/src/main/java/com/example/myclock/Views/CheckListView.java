@@ -65,7 +65,7 @@ public class CheckListView {
         Button removeButton = new Button(context);
 
         removeButton.setBackgroundColor(0);
-        removeButton.setText("✖\t");
+        removeButton.setText("\u00D7");
         removeButton.setTextColor(ContextCompat.getColor(context, R.color.BGMain));
         removeButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
@@ -85,4 +85,5 @@ public class CheckListView {
     private int dp2px(float dp){
         return (int) (dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
     }
+    
 }
