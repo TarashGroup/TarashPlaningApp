@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="thirty_dp">1dp</dimen>
     <dimen name="button_height">40dp</dimen>
-    <dimen name="text_box_size"> 50dp</dimen>
+    <dimen name="thirty_dp">1dp</dimen>
+    <dimen name="hashtDp">8dp</dimen>
+    <dimen name="bistDp">20dp</dimen>
+    <dimen name="siDp">30dp</dimen>
+    <dimen name="panjDp">5dp</dimen>
+    <dimen name="dahDp">10dp</dimen>
 </resources>

@@ -73,7 +73,7 @@ public class CheckListView {
 
         LinearLayout.LayoutParams paramsForRemoveButton = new LinearLayout.LayoutParams(
                 dp2px(30), ViewGroup.LayoutParams.WRAP_CONTENT);
-        paramsForRemoveButton.setMargins(dp2px(10), 0, 0, dp2px(4));
+        paramsForRemoveButton.setMargins(dp2px(10), 0, 0, 0);
         paramsForRemoveButton.gravity = Gravity.CENTER_VERTICAL;
         removeButton.setOnClickListener(onClickListener);
         layout.addView(removeButton, paramsForRemoveButton);
@@ -87,5 +87,4 @@ public class CheckListView {
     private int dp2px(float dp){
         return (int) (dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
     }
-    
 }
