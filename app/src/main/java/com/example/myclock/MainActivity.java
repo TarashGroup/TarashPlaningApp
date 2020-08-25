@@ -19,6 +19,9 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 import com.example.myclock.Views.ProgressBuilder;
 import com.hanks.htextview.base.HTextView;
+
+import net.danlew.android.joda.JodaTimeAndroid;
+
 import java.util.Objects;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        JodaTimeAndroid.init(this);
         String a = "F android studio & git";
         setContentView(R.layout.activity_main);
 
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         Typeface typeface = ResourcesCompat.getFont(this, R.font.iransans);
 
         //calculateMainTimer();
-        //startMainTimer();     //felan in kirio stop kardam ta ap sari tar run beshe ta bad ye fekri bokonim darmordesh.
+        //startMainTimer();     //felan in kirio stop kardam ta ap sari tar run beshe ta bad ye fekri bokonim darmordesh OH SHIT MAN
         addProgressBars();
 
         deleteButton = findViewById(R.id.btn_remove);

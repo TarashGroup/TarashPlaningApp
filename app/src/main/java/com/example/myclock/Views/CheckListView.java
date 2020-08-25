@@ -26,10 +26,15 @@ public class CheckListView {
     private Typeface typeface;
     private View.OnClickListener onClickListener;
     private EditText editText;
+    private LinearLayout layout;
 
     public CheckListView(Context context, View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
         this.context = context;
+    }
+
+    public LinearLayout getLinearLayout () {
+        return layout;
     }
 
     public EditText getEditText() {
@@ -38,10 +43,9 @@ public class CheckListView {
 
     public View getCheckList (String title) {
         Typeface typeface = ResourcesCompat.getFont(context, R.font.iransans);
-
+        layout = new LinearLayout(context);
         int thirty_dp = (int) context.getResources().getDimension(R.dimen.thirty_dp);
         //************************************************* main Linear
-        LinearLayout layout = new LinearLayout(context);
         layout.setBackgroundResource(R.drawable.textbox_background);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);;

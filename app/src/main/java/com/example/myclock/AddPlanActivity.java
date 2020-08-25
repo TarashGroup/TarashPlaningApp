@@ -2,12 +2,14 @@ package com.example.myclock;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -114,41 +116,51 @@ public class AddPlanActivity extends AppCompatActivity {
         }
     };
 
+    public void highlight (LinearLayout linearLayout) {
+        linearLayout.setBackgroundResource(R.drawable.highlighted_textbox_background);
+    }
+
 
 //*****************************************************************************  Checklist Listener
-            View.OnClickListener checkListListener = new View.OnClickListener() {
+        View.OnClickListener checkListListener = new View.OnClickListener() {
 @Override
 public void onClick(View view) {
 
-        for (int i = 0; i < checkListContainer.getChildCount(); i++) {
-            if (view.getTag().equals(checkListContainer.getChildAt(i))) {
-                checkListContainer.removeViewAt(i);
-                checklistsViews.remove(i);
-                break;
+                for (int i = 0; i < checkListContainer.getChildCount(); i++) {
+                    if (view.getTag().equals(checkListContainer.getChildAt(i))) {
+                        checkListContainer.removeViewAt(i);
+                        checklistsViews.remove(i);
+                        break;
+                    }
+                }
             }
-        }
-
-}
         };
 
 //***************************************************************************** Add Button
     public void addCheckList(View view) {
 
-        checklistsViews.add(0 , new CheckListView(this , checkListListener)  );
+        checklistsViews.add(0 , new CheckListView(this , checkListListener));
         View view1 = checklistsViews.get(0).getCheckList("");
         checkListContainer.addView(view1 , 0);
 
     }
 
     public void commit(View view){
+        for ( CheckListView checkListView : checklistsViews) {
+            LinearLayout check_box_layout = checkListView.getLinearLayout();
+            check_box_layout.setBackgroundResource(R.drawable.textbox_background);
+        }
         for ( CheckListView checkListView : checklistsViews){
+            LinearLayout check_box_layout = checkListView.getLinearLayout();
             String inputText = checkListView.getEditText().getText().toString();
             String number = Integer.toString(checklistsViews.indexOf(checkListView) + 1);
             if ( inputText.length() > limit){
+                highlight(check_box_layout);
                 Toast.makeText(this, "برای چک لیست " + number + " عنوان کوتاهتر وارد کن.", Toast.LENGTH_SHORT).show();
                 break;
             }
             else if (inputText.length() == 0){
+                highlight(check_box_layout);
                 Toast.makeText(AddPlanActivity.this, "برای چک لیست " + number + " عنوان رو وارد کن.", Toast.LENGTH_SHORT).show();
                 break;
             }

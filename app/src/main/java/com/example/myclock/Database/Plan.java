@@ -1,4 +1,5 @@
 package com.example.myclock.Database;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 // TODO: add period and alarm & kossher e farzan
@@ -10,10 +11,15 @@ public class Plan {
     private Test test;
     private HashMap<String, Boolean> checklists = new HashMap<>();
 
-    public Plan(Course course, Double totalTime, Double passedTime) {
+    public Plan(Course course, Double totalTime, Double passedTime, ArrayList<Boolean> repeat) {
         this.course = course;
         this.totalTime = totalTime;
         this.passedTime = passedTime;
+        if (repeat != null) {
+            for (int i = 0; i < repeat.size(); i++) {
+                RepeatingPlans.add_To_Day(i, this);
+            }
+        }
     }
 
     public void addTest (Test test) {
