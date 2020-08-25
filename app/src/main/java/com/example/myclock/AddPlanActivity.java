@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -24,9 +26,8 @@ import java.util.Objects;
 public class AddPlanActivity extends AppCompatActivity {
 
     public ArrayList<String> courses = new ArrayList<>();
-    private ArrayList<String> checklists = new ArrayList<>();
+    private ArrayList<CheckListView> checklistsViews = new ArrayList<>();
     private LinearLayout checkListContainer;
-    private CheckListView checkListView;
     AlertDialog chooseCourseDialog;
     int limit = 20;
     AlertDialog.Builder checkListDialogBuilder ;
@@ -36,6 +37,16 @@ public class AddPlanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plan);
+
+
+        //**********************************************************************First Checklist
+        checkListContainer = findViewById(R.id.CheckListContainer);
+        checklistsViews.add( new CheckListView(this, checkListListener));
+        View view = checklistsViews.get(0).getCheckList("");
+        checkListContainer.addView(view , 0);
+
+
+
 
         //****************************************toolbar
 
@@ -53,8 +64,8 @@ public class AddPlanActivity extends AppCompatActivity {
         //*****************************************--toolbar
 
 
-        checkListContainer = findViewById(R.id.CheckListContainer);
-        checkListView = new CheckListView(this, checkListListener);
+
+
 
         TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
         picker.setIs24HourView(true);
@@ -114,67 +125,42 @@ public class AddPlanActivity extends AppCompatActivity {
         }
     };
 
-    public void addCheckList(String title) {
-        View view = checkListView.getCheckList(title);
-        checklists.add(title);
-        Log.i("childs" , Integer.toString(checkListContainer.getChildCount()));
-        checkListContainer.addView(view,checkListContainer.getChildCount()-1);
-    }
 
-    public void removeFromCheckList(String title) {
-        for (int i = 0; i < checklists.size(); i++) {
-            View child = checkListContainer.getChildAt(i);
-            if ((child.getTag()).equals(title)) {
+
+            View.OnClickListener checkListListener = new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+    if (checkListContainer.getChildCount() != 2) {
+        for (int i = 0; i < checkListContainer.getChildCount(); i++) {
+            if (view.getTag().equals(checkListContainer.getChildAt(i))) {
                 checkListContainer.removeViewAt(i);
-                checklists.remove((String) child.getTag());
                 break;
             }
         }
     }
+}
+        };
 
-    View.OnClickListener checkListListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            removeFromCheckList((String) view.getTag());
+
+public void addPlan(View view) {
+        int lastIndex = checklistsViews.size() - 1;
+        String inEditText = checklistsViews.get(lastIndex).editText.getText().toString();
+        if (inEditText.length() > limit )
+            Toast.makeText(AddPlanActivity.this, "عنوان کوتاه تری وارد کن.", Toast.LENGTH_SHORT).show();
+        else if (inEditText.length() == 0)
+            Toast.makeText(AddPlanActivity.this, "عنوان رو وارد کن.", Toast.LENGTH_SHORT).show();
+        else{
+            checklistsViews.add(new CheckListView(this , checkListListener) );
+            lastIndex = checklistsViews.size() - 1;
+            int lastChild = checkListContainer.getChildCount() - 1;
+            View view1 = checklistsViews.get(lastIndex).getCheckList("");
+            checkListContainer.addView(view1 , lastChild);
         }
-    };
-
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(AddPlanActivity.this,MainActivity.class));
         finish();
-    }
-    public void addPlan(View view) {
-
-        checkListDialogBuilder = new AlertDialog.Builder(this);
-        checkListDialogBuilder.setView(getLayoutInflater().inflate(R.layout.add_check_list_dialogue,null));
-        checkListDialog = checkListDialogBuilder.create();
-        checkListDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-        Objects.requireNonNull(checkListDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
-        checkListDialog.show();
-
-    }
-    public void cancel(View view) {
-        checkListDialog.dismiss();
-    }
-    public void commit(View view) {
-
-        EditText editText = checkListDialog.findViewById(R.id.editText);
-        String checkListString = editText.getText().toString();
-        if (checkListString.length() > limit ){
-            Toast.makeText(AddPlanActivity.this, "عنوان کوتاه تری وارد کن.", Toast.LENGTH_SHORT).show();
-        }
-        else if (checkListString.equals("") )
-            Toast.makeText(AddPlanActivity.this, "عنوان رو وارد کن.", Toast.LENGTH_SHORT).show();
-        else{
-            addCheckList(checkListString);
-            checkListDialog.dismiss();
-        }
-    }
-
-    public void back(View view) {
-        onBackPressed();
     }
 }

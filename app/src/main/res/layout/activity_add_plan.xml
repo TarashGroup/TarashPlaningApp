@@ -8,6 +8,8 @@
     android:background="@android:color/white"
     android:orientation="vertical"
     >
+
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_addPlan_activity"
         android:layout_width="match_parent"
@@ -28,29 +30,32 @@
             android:textColor="@android:color/white"
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
+
     <ScrollView
+        android:id="@+id/scrollViewAddPlan"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:layout_gravity="center">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center|top">
+        android:layout_height="100dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/btn_choose_course"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button1"
-                android:onClick="chooseCourse"
-                android:fontFamily="@font/vazir"
-                android:textSize="23sp"
-                android:hint="@string/chooseCourse"
-                android:textColor="@color/Bar"
-                android:gravity="center"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
-                android:layout_marginHorizontal="20dp"/>
+                android:background="@drawable/button1"
+                android:fontFamily="@font/vazir"
+                android:gravity="center"
+                android:hint="@string/chooseCourse"
+                android:onClick="chooseCourse"
+                android:textColor="@color/Bar"
+                android:textSize="23sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -63,18 +68,17 @@
                 android:textSize="20sp" />
 
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    >
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center">
+
                 <TimePicker
                     android:id="@+id/timePicker1"
                     android:layout_width="wrap_content"
                     android:layout_height="140dp"
-                    android:timePickerMode="spinner"
                     android:layout_gravity="center"
-                    />
-                </LinearLayout>
+                    android:timePickerMode="spinner" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/et_daily"
@@ -82,13 +86,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="20dp"
+                android:background="@drawable/button1"
                 android:fontFamily="@font/vazir"
                 android:gravity="center"
                 android:hint="@string/repeat"
                 android:textColor="@color/Bar"
-                android:textSize="23sp"
-                android:background="@drawable/button1"
-                />
+                android:textSize="23sp" />
 
             <Button
                 android:id="@+id/et_alarm"
@@ -96,12 +99,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
+                android:background="@drawable/button1"
                 android:fontFamily="@font/vazir"
                 android:gravity="center"
                 android:hint="@string/alarm"
                 android:textColor="@color/Bar"
-                android:textSize="23sp"
-                android:background="@drawable/button1"/>
+                android:textSize="23sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -114,48 +117,46 @@
                 android:textSize="20sp" />
 
 
+            <LinearLayout
+                android:id="@+id/CheckListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/CheckListContainer"
+
+                    <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_marginHorizontal="20dp"
-                        >
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/button2"
-                            android:text="@string/plus"
-                            android:textSize="30sp"
-                            android:gravity="center"
-                            android:textColor="@android:color/white"
-                            android:layout_marginVertical="5dp"
-                            android:layout_marginHorizontal="20dp"
-                            android:onClick="addPlan" />
-
-                    </LinearLayout>
+                        android:layout_marginVertical="5dp"
+                        android:background="@drawable/button2"
+                        android:gravity="center"
+                        android:onClick="addPlan"
+                        android:text="@string/plus"
+                        android:textColor="@android:color/white"
+                        android:textSize="30sp" />
 
 
+            </LinearLayout>
 
-    </LinearLayout>
+
+        </LinearLayout>
     </ScrollView>
-    <com.blure.complexview.ComplexView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:radius="10dp"
-        app:shadow="true"
-        app:shadowAlpha="100"
-        app:shadowColor="#575656"
-        app:shadowSpread="2">
+
+
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/button2"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:background="@drawable/button2"
                 android:text="@string/tick"
                 android:textColor="@android:color/white"
                 android:textSize="30sp"
-                />
-    </com.blure.complexview.ComplexView>
+                android:layout_marginHorizontal="100dp"
+               android:layout_marginVertical="10dp"/>
+
+
+
+
 </LinearLayout>
