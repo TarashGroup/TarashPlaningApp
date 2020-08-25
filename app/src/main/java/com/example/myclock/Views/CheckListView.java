@@ -72,8 +72,8 @@ public class CheckListView {
         removeButton.setOnClickListener(onClickListener);
         layout.addView(removeButton, paramsForRemoveButton);
         layout.addView(editText, text_Params);
-        removeButton.setTag(title);
         layout.setTag(title);
+        removeButton.setTag(layout);
 
         return layout;
     }
