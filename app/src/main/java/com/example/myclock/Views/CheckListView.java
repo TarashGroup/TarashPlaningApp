@@ -39,6 +39,7 @@ public class CheckListView {
     public View getCheckList (String title) {
         Typeface typeface = ResourcesCompat.getFont(context, R.font.iransans);
 
+        int thirty_dp = (int) context.getResources().getDimension(R.dimen.thirty_dp);
         //************************************************* main Linear
         LinearLayout layout = new LinearLayout(context);
         layout.setBackgroundResource(R.drawable.textbox_background);
@@ -58,6 +59,7 @@ public class CheckListView {
         editText.setTypeface(typeface);
         LinearLayout.LayoutParams text_Params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
         text_Params.setMargins(0, 0, dp2px(5), 0);
         text_Params.gravity = Gravity.CENTER_VERTICAL ;
         //*************************************************set remove icon
