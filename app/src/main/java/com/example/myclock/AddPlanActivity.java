@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -28,24 +29,15 @@ public class AddPlanActivity extends AppCompatActivity {
     public ArrayList<String> courses = new ArrayList<>();
     private ArrayList<CheckListView> checklistsViews = new ArrayList<>();
     private LinearLayout checkListContainer;
+
     AlertDialog chooseCourseDialog;
     int limit = 20;
-    AlertDialog.Builder checkListDialogBuilder ;
-    AlertDialog checkListDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plan);
-
-
-        //**********************************************************************First Checklist
         checkListContainer = findViewById(R.id.CheckListContainer);
-        checklistsViews.add( new CheckListView(this, checkListListener));
-        View view = checklistsViews.get(0).getCheckList("");
-        checkListContainer.addView(view , 0);
-
-
 
 
         //****************************************toolbar
@@ -126,36 +118,47 @@ public class AddPlanActivity extends AppCompatActivity {
     };
 
 
-
+//*****************************************************************************  Checklist Listener
             View.OnClickListener checkListListener = new View.OnClickListener() {
 @Override
 public void onClick(View view) {
-    if (checkListContainer.getChildCount() != 2) {
+
         for (int i = 0; i < checkListContainer.getChildCount(); i++) {
             if (view.getTag().equals(checkListContainer.getChildAt(i))) {
                 checkListContainer.removeViewAt(i);
+                checklistsViews.remove(i);
                 break;
             }
         }
-    }
+
 }
         };
 
+//***************************************************************************** Add Button
+    public void addCheckList(View view) {
 
-public void addPlan(View view) {
-        int lastIndex = checklistsViews.size() - 1;
-        String inEditText = checklistsViews.get(lastIndex).editText.getText().toString();
-        if (inEditText.length() > limit )
-            Toast.makeText(AddPlanActivity.this, "عنوان کوتاه تری وارد کن.", Toast.LENGTH_SHORT).show();
-        else if (inEditText.length() == 0)
-            Toast.makeText(AddPlanActivity.this, "عنوان رو وارد کن.", Toast.LENGTH_SHORT).show();
-        else{
-            checklistsViews.add(new CheckListView(this , checkListListener) );
-            lastIndex = checklistsViews.size() - 1;
-            int lastChild = checkListContainer.getChildCount() - 1;
-            View view1 = checklistsViews.get(lastIndex).getCheckList("");
-            checkListContainer.addView(view1 , lastChild);
+        checklistsViews.add(0 , new CheckListView(this , checkListListener)  );
+        View view1 = checklistsViews.get(0).getCheckList("");
+        checkListContainer.addView(view1 , 0);
+
+    }
+
+    public void commit(View view){
+        for ( CheckListView checkListView : checklistsViews){
+            String inputText = checkListView.getEditText().getText().toString();
+            String number = Integer.toString(checklistsViews.indexOf(checkListView) + 1);
+
+            if ( inputText.length() > limit){
+                Toast.makeText(this, "برای چک لیست " + number + " عنوان کوتاهتر وارد کن.", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            else if (inputText.length() == 0){
+                Toast.makeText(AddPlanActivity.this, "برای چک لیست " + number + " عنوان رو وارد کن.", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
         }
+
     }
     @Override
     public void onBackPressed() {
@@ -163,4 +166,6 @@ public void addPlan(View view) {
         startActivity(new Intent(AddPlanActivity.this,MainActivity.class));
         finish();
     }
+
+
 }

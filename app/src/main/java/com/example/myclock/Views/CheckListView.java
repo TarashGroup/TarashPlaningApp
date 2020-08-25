@@ -25,11 +25,15 @@ public class CheckListView {
     private Context context;
     private Typeface typeface;
     private View.OnClickListener onClickListener;
-    public EditText editText;
+    private EditText editText;
 
     public CheckListView(Context context, View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
         this.context = context;
+    }
+
+    public EditText getEditText() {
+        return editText;
     }
 
     public View getCheckList (String title) {
@@ -37,10 +41,10 @@ public class CheckListView {
 
         //************************************************* main Linear
         LinearLayout layout = new LinearLayout(context);
-        layout.setBackgroundResource(R.drawable.button1);
+        layout.setBackgroundResource(R.drawable.textbox_background);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(dp2px(10), dp2px(8), dp2px(14), 0);
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);;
+        params.setMargins(dp2px(20), dp2px(8), dp2px(20), 0);
         params.gravity = Gravity.CENTER;
         layout.setLayoutParams(params);
         layout.setOrientation(LinearLayout.HORIZONTAL);
@@ -61,7 +65,7 @@ public class CheckListView {
         Button removeButton = new Button(context);
 
         removeButton.setBackgroundColor(0);
-        removeButton.setText("✘\t");
+        removeButton.setText("✖\t");
         removeButton.setTextColor(ContextCompat.getColor(context, R.color.BGMain));
         removeButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
