@@ -16,7 +16,6 @@ public class PropertyHolder {
     }
 
     public static void addToDaily (Long time, Plan p) {
-        Log.d("************", time + " " + p);
         if (days.get(time) == null) {
             days.put(time, new DailyInformation());
         }
@@ -31,10 +30,10 @@ public class PropertyHolder {
                 addToDaily(time, p);
             }
         }
+        repeatingDays.remove(time);
     } // TODO remove
 
     public static void addRepeatingPlan (Plan p, Long time) {
-        Log.d("**********Repeating", time + " " + p);
         if (repeatingDays.get(time) == null) {
             repeatingDays.put(time, new ArrayList<Plan>());
         }
