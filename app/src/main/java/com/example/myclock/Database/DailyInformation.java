@@ -1,31 +1,20 @@
 package com.example.myclock.Database;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DailyInformation {
-    private ArrayList<Plan> dailyPlan = new ArrayList<>();
-    private Date date;
+    private ArrayList<Plan> plans = new ArrayList<>();
 
-    public DailyInformation(ArrayList<Plan> dailyPlan, Date date) {
-        this.dailyPlan = dailyPlan;
-        this.date = date;
+    public void addToDailyPlan (Plan p) {
+        plans.add(p);
     }
 
-    public ArrayList<Plan> getDailyPlan() {
-        return dailyPlan;
+    public void removePlan (Plan p) {
+        plans.remove(p);
     }
 
-    public void setDailyPlan(ArrayList<Plan> dailyPlan) {
-        this.dailyPlan = dailyPlan;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void removeWithRepeating (Plan p) {
+        plans.remove(p);
+        RepeatingPlans.removePlan(p);
     }
 }

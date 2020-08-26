@@ -48,6 +48,8 @@ public class AddPlanActivity extends AppCompatActivity {
             }
         });
         //*****************************************--toolbar
+
+
 //        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
        // picker.setIs24HourView(true);
         //*********************************************test
@@ -126,6 +128,8 @@ public class AddPlanActivity extends AppCompatActivity {
             }
         };
 
+
+
 //***************************************************************************** Add Button
     public void addCheckList(View view) {
         checklistsViews.add(0 , new CheckListView(this , checkListListener));
@@ -164,7 +168,5 @@ public class AddPlanActivity extends AppCompatActivity {
         finish();
     }
 
-    public void setDuration(View view){
 
-    }
 }
