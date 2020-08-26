@@ -10,6 +10,8 @@ public class Plan {
     private Double passedTime;
     private Test test;
     private HashMap<String, Boolean> checklists = new HashMap<>();
+    private boolean notification;
+
 
     public Plan(Course course, Double totalTime, Double passedTime, ArrayList<Boolean> repeat) {
         this.course = course;

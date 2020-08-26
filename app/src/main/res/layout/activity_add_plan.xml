@@ -96,6 +96,7 @@
                     android:gravity="center"
                     android:hint="@string/duration"
                     android:textColor="@color/DarkLight"
+                    android:onClick="setDuration"
                     android:textSize="20sp" />
 
                 <ImageView

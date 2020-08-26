@@ -1,12 +1,12 @@
 package com.example.myclock.Database;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class RepeatingPlans {
     // Days : 0, 1, ... 6
     // First time plansOfDay is null, after that we use database to read it.
     private static ArrayList<ArrayList<Plan>> plansOfDays;
-
     public RepeatingPlans(ArrayList<ArrayList<Plan>> plansOfDays) {
         if (plansOfDays == null) {
             plansOfDays = new ArrayList<>();
@@ -24,5 +24,4 @@ public class RepeatingPlans {
     public void add_Repeating_Plans () {
 
     }
-
 }
