@@ -58,8 +58,8 @@ public class AddPlanActivity extends AppCompatActivity {
 
 
 
-        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
-        picker.setIs24HourView(true);
+//        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
+       // picker.setIs24HourView(true);
         //*********************************************test
         courses.add("ریاضی");
         courses.add("شیمی");
