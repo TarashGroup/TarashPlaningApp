@@ -49,7 +49,7 @@ public class CheckListView {
         layout.setBackgroundResource(R.drawable.textbox_background);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);;
-        params.setMargins(dp2px(20), dp2px(8), dp2px(20), 0);
+        params.setMargins(0, dp2px(8), 0, 0);
         params.gravity = Gravity.CENTER;
         layout.setLayoutParams(params);
         layout.setOrientation(LinearLayout.HORIZONTAL);

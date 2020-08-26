@@ -176,13 +176,9 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:background="@drawable/button4">
+
                         <Button
-                            android:layout_width="170dp"
+                            android:layout_width="match_parent"
                             android:layout_height="@dimen/button_height"
                             android:fontFamily="@font/vazir"
                             android:layout_gravity="center"
@@ -193,13 +189,13 @@
                             android:textColor="@android:color/white"
                             android:textSize="20sp"
                             android:layout_marginVertical="10dp" />
-                    </FrameLayout>
+
 
                     <LinearLayout
                         android:id="@+id/CheckListContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginStart="10dp"
                         android:orientation="vertical">
 
 
