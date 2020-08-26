@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".AddPlanActivity"
+    android:background="@android:color/white"
     android:orientation="vertical"
-    android:background="@android:color/white">
+    >
+
+
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_addPlan_activity"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:theme="@style/ToolbarTheme"
@@ -13,208 +19,211 @@
         android:background="@color/Bar"
         android:gravity="center"
         android:layout_gravity="center"
-
         >
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
             android:fontFamily="@font/vazir"
-            android:text="@string/addNewCourse"
+            android:gravity="start"
+            android:text="@string/addCourse"
+            android:layout_marginEnd="10dp"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-
     </androidx.appcompat.widget.Toolbar>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
 
-            android:background="@drawable/second_background_for_add_course_dilogue">
+    <ScrollView
+        android:id="@+id/scrollViewAddPlan"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:orientation="vertical">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="50dp"
+                >
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/etName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/courseName"
-                        android:textSize="25sp"
-                        android:textColor="@color/Bar"
-                        android:fontFamily="@font/vazir"
-                        android:gravity="center"
-                        android:background="@drawable/button1_normal"
-                        />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_tittle_course"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button4_normal"
+                    android:textColor="@color/DarkLight"
                     android:fontFamily="@font/vazir"
-                    android:text="@string/linkWriting"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:hint="@string/courseTittle"
+                    android:textSize="20sp"
+                    />
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/course_pic" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="50dp"
+                >
+
+                <Button
+                    android:id="@+id/btn_duration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button4"
+                    android:fontFamily="@font/vazir"
+                    android:gravity="center"
+                    android:hint="@string/note"
+                    android:textColor="@color/DarkLight"
                     android:textSize="20sp" />
 
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="104dp"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="50dp"
-                    android:background="@drawable/bounds_for_clock_spinner" />
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/clock_pic" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="50dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/bounds_for_clock_spinner"
-                    android:scrollbarStyle="insideInset">
-
-                    <Button
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="5dp"
-                        android:background="@drawable/button2"
-                        android:text="@string/plus"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@color/Bar" />
-                </LinearLayout>
+            </LinearLayout>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="50dp"
+                >
+
+                <Button
+                    android:id="@+id/et_daily"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button4"
+                    android:textColor="@color/DarkLight"
                     android:fontFamily="@font/vazir"
-                    android:text="@string/defineLesson"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:gravity="center"
+                    android:hint="زیر مجموعه +"
                     android:textSize="20sp" />
 
-                <ScrollView
-                    android:layout_width="match_parent"
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/weekly_pic" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="50dp">
+
+                <Button
+                    android:id="@+id/notification"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button4"
+                    android:textColor="@color/DarkLight"
+                    android:fontFamily="@font/vazir"
+                    android:gravity="center"
+                    android:hint="@string/courseColor"
+                    android:textSize="20sp" />
+
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/notification" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="50dp">
+
+                <ImageView
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginHorizontal="50dp"
-                    android:background="@drawable/bounds_for_clock_spinner" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="50dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/bounds_for_clock_spinner">
-
-                    <Button
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="5dp"
-                        android:background="@drawable/button2"
-                        android:text="@string/plus"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        style="@style/Widget.AppCompat.AutoCompleteTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@color/Bar"
-                        android:singleLine="true" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/vazir"
-                    android:text="@string/selectCourseColor"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="20sp" />
+                    android:onClick="openColorPicker"
+                    app:srcCompat="@drawable/color_picker_image" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginHorizontal="50dp">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="10dp"
-                        android:onClick="openColorPicker"
-                        app:srcCompat="@drawable/color_picker_image" />
-
-                    <ImageView
-                        android:id="@+id/colorPicker"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        app:srcCompat="@drawable/color_picker_drawable" />
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/colorPicker"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/color_picker_drawable" />
             </LinearLayout>
-        </ScrollView>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
 
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:elevation="100dp">
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:layout_height="2dp"
+            android:background="@color/Bar"
+            android:layout_marginTop="2dp"
+            android:layout_marginHorizontal="40dp"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="100dp"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/button2"
+            android:onClick="commit"
+            android:text="@string/tick"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/backButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/button3"
-                android:fontFamily="@font/vazir"
-                android:text="@string/back"
-                android:gravity="center"
-                android:textColor="@color/Bar"
-                android:layout_gravity="start"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
 
-            <Button
-                android:id="@+id/commitButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/button2"
-                android:fontFamily="@font/vazir"
-                android:text="@string/commit"
-                android:textColor="@android:color/white"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

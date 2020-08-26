@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_repeat_dialog"
         android:layout_width="match_parent"
@@ -23,4 +25,24 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TimePicker
+        android:id="@+id/tp_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner"
+        android:soundEffectsEnabled="true"/>
+    <Button
+        android:id="@+id/btn_timePickerOK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:text="@string/confirm"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/vazir"
+        android:background="@drawable/button2"
+        android:onClick="setDuration"
+        />
+
+
+</LinearLayout>

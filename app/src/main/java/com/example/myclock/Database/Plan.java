@@ -2,7 +2,7 @@ package com.example.myclock.Database;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// TODO: add period and alarm & kossher e farzan
+// TODO: add period and alarm
 
 public class Plan {
     private Course course;
@@ -10,7 +10,7 @@ public class Plan {
     private Double passedTime;
     private Test test;
     private HashMap<String, Boolean> checklists = new HashMap<>();
-    private boolean notification; // TODO Kosher & love Farzan
+    private boolean notification;
 
     public Plan(Course course, Double totalTime, ArrayList<Long> repeatingDays) {
         this.course = course;

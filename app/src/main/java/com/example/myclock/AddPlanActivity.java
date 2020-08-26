@@ -1,16 +1,20 @@
 package com.example.myclock;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -26,7 +30,8 @@ public class AddPlanActivity extends AppCompatActivity {
     private ArrayList<CheckListView> checklistsViews = new ArrayList<>();
     private LinearLayout checkListContainer;
     private Button btnAddCheckList;
-
+    private TimePicker tpDuration;
+    private AlertDialog setDurationDialog;
     AlertDialog chooseCourseDialog;
     int limit = 20;
 
@@ -102,7 +107,7 @@ public class AddPlanActivity extends AppCompatActivity {
             Button btnChooseCourse = findViewById(R.id.btn_choose_course);
             Button btnSelectedCourse = (Button)view;
             btnChooseCourse.setText(btnSelectedCourse.getText());
-            btnChooseCourse.setBackgroundResource(R.drawable.button3);
+            setButtonSelected(btnChooseCourse);
             chooseCourseDialog.dismiss();
         }
     };
@@ -166,6 +171,41 @@ public class AddPlanActivity extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(AddPlanActivity.this,MainActivity.class));
         finish();
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void showDurationDialog(View view){
+        LinearLayout setDurationLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.duration_dialog,null);
+        tpDuration = setDurationLayout.findViewById(R.id.tp_duration);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(R.layout.duration_dialog);
+        setDurationDialog = builder.create();
+        Objects.requireNonNull(setDurationDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
+        tpDuration.setIs24HourView(true);
+        setDurationDialog.setView(setDurationLayout);
+        tpDuration.setHour(1);
+        tpDuration.setMinute(0);
+        tpDuration.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
+                if (i>10)
+                    timePicker.setHour(10);
+            }
+        });
+        setDurationDialog.show();
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void setDuration(View view){
+        Button button = findViewById(R.id.btn_duration);
+        int minute = tpDuration.getMinute();
+        int hour = tpDuration.getHour();
+        if (minute > 0)
+            button.setText(hour + " ساعت " + minute +" دقیقه ");
+        else
+            button.setText(hour + " ساعت ");
+        setDurationDialog.dismiss();
+        setButtonSelected(button);
+    }
+    private void setButtonSelected(Button button){
+        button.setBackgroundResource(R.drawable.button3);
     }
 
 

@@ -1,7 +1,6 @@
 package com.example.myclock.Database;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
 public class RepeatingPlans {

@@ -20,11 +20,6 @@ import androidx.core.content.res.ResourcesCompat;
 import com.example.myclock.Views.ProgressBuilder;
 import com.hanks.htextview.base.HTextView;
 
-import net.danlew.android.joda.JodaTimeAndroid;
-
-import org.joda.time.LocalDate;
-
-import java.time.Month;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 import yuku.ambilwarna.AmbilWarnaDialog;
