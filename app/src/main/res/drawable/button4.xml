@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="rectangle">
-            <stroke android:color="#00FF834B" android:width="1dp"/>
-            <solid android:color="#14FF834B" />
-            <corners android:radius="5dp"/>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/GreyLight">
+    <item android:id="@+id/mask">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/black"/>
         </shape>
     </item>
-</layer-list>
+    <item android:drawable="@drawable/button4_normal"/>
+</ripple>

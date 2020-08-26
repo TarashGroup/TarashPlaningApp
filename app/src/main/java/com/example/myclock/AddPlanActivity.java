@@ -28,6 +28,7 @@ public class AddPlanActivity extends AppCompatActivity {
     public ArrayList<String> courses = new ArrayList<>();
     private ArrayList<CheckListView> checklistsViews = new ArrayList<>();
     private LinearLayout checkListContainer;
+    private Button btnAddCheckList;
 
     AlertDialog chooseCourseDialog;
     int limit = 20;
@@ -37,10 +38,7 @@ public class AddPlanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plan);
         checkListContainer = findViewById(R.id.CheckListContainer);
-
-
         //****************************************toolbar
-
         androidx.appcompat.widget.Toolbar tbAddPlan = findViewById(R.id.tb_addPlan_activity);
         ActionBar actionbar = getSupportActionBar();
         if (actionbar != null)
@@ -55,9 +53,6 @@ public class AddPlanActivity extends AppCompatActivity {
         //*****************************************--toolbar
 
 
-
-
-
 //        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
        // picker.setIs24HourView(true);
         //*********************************************test
@@ -67,7 +62,7 @@ public class AddPlanActivity extends AppCompatActivity {
         courses.add("زبان");
         courses.add("فیزیک");
         //*********************************************/test
-
+        btnAddCheckList = findViewById(R.id.btn_check_list);
     }
 
     public void chooseCourse(View view){
@@ -84,7 +79,6 @@ public class AddPlanActivity extends AppCompatActivity {
     }
     private void setCoursesButtons(LinearLayout llCourses){
         llCourses.removeAllViews();
-        ArrayList<Button> coursesButtons = new ArrayList<>();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -101,7 +95,6 @@ public class AddPlanActivity extends AppCompatActivity {
             button.setHeight((int) getResources().getDimension(R.dimen.button_height));
             button.setLayoutParams(params);
             button.setTextColor(getResources().getColor(R.color.Bar));
-            coursesButtons.add(button);
             llCourses.addView(button);
             button.setOnClickListener(courseButtonOnClick);
         }
@@ -112,6 +105,7 @@ public class AddPlanActivity extends AppCompatActivity {
             Button btnChooseCourse = findViewById(R.id.btn_choose_course);
             Button btnSelectedCourse = (Button)view;
             btnChooseCourse.setText(btnSelectedCourse.getText());
+            btnChooseCourse.setBackgroundResource(R.drawable.button3);
             chooseCourseDialog.dismiss();
         }
     };
@@ -133,16 +127,16 @@ public void onClick(View view) {
                         break;
                     }
                 }
+                if(checkListContainer.getChildCount() == 0)btnAddCheckList.setText("");
             }
         };
 
 //***************************************************************************** Add Button
     public void addCheckList(View view) {
-
         checklistsViews.add(0 , new CheckListView(this , checkListListener));
         View view1 = checklistsViews.get(0).getCheckList("");
         checkListContainer.addView(view1 , 0);
-
+        btnAddCheckList.setText(R.string.checkList);
     }
 
     public void commit(View view){

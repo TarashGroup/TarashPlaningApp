@@ -60,6 +60,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@drawable/button4"
+                    android:textColor="@color/DarkLight"
                     android:fontFamily="@font/vazir"
                     android:gravity="center"
                     android:hint="@string/chooseCourse"
@@ -71,6 +72,33 @@
                     android:layout_height="@dimen/icon_size"
                     android:layout_marginStart="10dp"
                     android:src="@drawable/course_pic" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="@dimen/button_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_duration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button4"
+                    android:fontFamily="@font/vazir"
+                    android:gravity="center"
+                    android:hint="@string/duration"
+                    android:textColor="@color/DarkLight"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/clock_pic" />
 
             </LinearLayout>
 
@@ -89,10 +117,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/button4"
+                    android:textColor="@color/DarkLight"
                     android:fontFamily="@font/vazir"
                     android:gravity="center"
                     android:hint="@string/repeat"
-                    android:textColor="@color/Bar"
                     android:textSize="20sp" />
 
 
@@ -118,10 +146,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/button4"
+                    android:textColor="@color/DarkLight"
                     android:fontFamily="@font/vazir"
                     android:gravity="center"
                     android:hint="@string/alarm"
-                    android:textColor="@color/Bar"
                     android:textSize="20sp" />
 
 
@@ -133,33 +161,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="@dimen/button_width"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_duration"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/button4"
-                    android:fontFamily="@font/vazir"
-                    android:gravity="center"
-                    android:hint="@string/duration"
-                    android:textColor="@color/Bar"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/clock_pic" />
-
-            </LinearLayout>
 
 
             <LinearLayout
@@ -178,6 +180,7 @@
 
 
                     <Button
+                        android:id="@+id/btn_check_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
