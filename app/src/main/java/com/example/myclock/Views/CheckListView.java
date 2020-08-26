@@ -58,14 +58,14 @@ public class CheckListView {
         editText.setText(title);
         editText.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        editText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
         editText.setBackgroundTintMode(PorterDuff.Mode.CLEAR);
         editText.setTypeface(typeface);
         LinearLayout.LayoutParams text_Params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
         text_Params.setMargins(0, 0, dp2px(5), 0);
-        text_Params.gravity = Gravity.CENTER_VERTICAL ;
+        text_Params.gravity = Gravity.CENTER_VERTICAL  ;
+
         //*************************************************set remove icon
 
         Button removeButton = new Button(context);
