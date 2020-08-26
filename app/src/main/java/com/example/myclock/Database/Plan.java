@@ -12,12 +12,13 @@ public class Plan {
     private HashMap<String, Boolean> checklists = new HashMap<>();
     private boolean notification;
 
-    public Plan(Course course, Double totalTime, ArrayList<Long> repeatingDays) {
+    public Plan(Course course, Double totalTime, ArrayList<Long> repeatingDays, boolean notification
+                    , ArrayList<String> checkLists) {
         this.course = course;
         this.totalTime = totalTime;
         if (repeatingDays != null) {
             for (Long time : repeatingDays) {
-                RepeatingPlans.addPlan(this, time);
+                PropertyHolder.addRepeatingPlan(this, time);
             }
         }
     }

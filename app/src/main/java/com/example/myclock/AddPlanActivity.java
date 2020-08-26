@@ -19,6 +19,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.myclock.Database.GetDay;
+import com.example.myclock.Database.Plan;
+import com.example.myclock.Database.PropertyHolder;
 import com.example.myclock.Views.CheckListView;
 
 import java.util.ArrayList;
@@ -53,8 +56,6 @@ public class AddPlanActivity extends AppCompatActivity {
             }
         });
         //*****************************************--toolbar
-
-
 //        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
        // picker.setIs24HourView(true);
         //*********************************************test
@@ -133,8 +134,6 @@ public class AddPlanActivity extends AppCompatActivity {
             }
         };
 
-
-
 //***************************************************************************** Add Button
     public void addCheckList(View view) {
         checklistsViews.add(0 , new CheckListView(this , checkListListener));
@@ -155,14 +154,39 @@ public class AddPlanActivity extends AppCompatActivity {
             if ( inputText.length() > limit){
                 highlight(check_box_layout);
                 Toast.makeText(this, "برای چک لیست " + number + " عنوان کوتاهتر وارد کن.", Toast.LENGTH_SHORT).show();
-                break;
+                return;
             }
             else if (inputText.length() == 0) {
                 highlight(check_box_layout);
                 Toast.makeText(AddPlanActivity.this, "برای چک لیست " + number + " عنوان رو وارد کن.", Toast.LENGTH_SHORT).show();
-                break;
+                return;
             }
         }
+        PropertyHolder.addToDaily(GetDay.getDay(getStartingTime()),
+                new Plan(PropertyHolder.getCourseByName(getCoursesName()), getTotalTime(),
+                        getRepeating(), getNotification(), getCheckLists()));
+    }
+    private String getCoursesName () {
+        return null;
+    }
+    private boolean getNotification () {
+        return false;
+    }
+    private ArrayList<String> getCheckLists () {
+        ArrayList<String> temp = new ArrayList<>();
+        for (CheckListView ch : checklistsViews) {
+            temp.add(ch.getEditText().toString().replace("\n", " ").trim());
+        }
+        return temp;
+    }
+    private ArrayList<Long> getRepeating () {
+        return null;
+    }
+    private double getTotalTime () {
+        return 0.0;
+    }
+    private Long getStartingTime () {
+        return 0L;
     }
 
     // TODO Replace /n with ' ' and Trim()
@@ -208,5 +232,7 @@ public class AddPlanActivity extends AppCompatActivity {
         button.setBackgroundResource(R.drawable.button3);
     }
 
+    public void setDuration(View view){
 
+    }
 }

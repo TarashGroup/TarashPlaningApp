@@ -20,7 +20,8 @@ import androidx.core.content.res.ResourcesCompat;
 import com.example.myclock.Views.ProgressBuilder;
 import com.hanks.htextview.base.HTextView;
 
-import java.util.GregorianCalendar;
+import net.danlew.android.joda.JodaTimeAndroid;
+
 import java.util.Objects;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -36,15 +37,13 @@ public class MainActivity extends AppCompatActivity {
     //test
     AmbilWarnaDialog dialog;
     AlertDialog alertDialog;
-    GregorianCalendar calendar;
     //test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        JodaTimeAndroid.init(this);
         String a = "F android studio & git";
         setContentView(R.layout.activity_main);
-        calendar = new GregorianCalendar();
-
 
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake_that);
 

@@ -9,4 +9,5 @@
     <dimen name="dahDp">10dp</dimen>
    <dimen name="icon_size">40dp</dimen>
     <dimen name="button_width"> 300dp</dimen>
+    <dimen name="removeIconSize">30dp</dimen>
 </resources>

@@ -1,7 +1,5 @@
 package com.example.myclock.Views;
-
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.util.DisplayMetrics;
@@ -11,14 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
-
 import com.example.myclock.R;
 
 public class CheckListView {
@@ -44,11 +39,12 @@ public class CheckListView {
     public View getCheckList (String title) {
         Typeface typeface = ResourcesCompat.getFont(context, R.font.iransans);
         layout = new LinearLayout(context);
-        int thirty_dp = (int) context.getResources().getDimension(R.dimen.thirty_dp);
+
         //************************************************* main Linear
         layout.setBackgroundResource(R.drawable.textbox_background);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);;
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
         params.setMargins(0, dp2px(8), 0, 0);
         params.gravity = Gravity.CENTER;
         layout.setLayoutParams(params);
@@ -58,27 +54,29 @@ public class CheckListView {
         editText.setText(title);
         editText.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-
         editText.setBackgroundTintMode(PorterDuff.Mode.CLEAR);
+        editText.setSingleLine(true);
         editText.setTypeface(typeface);
         LinearLayout.LayoutParams text_Params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        text_Params.setMargins(0, 0, dp2px(5), 0);
+        text_Params.setMargins(0, 0, dp2px(12), 0);
         text_Params.gravity = Gravity.CENTER_VERTICAL  ;
 
         //*************************************************set remove icon
 
-        Button removeButton = new Button(context);
 
+        TextView removeButton = new TextView(context);
         removeButton.setBackgroundColor(0);
         removeButton.setText("\u00D7");
         removeButton.setTextColor(ContextCompat.getColor(context, R.color.BGMain));
-        removeButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-
+        removeButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        removeButton.setTypeface(null , Typeface.BOLD);
+        removeButton.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        int removeIconSize = (int) context.getResources().getDimension(R.dimen.removeIconSize);
         LinearLayout.LayoutParams paramsForRemoveButton = new LinearLayout.LayoutParams(
-                dp2px(30), ViewGroup.LayoutParams.WRAP_CONTENT);
-        paramsForRemoveButton.setMargins(dp2px(10), 0, 0, 0);
-        paramsForRemoveButton.gravity = Gravity.CENTER_VERTICAL;
+                removeIconSize, removeIconSize);
+        paramsForRemoveButton.setMargins(0 , dp2px(9) , 0 , 0);
+
         removeButton.setOnClickListener(onClickListener);
         layout.addView(removeButton, paramsForRemoveButton);
         layout.addView(editText, text_Params);
