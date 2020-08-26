@@ -1,7 +1,5 @@
 package com.example.myclock.Views;
-
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.util.DisplayMetrics;
@@ -11,14 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
-
 import com.example.myclock.R;
 
 public class CheckListView {
