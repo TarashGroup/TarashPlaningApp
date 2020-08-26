@@ -15,6 +15,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.myclock.Database.GetDay;
+import com.example.myclock.Database.Plan;
+import com.example.myclock.Database.PropertyHolder;
 import com.example.myclock.Views.CheckListView;
 
 import java.util.ArrayList;
@@ -48,6 +51,8 @@ public class AddPlanActivity extends AppCompatActivity {
             }
         });
         //*****************************************--toolbar
+
+
 //        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
        // picker.setIs24HourView(true);
         //*********************************************test
@@ -126,6 +131,8 @@ public class AddPlanActivity extends AppCompatActivity {
             }
         };
 
+
+
 //***************************************************************************** Add Button
     public void addCheckList(View view) {
         checklistsViews.add(0 , new CheckListView(this , checkListListener));
@@ -148,12 +155,48 @@ public class AddPlanActivity extends AppCompatActivity {
                 Toast.makeText(this, "برای چک لیست " + number + " عنوان کوتاهتر وارد کن.", Toast.LENGTH_SHORT).show();
                 break;
             }
-            else if (inputText.length() == 0) {
+            if (inputText.length() == 0) {
                 highlight(check_box_layout);
                 Toast.makeText(AddPlanActivity.this, "برای چک لیست " + number + " عنوان رو وارد کن.", Toast.LENGTH_SHORT).show();
                 break;
             }
+            // CheckList is valid now:
+
+            Long time = GetDay.getDay(getSelectedTime());
+            PropertyHolder.addToDaily(time, new Plan(PropertyHolder.getCourseByName(getCoursesName())
+            , getTotalTime(), getRepeatingDays(), getNotification(), getCheckLists()));
         }
+    }
+
+    private ArrayList<String> getCheckLists () {
+        ArrayList<String> temp = new ArrayList<>();
+        for (CheckListView c : checklistsViews) {
+            temp.add(c.getEditText().toString());
+        }
+        return temp;
+    }
+
+    private boolean getNotification () {
+        return false;
+    }
+
+    private Long getSelectedTime () {
+        return 0L;
+    }
+
+    private Double getTotalTime () {
+        return 0.0;
+    }
+
+    private String getCoursesName () {
+        return "YO";
+    }
+
+    private ArrayList<Long> getRepeatingDays () {
+        ArrayList<Long> temp = new ArrayList<Long>();
+        temp.add(1000000L);
+        temp.add(1000001L);
+        return temp;
     }
 
     // TODO Replace /n with ' ' and Trim()
@@ -162,9 +205,5 @@ public class AddPlanActivity extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(AddPlanActivity.this,MainActivity.class));
         finish();
-    }
-
-    public void setDuration(View view){
-
     }
 }

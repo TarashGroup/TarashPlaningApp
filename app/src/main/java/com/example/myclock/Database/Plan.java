@@ -10,18 +10,21 @@ public class Plan {
     private Double passedTime;
     private Test test;
     private HashMap<String, Boolean> checklists = new HashMap<>();
-    private boolean notification;
+    private boolean notification; // TODO Kosher & love Farzan
 
-
-    public Plan(Course course, Double totalTime, Double passedTime, ArrayList<Boolean> repeat) {
+    public Plan(Course course, Double totalTime, ArrayList<Long> repeatingDays, boolean notification
+                    , ArrayList<String> checkLists) {
         this.course = course;
         this.totalTime = totalTime;
-        this.passedTime = passedTime;
-        if (repeat != null) {
-            for (int i = 0; i < repeat.size(); i++) {
-                RepeatingPlans.add_To_Day(i, this);
+        if (repeatingDays != null) {
+            for (Long time : repeatingDays) {
+                PropertyHolder.addRepeatingPlan(this, time);
             }
         }
+    }
+
+    public boolean hasNotification () {
+        return notification;
     }
 
     public void addTest (Test test) {
