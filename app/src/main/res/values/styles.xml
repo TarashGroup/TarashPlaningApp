@@ -26,6 +26,7 @@
     <style name="timePickerOrange">
         <item name="android:textColorPrimary">@color/Bar</item>
         <item name="android:textColor">@color/Bar</item>
+
     </style>
 
 

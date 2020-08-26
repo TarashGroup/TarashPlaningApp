@@ -34,7 +34,7 @@
     <ScrollView
         android:id="@+id/scrollViewAddPlan"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
         android:layout_weight="1">
 
         <LinearLayout
@@ -58,7 +58,7 @@
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/button1"
+                    android:background="@drawable/button4"
                     android:fontFamily="@font/vazir"
                     android:gravity="center"
                     android:hint="@string/chooseCourse"
@@ -75,10 +75,6 @@
 
 
 
-
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
@@ -91,7 +87,7 @@
                     android:id="@+id/et_daily"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button1"
+                    android:background="@drawable/button4"
                     android:fontFamily="@font/vazir"
                     android:gravity="center"
                     android:hint="@string/repeat"
@@ -121,7 +117,7 @@
                     android:id="@+id/notification"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button1"
+                    android:background="@drawable/button4"
                     android:fontFamily="@font/vazir"
                     android:gravity="center"
                     android:hint="@string/alarm"
@@ -153,7 +149,7 @@
                     android:layout_marginHorizontal="0dp"
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:background="@drawable/button1"
+                    android:background="@drawable/button4"
                     android:layout_weight="1">
 
                     <TimePicker
@@ -176,44 +172,61 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginHorizontal="20dp"
-                android:background="@drawable/button4"
                 android:gravity="center">
-
-                <Button
+                
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="45dp"
-                    android:fontFamily="@font/vazir"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/button2"
-                    android:gravity="center"
-                    android:onClick="addCheckList"
-                    android:text="@string/checkList"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:layout_margin="30dp" />
+                    android:orientation="vertical">
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_gravity="top"
+                        android:background="@drawable/button4">
+                        <Button
+                            android:layout_width="170dp"
+                            android:layout_height="45dp"
+                            android:fontFamily="@font/vazir"
+                            android:layout_gravity="center"
+                            android:background="@drawable/button2"
+                            android:gravity="center"
+                            android:onClick="addCheckList"
+                            android:text="@string/checkList"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp"
+                            android:layout_margin="30dp" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:id="@+id/CheckListContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:src="@drawable/checklist_pic"/>
+                    android:src="@drawable/checklist_pic"
+                    android:layout_gravity="top"/>
 
             </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/CheckListContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:orientation="vertical">
 
-
-            </LinearLayout>
 
 
         </LinearLayout>

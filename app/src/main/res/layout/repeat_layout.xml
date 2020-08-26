@@ -70,13 +70,13 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RadioGroup>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/cb_sat"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="ش"
         android:textSize="16sp"
@@ -90,10 +90,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/cb_sun"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_weight="1"
         />
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cb_sun"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="ی"
             android:textSize="16sp"
@@ -107,27 +108,30 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/cb_mon"
             app:layout_constraintRight_toLeftOf="@id/cb_sat"
+            android:layout_weight="1"
             />
+
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cb_mon"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="د"
-            android:textSize="16sp"
-            android:textColor="@color/Bar"
+            android:layout_gravity="end"
             android:fontFamily="@font/iransans"
             android:layoutDirection="rtl"
+            android:text="د"
             android:textAlignment="textEnd"
-            android:layout_gravity="end"
+            android:textColor="@color/Bar"
+            android:textSize="16sp"
             app:buttonTint="@color/Bar"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/cb_tue"
             app:layout_constraintRight_toLeftOf="@id/cb_sun"
-            />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_weight="1"/>
+
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cb_tue"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="س"
             android:textSize="16sp"
@@ -140,11 +144,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/cb_wen"
+            android:layout_weight="1"
             app:layout_constraintRight_toLeftOf="@id/cb_mon"
             />
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cb_wen"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="چ"
             android:textSize="16sp"
@@ -157,11 +162,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/cb_the"
+            android:layout_weight="1"
             app:layout_constraintRight_toLeftOf="@id/cb_tue"
             />
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cb_the"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="پ"
             android:textSize="16sp"
@@ -175,10 +181,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/cb_fri"
             app:layout_constraintRight_toLeftOf="@id/cb_wen"
+            android:layout_weight="1"
             />
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cb_fri"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="ج"
             android:textSize="16sp"
@@ -192,8 +199,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/cb_the"
+            android:layout_weight="1"
             />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
