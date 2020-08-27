@@ -3,6 +3,7 @@ package com.example.myclock;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -20,7 +21,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.example.myclock.Database.Course;
 import com.example.myclock.Database.GetDay;
 import com.example.myclock.Database.Plan;
 import com.example.myclock.Database.PropertyHolder;
@@ -28,7 +28,12 @@ import com.example.myclock.Views.CheckListContainerAdapter;
 import com.example.myclock.Views.CheckListView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
+
+import ir.hamsaa.persiandatepicker.Listener;
+import ir.hamsaa.persiandatepicker.PersianDatePickerDialog;
+import ir.hamsaa.persiandatepicker.util.PersianCalendar;
 
 public class AddPlanActivity extends AppCompatActivity {
 
@@ -62,6 +67,7 @@ public class AddPlanActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
         //*****************************************--toolbar
 //        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
        // picker.setIs24HourView(true);
@@ -110,6 +116,7 @@ public class AddPlanActivity extends AppCompatActivity {
             button.setOnClickListener(courseButtonOnClick);
         }
     }
+
     View.OnClickListener courseButtonOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -125,29 +132,32 @@ public class AddPlanActivity extends AppCompatActivity {
 
 //*****************************************************************************
 // TODO: 8/27/2020 course / repeatingDays/ notification must be set
-private void sendPlanToDataBase(){
-    PropertyHolder.addToDaily(GetDay.getDay(getStartingTime()),
-            new Plan(PropertyHolder.getCourseByName(course), durationInMinutes,
-                    repeatingDays, notification , checkListContainerAdapter.getCheckListsAsString() ));
-}
+    private void sendPlanToDataBase(){
+        PropertyHolder.addToDaily(GetDay.getDay(getStartingTime()),
+                new Plan(PropertyHolder.getCourseByName(course), durationInMinutes,
+                        repeatingDays, notification , checkListContainerAdapter.getCheckListsAsString() ));
+    }
+
     public void addCheckList(View view) {
         checkListContainerAdapter.addToContainer (R.string.checkList);
     }
+
     public void commit(View view){
         if (!checkListContainerAdapter.check(limit))
             return;
     }
 
-
     private Long getStartingTime () {
         return 0L;
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(AddPlanActivity.this,MainActivity.class));
         finish();
     }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void showDurationDialog(View view){
         LinearLayout setDurationLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.duration_dialog,null);
@@ -168,6 +178,7 @@ private void sendPlanToDataBase(){
         });
         setDurationDialog.show();
     }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void setDuration(View view){
         Button button = findViewById(R.id.btn_duration);
@@ -181,6 +192,7 @@ private void sendPlanToDataBase(){
         setDurationDialog.dismiss();
         setButtonSelected(button);
     }
+
     private void setButtonSelected(Button button){
         button.setBackgroundResource(R.drawable.button3);
     }
