@@ -87,6 +87,7 @@ public class AddPlanActivity extends AppCompatActivity {
         chooseCourseDialog.setView(chooseCourseLayout);
         chooseCourseDialog.show();
     }
+
     private void setCoursesButtons(LinearLayout llCourses){
         llCourses.removeAllViews();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -135,7 +136,6 @@ private void sendPlanToDataBase(){
     public void commit(View view){
         if (!checkListContainerAdapter.check(limit))
             return;
-
     }
 
 
@@ -185,5 +185,17 @@ private void sendPlanToDataBase(){
         button.setBackgroundResource(R.drawable.button3);
     }
 
+    private ArrayList<Long> getAllDaysToAdd (Long firstDay, ArrayList<Boolean> daysOfTheWeek, int repeatTime) {
+        if (daysOfTheWeek == null)
+            return null;
 
+        ArrayList<Long> temp = new ArrayList<>();
+        for (int i = 0; i < repeatTime; i++) {
+            for (int j = 0; j < 7; j++) {
+                temp.add(firstDay + (i * 7) + j);
+            }
+        }
+        temp.remove(firstDay);
+        return temp;
+    }
 }
