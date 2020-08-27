@@ -62,7 +62,7 @@ public class AddCourseActivity extends AppCompatActivity {
         lessonsContainerAdapter.addToContainer (R.string.addLesson );
     }
     public void commit(View view){
-        if(!notesContainerAdapter.check(limitLessonsName))
+        if(!notesContainerAdapter.check(limitNoteName))
             return;
         if(!lessonsContainerAdapter.check(limitLessonsName))
             return;
