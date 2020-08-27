@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPlanActivity"
+    tools:context=".AddCourseActivity"
     android:background="@android:color/white"
     android:orientation="vertical"
     >
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/vazir"
             android:gravity="start"
-            android:text="@string/addCourse"
+            android:text="@string/addNewCourse"
             android:layout_marginEnd="10dp"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -66,7 +66,7 @@
                     android:fontFamily="@font/vazir"
                     android:gravity="center"
                     android:inputType="text"
-                    android:hint="@string/courseTittle"
+                    android:hint="@string/courseName"
                     android:textSize="20sp"
                     />
 
@@ -77,35 +77,6 @@
                     android:src="@drawable/course_pic" />
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="50dp"
-                >
-
-                <Button
-                    android:id="@+id/btn_duration"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/button4"
-                    android:fontFamily="@font/vazir"
-                    android:gravity="center"
-                    android:hint="@string/note"
-                    android:textColor="@color/DarkLight"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/clock_pic" />
-
-            </LinearLayout>
 
 
             <LinearLayout
@@ -118,24 +89,46 @@
                 android:layout_marginHorizontal="50dp"
                 >
 
-                <Button
-                    android:id="@+id/et_daily"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/button4"
-                    android:textColor="@color/DarkLight"
-                    android:fontFamily="@font/vazir"
-                    android:gravity="center"
-                    android:hint="زیر مجموعه +"
-                    android:textSize="20sp" />
+                    android:orientation="vertical"
+                    >
+
+
+                    <Button
+                        android:id="@+id/btnAddLinkedNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button4"
+                        android:fontFamily="@font/vazir"
+                        android:hint="@string/addLinkedNote"
+                        android:onClick="addNote"
+                        android:textColor="@color/DarkLight"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:id="@+id/linkedNotesContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
 
                 <ImageView
-                    android:layout_width="@dimen/icon_size"
+                    android:layout_width="34dp"
                     android:layout_height="@dimen/icon_size"
+                    android:layout_gravity="top"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/weekly_pic" />
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/linked_note_pic" />
             </LinearLayout>
 
 
@@ -147,6 +140,60 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:layout_marginHorizontal="50dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+
+
+                    <Button
+                        android:id="@+id/btnAddLesson"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button4"
+                        android:fontFamily="@font/vazir"
+                        android:hint="@string/addLesson"
+                        android:onClick="addLesson"
+                        android:textColor="@color/DarkLight"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:id="@+id/lessonsContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/define_lesson_pic" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginBottom="20dp">
 
                 <Button
                     android:id="@+id/notification"
@@ -157,41 +204,20 @@
                     android:textColor="@color/DarkLight"
                     android:fontFamily="@font/vazir"
                     android:gravity="center"
-                    android:hint="@string/courseColor"
-                    android:textSize="20sp" />
+                    android:hint="@string/selectCourseColor"
+                    android:textSize="20sp"
+                    android:onClick="openColorPicker"/>
 
-
-                <ImageView
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/notification" />
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginHorizontal="50dp">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="10dp"
-                    android:onClick="openColorPicker"
-                    app:srcCompat="@drawable/color_picker_image" />
 
                 <ImageView
                     android:id="@+id/colorPicker"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
                     android:layout_marginStart="10dp"
-                    app:srcCompat="@drawable/color_picker_drawable" />
+                    android:src="@drawable/select_color_pic" />
+
             </LinearLayout>
+
 
 
 
