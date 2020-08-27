@@ -9,7 +9,9 @@
     android:orientation="vertical"
     >
 
-
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_addPlan_activity"
         android:layout_width="match_parent"
@@ -31,6 +33,7 @@
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
+</FrameLayout>
 
 
     <ScrollView
@@ -138,37 +141,6 @@
                     android:src="@drawable/notification" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="50dp"
-                >
-
-                <Button
-                    android:id="@+id/calendar_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/button4"
-                    android:textColor="@color/DarkLight"
-                    android:fontFamily="@font/vazir"
-                    android:gravity="center"
-                    android:hint="تاریخ"
-                    android:textSize="20sp" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/weekly_pic" />
-            </LinearLayout>
-
 
 
             <LinearLayout

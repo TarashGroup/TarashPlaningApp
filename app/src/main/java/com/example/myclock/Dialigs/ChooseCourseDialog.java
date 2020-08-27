@@ -14,13 +14,12 @@ import com.example.myclock.R;
 import java.util.ArrayList;
 
 public class ChooseCourseDialog extends MyDialog{
-    public ArrayList<String> courses;
-    Button btnChooseCourse;
-    int colorBar , buttonHeight;
-    String course;
-    Context context;
-    LinearLayout chooseCourseLayout;
-    int layout;
+    private ArrayList<String> courses;
+    private Button btnChooseCourse;
+    private int colorBar , buttonHeight;
+    private String course;
+    private Context context;
+    private LinearLayout chooseCourseLayout;
 
     public ChooseCourseDialog(ArrayList<String> courses, Button btnChooseCourse, int colorBar, int buttonHeight, Context context, LinearLayout chooseCourseLayout, int layout) {
         this.courses = courses;
@@ -29,15 +28,12 @@ public class ChooseCourseDialog extends MyDialog{
         this.buttonHeight = buttonHeight;
         this.context = context;
         this.chooseCourseLayout = chooseCourseLayout;
-        this.layout = layout;
-        start();
+        builder(context, layout, chooseCourseLayout);
     }
 
     public void start(){
-        builder(context,layout);
         LinearLayout llCourses  = chooseCourseLayout.findViewById(R.id.ll_courses);
         setCoursesButtons(llCourses);
-        dialog.setView(chooseCourseLayout);
         showDialog();
     }
     private void setCoursesButtons(LinearLayout llCourses ){
@@ -74,5 +70,7 @@ public class ChooseCourseDialog extends MyDialog{
         }
     };
 
-
+    public String getCourse() {
+        return course;
+    }
 }

@@ -1,6 +1,5 @@
 package com.example.myclock.Dialigs;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Build;
 import android.view.View;
@@ -13,58 +12,67 @@ import androidx.annotation.RequiresApi;
 
 import com.example.myclock.R;
 
-import java.util.Objects;
-
-public class TimeDurationDialog {
+public class TimeDurationDialog extends MyDialog {
     private TimePicker tpDuration;
-    private AlertDialog setDurationDialog;
-    private LinearLayout setDurationLayout;
     private Context context;
     private Button btnDuration;
     private Button btnSetDuration;
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public TimeDurationDialog(TimePicker tpDuration, AlertDialog setDurationDialog, LinearLayout setDurationLayout, Context context, Button btnDuration) {
-        this.tpDuration = tpDuration;
-        this.setDurationDialog = setDurationDialog;
-        this.setDurationLayout = setDurationLayout;
+    private int minute=0 , hour=1;
+
+    public TimeDurationDialog(LinearLayout setDurationLayout, Context context, Button btnDuration, int layout) {
         this.context = context;
         this.btnDuration = btnDuration;
-        btnSetDuration = setDurationDialog.findViewById(R.id.btn_timePickerOK);
-        start();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void start(){
+        btnSetDuration = setDurationLayout.findViewById(R.id.btn_timePickerOK);
         tpDuration = setDurationLayout.findViewById(R.id.tp_duration);
-        Objects.requireNonNull(setDurationDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
-        tpDuration.setIs24HourView(true);
-        setDurationDialog.setView(setDurationLayout);
-        tpDuration.setHour(1);
-        tpDuration.setMinute(0);
-        tpDuration.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-                if (i>10)
-                    timePicker.setHour(10);
-            }
-        });
-        setDurationDialog.show();
+        builder(context, layout,setDurationLayout);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void setDuration(View view){
-        int minute = tpDuration.getMinute();
-        int hour = tpDuration.getHour();
-        if (minute == 0 && hour == 0)
-            Toast.makeText(context,"تو ۰ دقیقه که نمیتونی کاری بکنی:)" , Toast.LENGTH_SHORT).show();
-        else {
-            if (minute > 0 && hour > 0)
-                btnDuration.setText(hour + " ساعت " +  "و" +" "+ minute + " دقیقه ");
-            else if (minute > 0)
-                btnDuration.setText(minute + " دقیقه ");
-            else
-                btnDuration.setText(hour + " ساعت ");
-            setDurationDialog.dismiss();
-            MyDialog.setButtonSelected(btnDuration);
+    public void start() {
+        tpDuration.setIs24HourView(true);
+        tpDuration.setHour(hour);
+        tpDuration.setMinute(minute);
+        tpDuration.setOnTimeChangedListener(timeChangedListener);
+        showDialog();
+        btnSetDuration.setOnClickListener(setDuration);
+    }
+
+    TimePicker.OnTimeChangedListener timeChangedListener = new TimePicker.OnTimeChangedListener() {
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        public void onTimeChanged(TimePicker timePicker, int i, int i1) {
+            if (i == 11)
+                timePicker.setHour(0);
+            else if (i == 23)
+                timePicker.setHour(10);
         }
+    };
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    View.OnClickListener setDuration = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            minute = tpDuration.getMinute();
+            hour = tpDuration.getHour();
+            if (minute == 0 && hour == 0)
+                Toast.makeText(context, "تو ۰ دقیقه که نمیتونی کاری بکنی:)", Toast.LENGTH_SHORT).show();
+            else {
+                if (minute > 0 && hour > 0)
+                    btnDuration.setText(hour + " ساعت " + "و" + " " + minute + " دقیقه ");
+                else if (minute > 0)
+                    btnDuration.setText(minute + " دقیقه ");
+                else
+                    btnDuration.setText(hour + " ساعت ");
+                dialog.dismiss();
+                MyDialog.setButtonSelected(btnDuration);
+            }
+        }
+    };
+
+    public int getHour() {
+        return hour;
+    }
+
+    public int getMinute() {
+        return minute;
     }
 }

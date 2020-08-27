@@ -11,15 +11,15 @@ import com.example.myclock.R;
 import java.util.Objects;
 
 public class MyDialog {
-    static AlertDialog dialog;
-    static void builder(Context context , int layout){
+    AlertDialog dialog;
+    void builder(Context context , int layout,LinearLayout linearLayout){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(layout);
         dialog = builder.create();
+        dialog.setView(linearLayout);
     }
 
-    public static void showDialog(){
-        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+    public void showDialog(){
         Objects.requireNonNull(dialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.show();
     }

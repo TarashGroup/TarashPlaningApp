@@ -20,6 +20,7 @@ import com.example.myclock.Database.Plan;
 import com.example.myclock.Database.PropertyHolder;
 import com.example.myclock.Dialigs.ChooseCourseDialog;
 import com.example.myclock.Dialigs.MyDialog;
+import com.example.myclock.Dialigs.TimeDurationDialog;
 import com.example.myclock.Views.CheckListContainerAdapter;
 
 import java.util.ArrayList;
@@ -30,12 +31,10 @@ import ir.hamsaa.persiandatepicker.PersianDatePickerDialog;
 import ir.hamsaa.persiandatepicker.util.PersianCalendar;
 
 public class AddPlanActivity extends AppCompatActivity {
-
-    public ArrayList<String> courses = new ArrayList<>();
+    ChooseCourseDialog chooseCourseDialog;
+    TimeDurationDialog timeDurationDialog;
+    public ArrayList<String> courses = new ArrayList<>(); // test
     CheckListContainerAdapter checkListContainerAdapter;
-    private TimePicker tpDuration;
-    private AlertDialog setDurationDialog;
-    int durationInMinutes;
     int limit = 20;
     String course;
     Long notification;
@@ -85,6 +84,12 @@ public class AddPlanActivity extends AppCompatActivity {
         courses.add("زبان");
         courses.add("فیزیک");
         //*********************************************/test
+        chooseCourseDialog = new ChooseCourseDialog(courses,(Button) findViewById(R.id.btn_choose_course)
+                ,getResources().getColor(R.color.Bar),(int) getResources().getDimension(R.dimen.button_height)
+                ,this,(LinearLayout) getLayoutInflater().inflate(R.layout.choose_course_dialog,null),R.layout.choose_course_dialog);
+
+        timeDurationDialog = new TimeDurationDialog((LinearLayout) getLayoutInflater().inflate(R.layout.duration_dialog,null),
+                this,(Button) findViewById(R.id.btn_duration),R.layout.duration_dialog);
 
     }
 
@@ -102,9 +107,7 @@ public class AddPlanActivity extends AppCompatActivity {
 
     //Todo: courses must be fixed.
     public void chooseCourse(View view){
-        new ChooseCourseDialog(courses,(Button) findViewById(R.id.btn_choose_course)
-                ,getResources().getColor(R.color.Bar),(int) getResources().getDimension(R.dimen.button_height)
-                ,this,(LinearLayout) getLayoutInflater().inflate(R.layout.choose_course_dialog,null),R.layout.choose_course_dialog);
+        chooseCourseDialog.start();
     }
 
 
@@ -113,7 +116,7 @@ public class AddPlanActivity extends AppCompatActivity {
 // TODO: 8/27/2020 course / repeatingDays/ notification must be set
     private void sendPlanToDataBase(){
         PropertyHolder.addToDaily(getStartingTime(),
-                new Plan(PropertyHolder.getCourseByName(course), durationInMinutes,
+                new Plan(PropertyHolder.getCourseByName(course), timeDurationDialog.getHour() *60 + timeDurationDialog.getMinute(),
                         getAllDaysToAdd(null, 0), notification , checkListContainerAdapter.getCheckListsAsString() ));
     }
 
@@ -144,45 +147,8 @@ public class AddPlanActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void showDurationDialog(View view){
-        LinearLayout setDurationLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.duration_dialog,null);
-        tpDuration = setDurationLayout.findViewById(R.id.tp_duration);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(R.layout.duration_dialog);
-        setDurationDialog = builder.create();
-        Objects.requireNonNull(setDurationDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
-        tpDuration.setIs24HourView(true);
-        setDurationDialog.setView(setDurationLayout);
-        tpDuration.setHour(1);
-        tpDuration.setMinute(0);
-        tpDuration.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-                if (i>10)
-                    timePicker.setHour(10);
-            }
-        });
-        setDurationDialog.show();
+        timeDurationDialog.start();
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void setDuration(View view){
-        Button button = findViewById(R.id.btn_duration);
-        int minute = tpDuration.getMinute();
-        int hour = tpDuration.getHour();
-        durationInMinutes = hour * 60 + minute;
-        if (minute == 0 && hour == 0)
-            Toast.makeText(this,"تو ۰ دقیقه که نمیتونی کاری بکنی:)" , Toast.LENGTH_SHORT).show();
-        else {
-            if (minute > 0 && hour > 0)
-                button.setText(hour + " ساعت " +  "و" +" "+ minute + " دقیقه ");
-            else if (minute > 0)
-                button.setText(minute + " دقیقه ");
-            else
-                button.setText(hour + " ساعت ");
-            setDurationDialog.dismiss();
-            MyDialog.setButtonSelected(button);
-        }
-    }
-
 
 
     private ArrayList<Long> getAllDaysToAdd (ArrayList<Boolean> daysOfTheWeek, int repeatTime) {

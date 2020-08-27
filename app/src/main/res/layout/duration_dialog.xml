@@ -41,7 +41,6 @@
         android:textColor="@android:color/white"
         android:fontFamily="@font/vazir"
         android:background="@drawable/button2"
-        android:onClick="setDuration"
         />
 
 
