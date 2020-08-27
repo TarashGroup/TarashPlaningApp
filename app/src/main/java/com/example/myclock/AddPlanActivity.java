@@ -46,7 +46,8 @@ public class AddPlanActivity extends AppCompatActivity {
     int limit = 20;
     String course;
     Long notification;
-    ArrayList<Long> repeatingDays;
+    private PersianDatePickerDialog persianDatePickerDialog;
+    private PersianCalendar startingTime = new PersianCalendar();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class AddPlanActivity extends AppCompatActivity {
             }
         });
 
-        PersianDatePickerDialog picker = new PersianDatePickerDialog(this)
+        persianDatePickerDialog = new PersianDatePickerDialog(this)
                 .setPositiveButtonString("تایید")
                 .setNegativeButton("بازگشت")
                 .setTodayButton("امروز")
@@ -77,19 +78,10 @@ public class AddPlanActivity extends AppCompatActivity {
                 .setMaxYear(PersianDatePickerDialog.THIS_YEAR)
                 .setInitDate(new PersianCalendar())
                 .setActionTextColor(Color.GRAY)
+                .setShowInBottomSheet(true)
                 .setTitleType(PersianDatePickerDialog.WEEKDAY_DAY_MONTH_YEAR)
-                .setListener(new Listener() {
-                    @Override
-                    public void onDateSelected(PersianCalendar persianCalendar) {
-                    }
+                .setListener(datePickerListener);
 
-                    @Override
-                    public void onDismissed() {
-
-                    }
-                });
-
-        picker.show();
 
         //*****************************************--toolbar
 //        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
@@ -103,6 +95,19 @@ public class AddPlanActivity extends AppCompatActivity {
         //*********************************************/test
 
     }
+
+    Listener datePickerListener = new Listener() {
+        @Override
+        public void onDateSelected(PersianCalendar persianCalendar) {
+            startingTime = persianCalendar;
+        }
+
+        @Override
+        public void onDismissed() {
+
+        }
+    };
+
 
     public void chooseCourse(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -156,10 +161,15 @@ public class AddPlanActivity extends AppCompatActivity {
 //*****************************************************************************
 // TODO: 8/27/2020 course / repeatingDays/ notification must be set
     private void sendPlanToDataBase(){
-        PropertyHolder.addToDaily(GetDay.getDay(getStartingTime()),
+        PropertyHolder.addToDaily(getStartingTime(),
                 new Plan(PropertyHolder.getCourseByName(course), durationInMinutes,
-                        repeatingDays, notification , checkListContainerAdapter.getCheckListsAsString() ));
+                        getAllDaysToAdd(null, 0), notification , checkListContainerAdapter.getCheckListsAsString() ));
     }
+
+    public void repeat_button_listener(View view) {
+        persianDatePickerDialog.show();
+    }
+
 
     public void addCheckList(View view) {
         checkListContainerAdapter.addToContainer (R.string.checkList);
@@ -171,7 +181,7 @@ public class AddPlanActivity extends AppCompatActivity {
     }
 
     private Long getStartingTime () {
-        return 0L;
+        return GetDay.getDay(startingTime.getTimeInMillis() / 1000);
     }
 
     @Override
@@ -220,7 +230,9 @@ public class AddPlanActivity extends AppCompatActivity {
         button.setBackgroundResource(R.drawable.button3);
     }
 
-    private ArrayList<Long> getAllDaysToAdd (Long firstDay, ArrayList<Boolean> daysOfTheWeek, int repeatTime) {
+
+    private ArrayList<Long> getAllDaysToAdd (ArrayList<Boolean> daysOfTheWeek, int repeatTime) {
+        Long firstDay = getStartingTime();
         if (daysOfTheWeek == null)
             return null;
 
@@ -232,5 +244,9 @@ public class AddPlanActivity extends AppCompatActivity {
         }
         temp.remove(firstDay);
         return temp;
+    }
+
+    public void calendar_listener (View view) {
+        persianDatePickerDialog.show();
     }
 }
