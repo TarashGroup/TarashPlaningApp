@@ -34,10 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isRemoving = false;
     private Button deleteButton;
     private Button btnAddPlan;
-    //test
-    AmbilWarnaDialog dialog;
-    AlertDialog alertDialog;
-    //test
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,37 +169,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-//*************************************************************************************test
+
     public void test(View view){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(R.layout.add_course_dialogue);
-        alertDialog = builder.create();
-        Objects.requireNonNull(alertDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        Objects.requireNonNull(alertDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
-        alertDialog.show();
+        startActivity(new Intent(MainActivity.this,AddCourseActivity.class));
+        finish();
     }
-    public void openColorPicker(View view){
-        dialog = new AmbilWarnaDialog(this, Color.WHITE, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-            @Override
-            public void onOk(AmbilWarnaDialog dialog, int color) {
-                // color is the color selected by the user.
-                changeColor(color);
-            }
 
-            @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-                // cancel was selected by the user
-            }
-            //https://github.com/yukuku/ambilwarna
-        });
-        dialog.show();
-    }
-    private void changeColor(int color){
 
-        ImageView imageView = alertDialog.findViewById(R.id.colorPicker);
-        imageView.setColorFilter(color);
-    }
-//*************************************************************************************test
+
+
 
     View.OnClickListener progressListener = new View.OnClickListener() {
         @Override

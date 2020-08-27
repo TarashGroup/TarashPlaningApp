@@ -18,7 +18,6 @@ import com.example.myclock.R;
 
 public class CheckListView {
     private Context context;
-    private Typeface typeface;
     private View.OnClickListener onClickListener;
     private EditText editText;
     private LinearLayout layout;

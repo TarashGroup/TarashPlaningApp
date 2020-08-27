@@ -22,6 +22,7 @@ import androidx.core.content.res.ResourcesCompat;
 import com.example.myclock.Database.GetDay;
 import com.example.myclock.Database.Plan;
 import com.example.myclock.Database.PropertyHolder;
+import com.example.myclock.Views.CheckListContainerAdapter;
 import com.example.myclock.Views.CheckListView;
 
 import java.util.ArrayList;
@@ -30,19 +31,20 @@ import java.util.Objects;
 public class AddPlanActivity extends AppCompatActivity {
 
     public ArrayList<String> courses = new ArrayList<>();
-    private ArrayList<CheckListView> checklistsViews = new ArrayList<>();
-    private LinearLayout checkListContainer;
-    private Button btnAddCheckList;
+    CheckListContainerAdapter checkListContainerAdapter;
     private TimePicker tpDuration;
     private AlertDialog setDurationDialog;
     AlertDialog chooseCourseDialog;
+
     int limit = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plan);
-        checkListContainer = findViewById(R.id.CheckListContainer);
+        LinearLayout checkListContainer = findViewById(R.id.CheckListContainer);
+        Button btnAddCheckList = findViewById(R.id.btn_check_list);
+        checkListContainerAdapter = new CheckListContainerAdapter(this , checkListContainer, btnAddCheckList);
         //****************************************toolbar
         androidx.appcompat.widget.Toolbar tbAddPlan = findViewById(R.id.tb_addPlan_activity);
         ActionBar actionbar = getSupportActionBar();
@@ -65,7 +67,7 @@ public class AddPlanActivity extends AppCompatActivity {
         courses.add("زبان");
         courses.add("فیزیک");
         //*********************************************/test
-        btnAddCheckList = findViewById(R.id.btn_check_list);
+
     }
 
     public void chooseCourse(View view){
@@ -113,58 +115,18 @@ public class AddPlanActivity extends AppCompatActivity {
         }
     };
 
-    public void highlight (LinearLayout linearLayout) {
-        linearLayout.setBackgroundResource(R.drawable.highlighted_textbox_background);
-    }
-
-
-//*****************************************************************************  Checklist Listener
-
-        View.OnClickListener checkListListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for (int i = 0; i < checkListContainer.getChildCount(); i++) {
-                    if (view.getTag().equals(checkListContainer.getChildAt(i))) {
-                        checkListContainer.removeViewAt(i);
-                        checklistsViews.remove(i);
-                        break;
-                    }
-                }
-                if(checkListContainer.getChildCount() == 0)btnAddCheckList.setText("");
-            }
-        };
 
 //***************************************************************************** Add Button
     public void addCheckList(View view) {
-        checklistsViews.add(0 , new CheckListView(this , checkListListener));
-        View view1 = checklistsViews.get(0).getCheckList("");
-        checkListContainer.addView(view1 , 0);
-        btnAddCheckList.setText(R.string.checkList);
+        checkListContainerAdapter.addToContainer (R.string.checkList);
     }
 
     public void commit(View view){
-        for ( CheckListView checkListView : checklistsViews) {
-            LinearLayout check_box_layout = checkListView.getLinearLayout();
-            check_box_layout.setBackgroundResource(R.drawable.textbox_background);
-        }
-        for ( CheckListView checkListView : checklistsViews){
-            LinearLayout check_box_layout = checkListView.getLinearLayout();
-            String inputText = checkListView.getEditText().getText().toString();
-            String number = Integer.toString(checklistsViews.indexOf(checkListView) + 1);
-            if ( inputText.length() > limit){
-                highlight(check_box_layout);
-                Toast.makeText(this, "برای چک لیست " + number + " عنوان کوتاهتر وارد کن.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            else if (inputText.length() == 0) {
-                highlight(check_box_layout);
-                Toast.makeText(AddPlanActivity.this, "برای چک لیست " + number + " عنوان رو وارد کن.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
+        if (!checkListContainerAdapter.check(limit))
+            return;
         PropertyHolder.addToDaily(GetDay.getDay(getStartingTime()),
                 new Plan(PropertyHolder.getCourseByName(getCoursesName()), getTotalTime(),
-                        getRepeating(), getNotification(), getCheckLists()));
+                        getRepeating(), getNotification(), checkListContainerAdapter.getCheckLists()));
     }
     private String getCoursesName () {
         return null;
@@ -172,13 +134,7 @@ public class AddPlanActivity extends AppCompatActivity {
     private boolean getNotification () {
         return false;
     }
-    private ArrayList<String> getCheckLists () {
-        ArrayList<String> temp = new ArrayList<>();
-        for (CheckListView ch : checklistsViews) {
-            temp.add(ch.getEditText().toString().replace("\n", " ").trim());
-        }
-        return temp;
-    }
+
     private ArrayList<Long> getRepeating () {
         return null;
     }
@@ -189,7 +145,7 @@ public class AddPlanActivity extends AppCompatActivity {
         return 0L;
     }
 
-    // TODO Replace /n with ' ' and Trim()
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -232,7 +188,5 @@ public class AddPlanActivity extends AppCompatActivity {
         button.setBackgroundResource(R.drawable.button3);
     }
 
-    public void setDuration(View view){
 
-    }
 }
