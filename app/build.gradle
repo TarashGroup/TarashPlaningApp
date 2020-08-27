@@ -30,8 +30,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0'
     implementation 'com.github.jakob-grabner:Circle-Progress-View:1.4'
     implementation 'com.github.BluRe-CN:ComplexView:v1.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.13'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.13'
     implementation 'net.danlew:android.joda:2.10.6.1'
 
 
@@ -39,15 +39,15 @@ dependencies {
 
     def htextview_version = "0.1.6"
 // as 3.0 use implementation
-    compile "com.hanks:htextview-base:$htextview_version"        // base library
+    implementation "com.hanks:htextview-base:$htextview_version"        // base library
 
-    compile "com.hanks:htextview-fade:$htextview_version"        // optional
-    compile "com.hanks:htextview-line:$htextview_version"        // optional
-    compile "com.hanks:htextview-rainbow:$htextview_version"     // optional
-    compile "com.hanks:htextview-typer:$htextview_version"       // optional
-    compile "com.hanks:htextview-scale:$htextview_version"       // optional
-    compile "com.hanks:htextview-evaporate:$htextview_version"   // optional
-    compile "com.hanks:htextview-fall:$htextview_version"        // optional
+    implementation "com.hanks:htextview-fade:$htextview_version"        // optional
+    implementation "com.hanks:htextview-line:$htextview_version"        // optional
+    implementation "com.hanks:htextview-rainbow:$htextview_version"     // optional
+    implementation "com.hanks:htextview-typer:$htextview_version"       // optional
+    implementation "com.hanks:htextview-scale:$htextview_version"       // optional
+    implementation "com.hanks:htextview-evaporate:$htextview_version"   // optional
+    implementation "com.hanks:htextview-fall:$htextview_version"        // optional
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

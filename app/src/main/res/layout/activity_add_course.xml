@@ -11,7 +11,7 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_addPlan_activity"
+        android:id="@+id/tb_addCourse_activity"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:theme="@style/ToolbarTheme"

@@ -1,15 +1,10 @@
 package com.example.myclock;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -19,16 +14,15 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 
 import com.example.myclock.Database.GetDay;
 import com.example.myclock.Database.Plan;
 import com.example.myclock.Database.PropertyHolder;
+import com.example.myclock.Dialigs.ChooseCourseDialog;
+import com.example.myclock.Dialigs.MyDialog;
 import com.example.myclock.Views.CheckListContainerAdapter;
-import com.example.myclock.Views.CheckListView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 
 import ir.hamsaa.persiandatepicker.Listener;
@@ -41,7 +35,6 @@ public class AddPlanActivity extends AppCompatActivity {
     CheckListContainerAdapter checkListContainerAdapter;
     private TimePicker tpDuration;
     private AlertDialog setDurationDialog;
-    AlertDialog chooseCourseDialog;
     int durationInMinutes;
     int limit = 20;
     String course;
@@ -56,6 +49,7 @@ public class AddPlanActivity extends AppCompatActivity {
         LinearLayout checkListContainer = findViewById(R.id.CheckListContainer);
         Button btnAddCheckList = findViewById(R.id.btn_check_list);
         checkListContainerAdapter = new CheckListContainerAdapter(this , checkListContainer, btnAddCheckList);
+
         //****************************************toolbar
         androidx.appcompat.widget.Toolbar tbAddPlan = findViewById(R.id.tb_addPlan_activity);
         ActionBar actionbar = getSupportActionBar();
@@ -68,6 +62,7 @@ public class AddPlanActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        //*****************************************--toolbar
 
         persianDatePickerDialog = new PersianDatePickerDialog(this)
                 .setPositiveButtonString("تایید")
@@ -83,9 +78,6 @@ public class AddPlanActivity extends AppCompatActivity {
                 .setListener(datePickerListener);
 
 
-        //*****************************************--toolbar
-//        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
-       // picker.setIs24HourView(true);
         //*********************************************test
         courses.add("ریاضی");
         courses.add("شیمی");
@@ -108,54 +100,13 @@ public class AddPlanActivity extends AppCompatActivity {
         }
     };
 
-
+    //Todo: courses must be fixed.
     public void chooseCourse(View view){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(R.layout.choose_course_dialog);
-        chooseCourseDialog = builder.create();
-        Objects.requireNonNull(chooseCourseDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        Objects.requireNonNull(chooseCourseDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
-        LinearLayout chooseCourseLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.choose_course_dialog,null);
-        LinearLayout llCourses  = chooseCourseLayout.findViewById(R.id.ll_courses);
-        setCoursesButtons(llCourses);
-        chooseCourseDialog.setView(chooseCourseLayout);
-        chooseCourseDialog.show();
+        new ChooseCourseDialog(courses,(Button) findViewById(R.id.btn_choose_course)
+                ,getResources().getColor(R.color.Bar),(int) getResources().getDimension(R.dimen.button_height)
+                ,this,(LinearLayout) getLayoutInflater().inflate(R.layout.choose_course_dialog,null),R.layout.choose_course_dialog);
     }
 
-    private void setCoursesButtons(LinearLayout llCourses){
-        llCourses.removeAllViews();
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        params.setMargins(40, 20, 40, 20);
-        params.gravity = Gravity.CENTER;
-        for (int i = 0; i < courses.size(); i++) {
-            Button button = new Button(this);
-            button.setText(courses.get(i));
-            button.setGravity(Gravity.CENTER);
-            Typeface font = ResourcesCompat.getFont(this, R.font.vazir);
-            button.setTypeface(font);
-            button.setBackgroundResource(R.drawable.button1);
-            button.setHeight((int) getResources().getDimension(R.dimen.button_height));
-            button.setLayoutParams(params);
-            button.setTextColor(getResources().getColor(R.color.Bar));
-            llCourses.addView(button);
-            button.setOnClickListener(courseButtonOnClick);
-        }
-    }
-
-    View.OnClickListener courseButtonOnClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Button btnChooseCourse = findViewById(R.id.btn_choose_course);
-            Button btnSelectedCourse = (Button)view;
-            btnChooseCourse.setText(btnSelectedCourse.getText());
-            course = btnSelectedCourse.getText().toString();
-            setButtonSelected(btnChooseCourse);
-            chooseCourseDialog.dismiss();
-        }
-    };
 
 
 //*****************************************************************************
@@ -218,17 +169,20 @@ public class AddPlanActivity extends AppCompatActivity {
         int minute = tpDuration.getMinute();
         int hour = tpDuration.getHour();
         durationInMinutes = hour * 60 + minute;
-        if (minute > 0)
-            button.setText(hour + " ساعت " + minute +" دقیقه ");
-        else
-            button.setText(hour + " ساعت ");
-        setDurationDialog.dismiss();
-        setButtonSelected(button);
+        if (minute == 0 && hour == 0)
+            Toast.makeText(this,"تو ۰ دقیقه که نمیتونی کاری بکنی:)" , Toast.LENGTH_SHORT).show();
+        else {
+            if (minute > 0 && hour > 0)
+                button.setText(hour + " ساعت " +  "و" +" "+ minute + " دقیقه ");
+            else if (minute > 0)
+                button.setText(minute + " دقیقه ");
+            else
+                button.setText(hour + " ساعت ");
+            setDurationDialog.dismiss();
+            MyDialog.setButtonSelected(button);
+        }
     }
 
-    private void setButtonSelected(Button button){
-        button.setBackgroundResource(R.drawable.button3);
-    }
 
 
     private ArrayList<Long> getAllDaysToAdd (ArrayList<Boolean> daysOfTheWeek, int repeatTime) {

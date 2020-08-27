@@ -1,7 +1,9 @@
 package com.example.myclock;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,20 @@ public class AddCourseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
+
+        //****************************************toolbar
+        androidx.appcompat.widget.Toolbar tbAddPlan = findViewById(R.id.tb_addCourse_activity);
+        ActionBar actionbar = getSupportActionBar();
+        if (actionbar != null)
+            actionbar.setDisplayHomeAsUpEnabled(true);
+        tbAddPlan.setTitleTextAppearance(this, R.style.vaziriFont);
+        tbAddPlan.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        //*****************************************--toolbar
 
         //***************************************************************** lesson
         LinearLayout lessonsContainer = findViewById(R.id.lessonsContainer);
@@ -66,6 +82,11 @@ public class AddCourseActivity extends AppCompatActivity {
             return;
         if(!lessonsContainerAdapter.check(limitLessonsName))
             return;
+    }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(AddCourseActivity.this , MainActivity.class));
     }
 }
