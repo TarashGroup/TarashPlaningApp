@@ -68,6 +68,29 @@ public class AddPlanActivity extends AppCompatActivity {
             }
         });
 
+        PersianDatePickerDialog picker = new PersianDatePickerDialog(this)
+                .setPositiveButtonString("تایید")
+                .setNegativeButton("بازگشت")
+                .setTodayButton("امروز")
+                .setTodayButtonVisible(true)
+                .setMinYear(1300)
+                .setMaxYear(PersianDatePickerDialog.THIS_YEAR)
+                .setInitDate(new PersianCalendar())
+                .setActionTextColor(Color.GRAY)
+                .setTitleType(PersianDatePickerDialog.WEEKDAY_DAY_MONTH_YEAR)
+                .setListener(new Listener() {
+                    @Override
+                    public void onDateSelected(PersianCalendar persianCalendar) {
+                    }
+
+                    @Override
+                    public void onDismissed() {
+
+                    }
+                });
+
+        picker.show();
+
         //*****************************************--toolbar
 //        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
        // picker.setIs24HourView(true);
