@@ -1,4 +1,8 @@
 package com.example.myclock.Database;
+import android.util.Log;
+
+import com.example.myclock.Views.CheckListContainerAdapter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -6,21 +10,23 @@ import java.util.HashMap;
 
 public class Plan {
     private Course course;
-    private Double totalTime;
+    int duration;
     private Double passedTime;
     private Test test;
     private HashMap<String, Boolean> checklists = new HashMap<>();
     private boolean notification;
+    ArrayList<String> checkList;
 
-    public Plan(Course course, Double totalTime, ArrayList<Long> repeatingDays, boolean notification
-                    , ArrayList<String> checkLists) {
+    public Plan(Course course, int duration, ArrayList<Long> repeatingDays, Long notification
+                    , ArrayList<String> checkList) {
         this.course = course;
-        this.totalTime = totalTime;
+        this.duration = duration;
         if (repeatingDays != null) {
             for (Long time : repeatingDays) {
                 PropertyHolder.addRepeatingPlan(this, time);
             }
         }
+        this.checkList = checkList;
     }
 
     public boolean hasNotification () {
@@ -44,12 +50,12 @@ public class Plan {
         this.course = course;
     }
 
-    public Double getTotalTime() {
-        return totalTime;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setTotalTime(Double totalTime) {
-        this.totalTime = totalTime;
+    public void setDuration(Double totalTime) {
+        this.duration = duration;
     }
 
     public Double getPassedTime() {

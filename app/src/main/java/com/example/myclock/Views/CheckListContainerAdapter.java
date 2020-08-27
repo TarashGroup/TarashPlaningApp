@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.myclock.Database.Course;
+import com.example.myclock.Database.Plan;
 import com.example.myclock.R;
 
 import java.util.ArrayList;
@@ -70,14 +72,15 @@ public class CheckListContainerAdapter {
         }
         return true;
     }
+
     private void highlight (LinearLayout linearLayout) {
         linearLayout.setBackgroundResource(R.drawable.highlighted_textbox_background);
     }
 
-    public ArrayList<String> getCheckLists () {
+    public ArrayList<String> getCheckListsAsString () {
         ArrayList<String> temp = new ArrayList<>();
         for (CheckListView ch : checklistsViews) {
-            temp.add(ch.getEditText().toString().replace("\n", " ").trim());
+            temp.add(ch.getEditText().toString());
         }
         return temp;
     }

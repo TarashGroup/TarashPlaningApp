@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.myclock.Database.Course;
 import com.example.myclock.Database.GetDay;
 import com.example.myclock.Database.Plan;
 import com.example.myclock.Database.PropertyHolder;
@@ -35,8 +37,11 @@ public class AddPlanActivity extends AppCompatActivity {
     private TimePicker tpDuration;
     private AlertDialog setDurationDialog;
     AlertDialog chooseCourseDialog;
-
+    int durationInMinutes;
     int limit = 20;
+    String course;
+    Long notification;
+    ArrayList<Long> repeatingDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,42 +115,33 @@ public class AddPlanActivity extends AppCompatActivity {
             Button btnChooseCourse = findViewById(R.id.btn_choose_course);
             Button btnSelectedCourse = (Button)view;
             btnChooseCourse.setText(btnSelectedCourse.getText());
+            course = btnSelectedCourse.getText().toString();
             setButtonSelected(btnChooseCourse);
             chooseCourseDialog.dismiss();
         }
     };
 
 
-//***************************************************************************** Add Button
+//*****************************************************************************
+// TODO: 8/27/2020 course / repeatingDays/ notification must be set
+private void sendPlanToDataBase(){
+    PropertyHolder.addToDaily(GetDay.getDay(getStartingTime()),
+            new Plan(PropertyHolder.getCourseByName(course), durationInMinutes,
+                    repeatingDays, notification , checkListContainerAdapter.getCheckListsAsString() ));
+}
     public void addCheckList(View view) {
         checkListContainerAdapter.addToContainer (R.string.checkList);
     }
-
     public void commit(View view){
         if (!checkListContainerAdapter.check(limit))
             return;
-        PropertyHolder.addToDaily(GetDay.getDay(getStartingTime()),
-                new Plan(PropertyHolder.getCourseByName(getCoursesName()), getTotalTime(),
-                        getRepeating(), getNotification(), checkListContainerAdapter.getCheckLists()));
-    }
-    private String getCoursesName () {
-        return null;
-    }
-    private boolean getNotification () {
-        return false;
+
     }
 
-    private ArrayList<Long> getRepeating () {
-        return null;
-    }
-    private double getTotalTime () {
-        return 0.0;
-    }
+
     private Long getStartingTime () {
         return 0L;
     }
-
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -177,6 +173,7 @@ public class AddPlanActivity extends AppCompatActivity {
         Button button = findViewById(R.id.btn_duration);
         int minute = tpDuration.getMinute();
         int hour = tpDuration.getHour();
+        durationInMinutes = hour * 60 + minute;
         if (minute > 0)
             button.setText(hour + " ساعت " + minute +" دقیقه ");
         else
