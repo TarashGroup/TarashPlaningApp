@@ -1,6 +1,8 @@
 package com.example.myclock.Dialigs;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.View;
@@ -10,6 +12,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.core.widget.CompoundButtonCompat;
 
 import com.example.myclock.R;
 
@@ -86,11 +90,13 @@ public class RepeatDialog extends MyDialog{
                 for (int i = 0; i < 7; i++)
                     selectButton(i);
                 allDays = true;
+                setColorForCheckbox(true);
             }
             else if(allDays) {
                 for (int i = 0; i < 7; i++)
                     unSelectButton(i);
                 allDays = false;
+                setColorForCheckbox(false);
             }
         }
     };
@@ -105,6 +111,7 @@ public class RepeatDialog extends MyDialog{
             }
         }
         cbAllDays.setChecked(allDays);
+        setColorForCheckbox(allDays);
     }
 
     private void selectOrUnSelectButton(int i){
@@ -126,6 +133,21 @@ public class RepeatDialog extends MyDialog{
         allDays = false;
         days[i] = false;
         cbAllDays.setChecked(false);
+        setColorForCheckbox(false);
+    }
+
+    private void setColorForCheckbox(boolean b){
+        if (b){
+            cbAllDays.setTextColor(resources.getColor(R.color.Bar));
+            CompoundButtonCompat.setButtonTintList(cbAllDays, ColorStateList
+                    .valueOf(context.getResources().getColor(R.color.Bar)));
+        }
+        else{
+            cbAllDays.setTextColor(resources.getColor(R.color.Gray));
+            CompoundButtonCompat.setButtonTintList(cbAllDays, ColorStateList
+                    .valueOf(context.getResources().getColor(R.color.Gray)));
+        }
+
     }
 
     private void setButtons(){
