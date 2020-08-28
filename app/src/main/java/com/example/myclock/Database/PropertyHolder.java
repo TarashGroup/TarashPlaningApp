@@ -6,7 +6,17 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import LitnerBox.LitnerBox;
+
 public class PropertyHolder {
+    private static ArrayList<ArrayList<Note>> litnerBoxValues;
+    private static ArrayList<Note> doneBoxes;
+    private static ArrayList<Note> failedBoxes;
+    private static Boolean litnerShouldBeUpdated = Boolean.TRUE; // pashmam :/
+
+    private static Long lastVisitedDay = 0L;
+    private static Long pastDays = 0L;
+
     private static HashMap<Long, DailyInformation> days = new HashMap<>();
     private static HashMap<Long, ArrayList<Plan>> repeatingDays = new HashMap<>();
     private static ArrayList<Course> allCourse = new ArrayList<>();
@@ -31,7 +41,7 @@ public class PropertyHolder {
             }
         }
         repeatingDays.remove(time);
-    } // TODO remove
+    }
 
     public static void addRepeatingPlan (Plan p, Long time) {
         if (repeatingDays.get(time) == null) {
@@ -81,5 +91,51 @@ public class PropertyHolder {
                 return course;
 
         return null;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////LoadFromSql
+
+    public static void loadDataBase () {
+        lastVisitedDay = 0L; // Load
+        pastDays = GetDay.getDay() - lastVisitedDay;
+
+        if (pastDays != 0L) {
+            litnerShouldBeUpdated = Boolean.TRUE;
+        }
+
+        lastVisitedDay += pastDays;
+
+        // TODO : Load local variables
+    }
+
+
+
+    // LitnerBoxMethods
+    public static Long getLastVisitedDay() {
+        return lastVisitedDay;
+    }
+
+    public static ArrayList<ArrayList<Note>> getLitnerBoxValues() {
+        return litnerBoxValues;
+    }
+
+    public static ArrayList<Note> getDoneBoxes() {
+        return doneBoxes;
+    }
+
+    public static ArrayList<Note> getFailedBoxes() {
+        return failedBoxes;
+    }
+
+    public static Long getPastDays() {
+        return pastDays;
+    }
+
+    public static void setLitnerShouldBeUpdated(Boolean litnerShouldBeUpdated) {
+        PropertyHolder.litnerShouldBeUpdated = litnerShouldBeUpdated;
+    }
+
+    public static Boolean getLitnerShouldBeUpdated() {
+        return litnerShouldBeUpdated;
     }
 }

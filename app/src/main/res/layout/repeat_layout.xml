@@ -25,21 +25,22 @@
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
 
+
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/cb_all_days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/Bar"
-        android:textSize="20sp"
-        android:fontFamily="@font/vazir"
-        android:text="@string/daily"
-        android:gravity="start"
-        app:buttonTint="@color/Bar"
-        android:layoutDirection="rtl"
-        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="10dp"
-        />
-
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/vazir"
+        android:gravity="start"
+        android:layoutDirection="rtl"
+        android:text="@string/daily"
+        android:textColor="@color/Gray"
+        android:textSize="20sp"
+        app:buttonTint="@color/Gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
