@@ -42,7 +42,7 @@
         android:textColor="@android:color/white"
         android:fontFamily="@font/vazir"
         android:text="۲۴ شهریور ۱۳۹۹"
-        android:onClick="setDate"
+        android:onClick="showDatePicker"
         />
 </FrameLayout>
 

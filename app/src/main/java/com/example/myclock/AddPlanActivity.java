@@ -108,6 +108,7 @@ public class AddPlanActivity extends AppCompatActivity {
         public void onDateSelected(PersianCalendar persianCalendar) {
             if (GetDay.getDay(persianCalendar.getTimeInMillis()) >= GetDay.getDay(System.currentTimeMillis())) {
                 startingTime = persianCalendar;
+                persianDatePickerDialog.setInitDate(startingTime,true);
                 setTvDateText();
             }else{
                 Toast.makeText(AddPlanActivity.this,"برای روزهای قبل که نمیتونی برنامه بریزی!",Toast.LENGTH_SHORT).show();
@@ -142,8 +143,7 @@ public class AddPlanActivity extends AppCompatActivity {
     public void repeat_button_listener(View view) {
 
     }
-    public void setDate(View view){
-        persianDatePickerDialog.setInitDate(startingTime);
+    public void showDatePicker(View view){
         persianDatePickerDialog.show();
     }
 
