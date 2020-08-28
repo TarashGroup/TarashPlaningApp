@@ -26,7 +26,7 @@
     <string name="addLesson">تعریف بخش +</string>
     <string name="selectCourseColor">انتخاب رنگ درس</string>
     <string name="tick">"\u2713"</string>
-    <string name="daily">روزانه</string>
+    <string name="daily">هرروز</string>
     <string name="weekly">هفتگی</string>
 
 </resources>

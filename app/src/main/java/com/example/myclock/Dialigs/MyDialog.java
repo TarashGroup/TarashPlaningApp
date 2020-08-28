@@ -2,7 +2,6 @@ package com.example.myclock.Dialigs;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -26,4 +25,11 @@ public class MyDialog {
     public static void setButtonSelected(Button button){
         button.setBackgroundResource(R.drawable.button3);
     }
+    //todo: amir ino to remove kardan check lista seda bezan yani vaghti ke size array listesh 0 shod
+    public static void setButtonUnSelected(Button button){
+        button.setBackgroundResource(R.drawable.button4);
+        button.setText("");
+    }
+
+
 }

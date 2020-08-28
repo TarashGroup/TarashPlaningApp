@@ -7,7 +7,8 @@
     <dimen name="siDp">30dp</dimen>
     <dimen name="panjDp">5dp</dimen>
     <dimen name="dahDp">10dp</dimen>
-   <dimen name="icon_size">40dp</dimen>
+    <dimen name="icon_size">40dp</dimen>
     <dimen name="button_width"> 300dp</dimen>
     <dimen name="removeIconSize">30dp</dimen>
+    <dimen name="shonzdahSp">16sp</dimen>
 </resources>

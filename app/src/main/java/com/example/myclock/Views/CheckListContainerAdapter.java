@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.myclock.Database.Course;
 import com.example.myclock.Database.Plan;
+import com.example.myclock.Dialigs.MyDialog;
 import com.example.myclock.R;
 
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class CheckListContainerAdapter {
         View view1 = checklistsViews.get(0).getCheckList("");
         container.addView(view1 , 0);
         mainButton.setText(s);
+        MyDialog.setButtonSelected(mainButton);
     }
 
     public Boolean check(int limit){

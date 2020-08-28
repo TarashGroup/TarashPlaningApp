@@ -25,70 +25,189 @@
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
 
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/cb_all_days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Bar"
+        android:textSize="20sp"
+        android:fontFamily="@font/vazir"
+        android:text="@string/daily"
+        android:gravity="start"
+        app:buttonTint="@color/Bar"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="10dp"
+        />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
         >
 
 
-        <ImageView
-            android:layout_width="40dp"
+        <Button
+            android:id="@+id/iv_sat"
+            android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="@color/BarColor"
+            app:layout_constraintHorizontal_weight="1"
+            android:text="ش"
+            android:textColor="@color/Gray"
+            android:fontFamily="@font/vazir"
+            android:background="@drawable/week_days_normal"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/iv_sun"
             >
-        </ImageView>
+        </Button>
 
-        <ImageView
-            android:layout_width="40dp"
+        <Button
+            android:id="@+id/iv_sun"
+            android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="@color/BarColor"
+            app:layout_constraintHorizontal_weight="1"
+            android:text="ی"
+            android:fontFamily="@font/vazir"
+            android:textColor="@color/Gray"
+            android:background="@drawable/week_days_normal"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_sat"
+            app:layout_constraintLeft_toRightOf="@id/iv_mon"
             >
-        </ImageView>
+        </Button>
 
 
-        <ImageView
-            android:background="@color/BarColor"
-            android:layout_width="40dp"
-            android:layout_height="40dp">
-        </ImageView>
+        <Button
+            android:id="@+id/iv_mon"
+            android:background="@drawable/week_days_normal"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintHorizontal_weight="1"
+            android:text="د"
+            android:fontFamily="@font/vazir"
+            android:textColor="@color/Gray"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_sun"
+            app:layout_constraintLeft_toRightOf="@id/iv_tue">
+        </Button>
 
 
-        <ImageView
-            android:background="@color/BarColor"
-            android:layout_width="40dp"
-            android:layout_height="40dp">
-        </ImageView>
+        <Button
+            android:id="@+id/iv_tue"
+            android:background="@drawable/week_days_normal"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintHorizontal_weight="1"
+            android:text="س"
+            android:fontFamily="@font/vazir"
+            android:textColor="@color/Gray"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_mon"
+            app:layout_constraintLeft_toRightOf="@id/iv_wen">
+        </Button>
 
 
-        <ImageView
-            android:background="@color/BarColor"
-            android:layout_width="40dp"
-            android:layout_height="40dp">
-        </ImageView>
+        <Button
+            android:id="@+id/iv_wen"
+            android:background="@drawable/week_days_normal"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintHorizontal_weight="1"
+            android:text="چ"
+            android:fontFamily="@font/vazir"
+            android:textColor="@color/Gray"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_tue"
+            app:layout_constraintLeft_toRightOf="@id/iv_the"
+            >
+        </Button>
 
-        <ImageView
-            android:background="@color/BarColor"
-            android:layout_width="40dp"
-            android:layout_height="40dp">
-        </ImageView>
+        <Button
+            android:id="@+id/iv_the"
+            android:background="@drawable/week_days_normal"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintHorizontal_weight="1"
+            android:text="پ"
+            android:fontFamily="@font/vazir"
+            android:textColor="@color/Gray"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_wen"
+            app:layout_constraintLeft_toRightOf="@id/iv_fri"
+            >
+        </Button>
 
-        <ImageView
-            android:background="@color/BarColor"
-            android:layout_width="40dp"
-            android:layout_height="40dp">
-        </ImageView>
+        <Button
+            android:id="@+id/iv_fri"
+            android:background="@drawable/week_days_normal"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintHorizontal_weight="1"
+            android:text="ج"
+            android:fontFamily="@font/vazir"
+            android:textColor="@color/Gray"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_the"
+            app:layout_constraintLeft_toLeftOf="parent"
+            >
+        </Button>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" هفته "
+            android:textSize="20sp"
+            android:fontFamily="@font/vazir"
+            android:textColor="@color/DarkLight"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_numRepeat"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:inputType="number"
+            android:gravity="center"
+            android:textColor="@color/Bar"
+            android:fontFamily="@font/numbers"
+            android:backgroundTint="@color/Bar"
+            android:text="1"
+            android:maxLength="3"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="به مدت "
+            android:textSize="20sp"
+            android:fontFamily="@font/vazir"
+            android:textColor="@color/DarkLight"/>
+
+
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_repeat_confirm"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_marginVertical="10dp"
+        android:layout_marginVertical="20dp"
         android:background="@drawable/button2"
         android:onClick="commit"
         android:text="@string/tick"

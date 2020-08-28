@@ -22,6 +22,7 @@ import com.example.myclock.Database.Plan;
 import com.example.myclock.Database.PropertyHolder;
 import com.example.myclock.Dialigs.ChooseCourseDialog;
 import com.example.myclock.Dialigs.MyDialog;
+import com.example.myclock.Dialigs.RepeatDialog;
 import com.example.myclock.Dialigs.TimeDurationDialog;
 import com.example.myclock.Views.CheckListContainerAdapter;
 
@@ -35,6 +36,7 @@ import ir.hamsaa.persiandatepicker.util.PersianCalendar;
 public class AddPlanActivity extends AppCompatActivity {
     ChooseCourseDialog chooseCourseDialog;
     TimeDurationDialog timeDurationDialog;
+    RepeatDialog repeatDialog;
     public ArrayList<String> courses = new ArrayList<>(); // test
     CheckListContainerAdapter checkListContainerAdapter;
     int limit = 20;
@@ -101,6 +103,9 @@ public class AddPlanActivity extends AppCompatActivity {
         timeDurationDialog = new TimeDurationDialog((LinearLayout) getLayoutInflater().inflate(R.layout.duration_dialog,null),
                 this,(Button) findViewById(R.id.btn_duration),R.layout.duration_dialog);
 
+        repeatDialog = new RepeatDialog(this,(LinearLayout)getLayoutInflater().inflate(R.layout.repeat_layout,null)
+                ,(Button) findViewById(R.id.btn_repeat),R.layout.repeat_layout,getResources());
+
     }
 
     Listener datePickerListener = new Listener() {
@@ -141,7 +146,7 @@ public class AddPlanActivity extends AppCompatActivity {
     }
 
     public void repeat_button_listener(View view) {
-
+        repeatDialog.start();
     }
     public void showDatePicker(View view){
         persianDatePickerDialog.show();
