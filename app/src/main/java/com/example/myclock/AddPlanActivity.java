@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.myclock.Database.GetDay;
 import com.example.myclock.Database.Plan;
@@ -40,6 +42,7 @@ public class AddPlanActivity extends AppCompatActivity {
     Long notification;
     private PersianDatePickerDialog persianDatePickerDialog;
     private PersianCalendar startingTime = new PersianCalendar();
+    private TextView tvDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +71,20 @@ public class AddPlanActivity extends AppCompatActivity {
                 .setNegativeButton("بازگشت")
                 .setTodayButton("امروز")
                 .setTodayButtonVisible(true)
-                .setMinYear(1300)
-                .setMaxYear(PersianDatePickerDialog.THIS_YEAR)
+                .setMinYear(PersianDatePickerDialog.THIS_YEAR)
                 .setInitDate(new PersianCalendar())
                 .setActionTextColor(Color.GRAY)
                 .setShowInBottomSheet(true)
                 .setTitleType(PersianDatePickerDialog.WEEKDAY_DAY_MONTH_YEAR)
+                .setTitleColor(getResources().getColor(R.color.Bar))
+                .setTypeFace(ResourcesCompat.getFont(AddPlanActivity.this,R.font.vazir))
+                .setPickerBackgroundColor(getResources().getColor(R.color.peach))
+                .setActionTextColor(getResources().getColor(R.color.Bar))
                 .setListener(datePickerListener);
+        tvDate = findViewById(R.id.tv_date);
+        setTvDateText();
+
+
 
 
         //*********************************************test
@@ -96,7 +106,13 @@ public class AddPlanActivity extends AppCompatActivity {
     Listener datePickerListener = new Listener() {
         @Override
         public void onDateSelected(PersianCalendar persianCalendar) {
-            startingTime = persianCalendar;
+            if (GetDay.getDay(persianCalendar.getTimeInMillis()) >= GetDay.getDay(System.currentTimeMillis())) {
+                startingTime = persianCalendar;
+                setTvDateText();
+            }else{
+                Toast.makeText(AddPlanActivity.this,"برای روزهای قبل که نمیتونی برنامه بریزی!",Toast.LENGTH_SHORT).show();
+                persianDatePickerDialog.show();
+            }
         }
 
         @Override
@@ -104,6 +120,9 @@ public class AddPlanActivity extends AppCompatActivity {
 
         }
     };
+    private void setTvDateText(){
+        tvDate.setText(String.format("%d %s %d", startingTime.getPersianDay(), startingTime.getPersianMonthName(), startingTime.getPersianYear()));
+    }
 
     //Todo: courses must be fixed.
     public void chooseCourse(View view){
@@ -121,6 +140,10 @@ public class AddPlanActivity extends AppCompatActivity {
     }
 
     public void repeat_button_listener(View view) {
+
+    }
+    public void setDate(View view){
+        persianDatePickerDialog.setInitDate(startingTime);
         persianDatePickerDialog.show();
     }
 
@@ -135,7 +158,7 @@ public class AddPlanActivity extends AppCompatActivity {
     }
 
     private Long getStartingTime () {
-        return GetDay.getDay(startingTime.getTimeInMillis() / 1000);
+        return GetDay.getDay(startingTime.getTimeInMillis());
     }
 
     @Override

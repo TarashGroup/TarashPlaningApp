@@ -33,6 +33,17 @@
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/vazir"
+        android:text="۲۴ شهریور ۱۳۹۹"
+        android:onClick="setDate"
+        />
 </FrameLayout>
 
 
