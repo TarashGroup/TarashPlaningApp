@@ -23,28 +23,34 @@ public class LitnerBox {
 
 
     private final static List<Integer> readingDays = Arrays.asList(1,3,7,15,31);
-    private ArrayList<ArrayList<Note>> boxes;
-    private ArrayList<Note> doneBoxes;
-    private ArrayList<Note> failedBoxes;
+    private static ArrayList<ArrayList<Note>> boxes;
+    private static ArrayList<Note> doneBoxes;
+    private static ArrayList<Note> failedBoxes;
+    private static boolean hasBeenLoaded = false;
 
-    public LitnerBox () {
+
+    public static void loadAndSetBoxes () {
         boxes = PropertyHolder.getLitnerBoxValues();
         doneBoxes = PropertyHolder.getDoneBoxes();
         failedBoxes = PropertyHolder.getFailedBoxes();
-        
+        hasBeenLoaded = true;
+
         if (PropertyHolder.getLitnerShouldBeUpdated()) {
             PropertyHolder.setLitnerShouldBeUpdated(false);
             tick(PropertyHolder.getPastDays().intValue());
         }
     }
 
-    private void tick (int times) {
+    private static void tick (int times) {
+        if (!hasBeenLoaded)
+            loadAndSetBoxes();
+
         for (int i = 0; i < times; i++) {
             shiftBoxes();
         }
     }
     
-    private void shiftBoxes () {
+    private static void shiftBoxes () {
         for (int i = 31; i >= 0; i--) {
             if (readingDays.contains(i)) {
                 failedBoxes.addAll(boxes.get(i));
@@ -55,7 +61,11 @@ public class LitnerBox {
         }
     }
 
-    public Integer getNoteStatus (Note note) {
+    public static Integer getNoteStatus (Note note) {
+        if(!hasBeenLoaded)
+            loadAndSetBoxes();
+
+
         if (doneBoxes.contains(note))
             return DONE;
 
@@ -74,7 +84,10 @@ public class LitnerBox {
         return NOT_IN_BOXES;
     }
 
-    public void moveNote (Note note, int todo) {
+    public static void moveNote (Note note, int todo) {
+        if(!hasBeenLoaded)
+            loadAndSetBoxes();
+
         switch (todo) {
             case MOVE_FROM_CURRENT_BOX_TO_NEXT:
                 for (int i = 0; i < 31; i++) {
@@ -122,15 +135,24 @@ public class LitnerBox {
         }
     }
 
-    public ArrayList<Note> getFailedBoxes() {
+    public static ArrayList<Note> getFailedBoxes() {
+        if(!hasBeenLoaded)
+            loadAndSetBoxes();
+
         return failedBoxes;
     }
 
-    public ArrayList<Note> getDoneBoxes() {
+    public static ArrayList<Note> getDoneBoxes() {
+        if(!hasBeenLoaded)
+            loadAndSetBoxes();
+
         return doneBoxes;
     }
 
-    public ArrayList<Note> getBoxWithNumber (int index) {
+    public static ArrayList<Note> getBoxWithNumber (int index) {
+        if(!hasBeenLoaded)
+            loadAndSetBoxes();
+
         return boxes.get(index);
     }
 }
