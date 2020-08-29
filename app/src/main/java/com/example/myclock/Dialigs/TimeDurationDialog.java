@@ -51,11 +51,13 @@ public class TimeDurationDialog extends MyDialog {
     View.OnClickListener setDuration = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            minute = tpDuration.getMinute();
-            hour = tpDuration.getHour();
-            if (minute == 0 && hour == 0)
+            int m = tpDuration.getMinute();
+            int h = tpDuration.getHour();
+            if (m == 0 && h == 0)
                 Toast.makeText(context, "تو ۰ دقیقه که نمیتونی کاری بکنی:)", Toast.LENGTH_SHORT).show();
             else {
+                minute = m;
+                hour = h;
                 if (minute > 0 && hour > 0)
                     btnDuration.setText(hour + " ساعت " + "و" + " " + minute + " دقیقه ");
                 else if (minute > 0)
