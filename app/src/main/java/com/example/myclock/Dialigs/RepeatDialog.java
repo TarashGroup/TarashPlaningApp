@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,7 +22,7 @@ public class RepeatDialog extends MyDialog{
     private Button btnConfirm;
     private Resources resources;
     private EditText etNumRepeat;
-    private int numRepeat;
+    private int numRepeat = 1;
     private boolean allDays = false;
     private CheckBox cbAllDays;
     private boolean[] days = new boolean[7];
@@ -42,6 +43,7 @@ public class RepeatDialog extends MyDialog{
         btnConfirm.setOnClickListener(btnConfirmOnClick);
     }
     public void start(){
+        reloadDialog();
         showDialog();
     }
 
@@ -56,8 +58,6 @@ public class RepeatDialog extends MyDialog{
             }
         }
     }, btnConfirmOnClick = new View.OnClickListener() {
-
-        @Override
         public void onClick(View view) {
             int c=0;
             for (int i = 0; i < 7; i++) {
@@ -66,11 +66,11 @@ public class RepeatDialog extends MyDialog{
             if(c>0 && !etNumRepeat.getText().toString().equals("") ) {
                 int t = Integer.parseInt(etNumRepeat.getText().toString());
                 if (t>0) {
+                    numRepeat = t;
+                    System.arraycopy(days, 0, savedDays, 0, 7);
                     btnSetRepeat.setText(String.format(" %d روز در هفته برای %d هفته", c, numRepeat));
                     setButtonSelected(btnSetRepeat);
                     isCompleted = true;
-                    numRepeat = t;
-                    savedDays = days;
                     dialog.dismiss();
                 }else
                     Toast.makeText(context, "حداقل یه هفته که میخوای تکرار بشه!", Toast.LENGTH_SHORT).show();
@@ -160,6 +160,15 @@ public class RepeatDialog extends MyDialog{
         cbAllDays = repeatLayout.findViewById(R.id.cb_all_days);
         etNumRepeat = repeatLayout.findViewById(R.id.et_numRepeat);
         btnConfirm = repeatLayout.findViewById(R.id.btn_repeat_confirm);
+    }
+    private void reloadDialog(){
+        for (int i = 0; i < 7; i++) {
+            if (savedDays[i])
+                selectButton(i);
+            else
+                unSelectButton(i);
+        }
+        etNumRepeat.setText(String.valueOf(numRepeat));
     }
 
     public boolean[] getDays() {
