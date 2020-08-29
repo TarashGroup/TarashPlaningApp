@@ -36,14 +36,29 @@ public class CheckListContainerAdapter {
                         break;
                     }
                 }
-                if(container.getChildCount() == 0)mainButton.setText("");
+                if(container.getChildCount() == 0){
+                    mainButton.setText("");
+                    mainButton.setBackgroundResource(R.drawable.button4);
+                }
             }
         };
 
 
     }
 
-    public void addToContainer (int s){
+    public void addToContainer (int s , int limitForView){
+        if (checklistsViews.size() >= limitForView){
+            if (R.string.checkList == s)
+                Toast.makeText(context, Integer.toString(limitForView) + " " +
+                        context.getResources().getString(R.string.limitErrorCheckList)  , Toast.LENGTH_SHORT).show();
+            else if (R.string.addLesson == s)
+                Toast.makeText(context, Integer.toString(limitForView) + " " +
+                        context.getResources().getString(R.string.limitErrorLessons)  , Toast.LENGTH_SHORT).show();
+            else if (R.string.addLinkedNote == s)
+                Toast.makeText(context, Integer.toString(limitForView) + " " +
+                        context.getResources().getString(R.string.limitErrorLinkedNote)  , Toast.LENGTH_SHORT).show();
+            return;
+        }
         checklistsViews.add(0 , new CheckListView(context , checkListListener));
         View view1 = checklistsViews.get(0).getCheckList("");
         container.addView(view1 , 0);

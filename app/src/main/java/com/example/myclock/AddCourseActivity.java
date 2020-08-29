@@ -19,6 +19,7 @@ public class AddCourseActivity extends AppCompatActivity {
     AmbilWarnaDialog dialog;
     CheckListContainerAdapter lessonsContainerAdapter , notesContainerAdapter;
     int limitNoteName = 20 , limitLessonsName = 20;
+    int limitForNoteView = 15 , limitForLessonView = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +72,11 @@ public class AddCourseActivity extends AppCompatActivity {
         imageView.setColorFilter(color);
     }
     public void addNote(View view){
-        notesContainerAdapter.addToContainer (R.string.addLinkedNote);
+        notesContainerAdapter.addToContainer (R.string.addLinkedNote , limitForNoteView);
     }
     public void addLesson(View view){
 
-        lessonsContainerAdapter.addToContainer (R.string.addLesson );
+        lessonsContainerAdapter.addToContainer (R.string.addLesson , limitForLessonView);
     }
     public void commit(View view){
         if(!notesContainerAdapter.check(limitNoteName))

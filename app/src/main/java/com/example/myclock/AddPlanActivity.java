@@ -1,6 +1,5 @@
 package com.example.myclock;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -9,26 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
-
 import com.example.myclock.Database.GetDay;
 import com.example.myclock.Database.Plan;
 import com.example.myclock.Database.PropertyHolder;
 import com.example.myclock.Dialigs.ChooseCourseDialog;
-import com.example.myclock.Dialigs.MyDialog;
 import com.example.myclock.Dialigs.RepeatDialog;
 import com.example.myclock.Dialigs.TimeDurationDialog;
 import com.example.myclock.Views.CheckListContainerAdapter;
-
 import java.util.ArrayList;
-import java.util.Objects;
-
 import ir.hamsaa.persiandatepicker.Listener;
 import ir.hamsaa.persiandatepicker.PersianDatePickerDialog;
 import ir.hamsaa.persiandatepicker.util.PersianCalendar;
@@ -39,7 +31,7 @@ public class AddPlanActivity extends AppCompatActivity {
     RepeatDialog repeatDialog;
     public ArrayList<String> courses = new ArrayList<>(); // test
     CheckListContainerAdapter checkListContainerAdapter;
-    int limit = 20;
+    int limitForText = 20 , limitForCheckListView = 10;
     String course;
     Long notification;
     private PersianDatePickerDialog persianDatePickerDialog;
@@ -125,7 +117,7 @@ public class AddPlanActivity extends AppCompatActivity {
         }
     };
     private void setTvDateText(){
-        tvDate.setText(String.format("%d %s %d", startingTime.getPersianDay(), startingTime.getPersianMonthName(), startingTime.getPersianYear()));
+        tvDate.setText(String.format("%d %s %d", startingTime.getPersianDay(), startingTime.getPersianMonthName(), startingTime.getPersianYear()) );
     }
 
     //Todo: courses must be fixed.
@@ -152,11 +144,11 @@ public class AddPlanActivity extends AppCompatActivity {
     }
 
     public void addCheckList(View view) {
-        checkListContainerAdapter.addToContainer (R.string.checkList);
+        checkListContainerAdapter.addToContainer (R.string.checkList , limitForCheckListView);
     }
 
     public void commit(View view){
-        if (!checkListContainerAdapter.check(limit))
+        if (!checkListContainerAdapter.check(limitForText))
             return;
     }
 

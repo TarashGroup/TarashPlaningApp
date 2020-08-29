@@ -28,5 +28,7 @@
     <string name="tick">"\u2713"</string>
     <string name="daily">هرروز هفته</string>
     <string name="weekly">هفتگی</string>
-
+    <string name="limitErrorCheckList">حداکثر تعداد مجاز چک لیست است</string>
+    <string name="limitErrorLinkedNote">حداکثر تعداد مجاز نوشته است</string>
+    <string name="limitErrorLessons">حداکثر تعداد مجاز زیربخش است</string>
 </resources>
