@@ -67,7 +67,7 @@
                     android:fontFamily="@font/vazir"
                     android:gravity="center"
                     android:hint=""
-                    android:onClick="chooseCourse"
+                    android:onClick="showDatePicker"
                     android:textSize="20sp" />
 
                 <ImageView
