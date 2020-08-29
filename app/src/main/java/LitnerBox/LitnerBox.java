@@ -144,12 +144,13 @@ public class LitnerBox {
         return doneBoxes;
     }
 
-    public static ArrayList<Note> getBoxWithNumber (int index) {
+    public static ArrayList<Note> getSubBoxWithNumber (int index) {
         if(!hasBeenLoaded)
             loadAndSetBoxes();
 
         return boxes.get(index);
     }
+
 
     private static void removeFromBox (int index, Note note) {
         PropertyHolder.removeFromBox(index, note);
