@@ -86,9 +86,6 @@ public class AddPlanActivity extends AppCompatActivity {
         tvDate = findViewById(R.id.tv_date);
         setTvDateText();
 
-
-
-
         //*********************************************test
         courses.add("ریاضی");
         courses.add("شیمی");
@@ -96,6 +93,7 @@ public class AddPlanActivity extends AppCompatActivity {
         courses.add("زبان");
         courses.add("فیزیک");
         //*********************************************/test
+
         chooseCourseDialog = new ChooseCourseDialog(courses,(Button) findViewById(R.id.btn_choose_course)
                 ,getResources().getColor(R.color.Bar),(int) getResources().getDimension(R.dimen.button_height)
                 ,this,(LinearLayout) getLayoutInflater().inflate(R.layout.choose_course_dialog,null),R.layout.choose_course_dialog);

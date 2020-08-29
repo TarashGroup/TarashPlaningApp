@@ -1,6 +1,5 @@
 package com.example.myclock.Dialigs;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
@@ -12,9 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import androidx.core.widget.CompoundButtonCompat;
-
 import com.example.myclock.R;
 
 public class RepeatDialog extends MyDialog{
@@ -28,6 +25,7 @@ public class RepeatDialog extends MyDialog{
     private boolean allDays = false;
     private CheckBox cbAllDays;
     private boolean[] days = new boolean[7];
+    private boolean[] savedDays = new boolean[7];
     private Button[] daysButton = new Button[7];
     private boolean isCompleted = false;
 
@@ -66,11 +64,13 @@ public class RepeatDialog extends MyDialog{
                 if (days[i])c++;
             }
             if(c>0 && !etNumRepeat.getText().toString().equals("") ) {
-                numRepeat = Integer.parseInt(etNumRepeat.getText().toString());
-                if (numRepeat>0) {
+                int t = Integer.parseInt(etNumRepeat.getText().toString());
+                if (t>0) {
                     btnSetRepeat.setText(String.format(" %d روز در هفته برای %d هفته", c, numRepeat));
                     setButtonSelected(btnSetRepeat);
                     isCompleted = true;
+                    numRepeat = t;
+                    savedDays = days;
                     dialog.dismiss();
                 }else
                     Toast.makeText(context, "حداقل یه هفته که میخوای تکرار بشه!", Toast.LENGTH_SHORT).show();
@@ -80,8 +80,6 @@ public class RepeatDialog extends MyDialog{
                 Toast.makeText(context, "برا چند هفته تکرار بشه؟", Toast.LENGTH_SHORT).show();
         }
     };
-
-
 
     CheckBox.OnCheckedChangeListener checkedChangeListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
@@ -100,7 +98,6 @@ public class RepeatDialog extends MyDialog{
             }
         }
     };
-
 
     private void checkAllDays(){
         allDays = true;
@@ -121,12 +118,14 @@ public class RepeatDialog extends MyDialog{
            selectButton(i);
         }
     }
+
     private void selectButton(int i){
         daysButton[i].setBackgroundResource(R.drawable.week_days_selected);
         daysButton[i].setTextColor(Color.WHITE);
         days[i] = true;
         checkAllDays();
     }
+
     private void unSelectButton(int i){
         daysButton[i].setBackgroundResource(R.drawable.week_days_normal);
         daysButton[i].setTextColor(resources.getColor(R.color.Gray));
@@ -164,7 +163,7 @@ public class RepeatDialog extends MyDialog{
     }
 
     public boolean[] getDays() {
-        return days;
+        return savedDays;
     }
 
     public int getNumRepeat() {
@@ -174,6 +173,7 @@ public class RepeatDialog extends MyDialog{
     public boolean isCompleted() {
         return isCompleted;
     }
+
     public void removeRepeat(){
         isCompleted = false;
     }
