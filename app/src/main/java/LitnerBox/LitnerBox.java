@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LitnerBox {
+
     public static final int DONE = 0;
     public static final int UNDONE = 1;
     public static final int WAITING_FOE_NEXT_DAY = 2;
@@ -20,7 +21,6 @@ public class LitnerBox {
     public static final int MOVE_FROM_CURRENT_BOX_TO_NEXT = 7;
     public static final int MOVE_FROM_CURRENT_BOX_TO_FIRST = 8;
     public static final int MOVE_FROM_CURRENT_BOX_TO_FAILED_BOXES = 9;
-
 
     private final static List<Integer> readingDays = Arrays.asList(1,3,7,15,31);
     private static ArrayList<ArrayList<Note>> boxes;
