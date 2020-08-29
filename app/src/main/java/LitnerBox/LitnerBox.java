@@ -46,20 +46,13 @@ public class LitnerBox {
             loadAndSetBoxes();
 
         for (int i = 0; i < times; i++) {
-            shiftBoxes();
+            PropertyHolder.shiftBoxes();
         }
+
+        loadAndSetBoxes();
     }
     
-    private static void shiftBoxes () {
-        for (int i = 31; i >= 0; i--) {
-            if (readingDays.contains(i)) {
-                failedBoxes.addAll(boxes.get(i));
-                boxes.get(i).clear();
-            } else {
-                boxes.set(i + 1, boxes.get(i));
-            }
-        }
-    }
+
 
     public static Integer getNoteStatus (Note note) {
         if(!hasBeenLoaded)
@@ -92,47 +85,49 @@ public class LitnerBox {
             case MOVE_FROM_CURRENT_BOX_TO_NEXT:
                 for (int i = 0; i < 31; i++) {
                     if (boxes.get(i).contains(note)) {
-                        boxes.get(i).remove(note);
-                        boxes.get(i + 1).add(note);
+                        removeFromBox(i, note);
+                        addToBox(i + 1, note);
                         break;
                     }
                 }
                 if (boxes.get(31).contains(note)) {
-                    boxes.get(31).remove(note);
-                    doneBoxes.add(note);
+                    removeFromBox(31, note);
+                    addToDoneBox(note);
                 }
                 break;
 
             case MOVE_FROM_CURRENT_BOX_TO_FAILED_BOXES:
                 for (int i = 0; i <= 31; i++) {
                     if (boxes.get(i).contains(note)) {
-                        boxes.get(i).remove(note);
-                        failedBoxes.add(note);
+                        removeFromBox(i, note);
+                        addToFailedBox(note);
                         break;
                     }
                 }
                 break;
 
             case MOVE_FROM_DONE_TO_FIRST:
-                doneBoxes.remove(note);
-                boxes.get(0).add(note);
+                removeFromDoneBox(note);
+                addToBox(0, note);
                 break;
 
             case MOVE_FROM_FAILED_BOXES_TO_FIRST:
-                failedBoxes.remove(note);
-                boxes.get(0).add(note);
+                removeFromFailedBox(note);
+                addToBox(0, note);
                 break;
 
             case MOVE_FROM_CURRENT_BOX_TO_FIRST:
                 for (int i = 0; i <= 31; i++) {
                     if (boxes.get(i).contains(note)) {
-                        boxes.get(i).remove(note);
-                        boxes.get(0).add(note);
+                        removeFromBox(i, note);
+                        addToBox(0, note);
                         break;
                     }
                 }
                 break;
         }
+
+        loadAndSetBoxes();
     }
 
     public static ArrayList<Note> getFailedBoxes() {
@@ -154,5 +149,29 @@ public class LitnerBox {
             loadAndSetBoxes();
 
         return boxes.get(index);
+    }
+
+    private static void removeFromBox (int index, Note note) {
+        PropertyHolder.removeFromBox(index, note);
+    }
+
+    private static void addToBox (int index, Note note) {
+        PropertyHolder.addToBox(index, note);
+    }
+
+    private static void removeFromDoneBox (Note note) {
+        PropertyHolder.removeFromDoneBox(note);
+    }
+
+    private static void addToDoneBox (Note note) {
+        PropertyHolder.addToDoneBox(note);
+    }
+
+    private static void removeFromFailedBox (Note note) {
+        PropertyHolder.removeFromFailedBox(note);
+    }
+
+    private static void addToFailedBox (Note note) {
+        PropertyHolder.addToFailedBox(note);
     }
 }
