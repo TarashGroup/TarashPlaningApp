@@ -146,10 +146,10 @@ public class AddPlanActivity extends AppCompatActivity {
     public void repeat_button_listener(View view) {
         repeatDialog.start();
     }
+
     public void showDatePicker(View view){
         persianDatePickerDialog.show();
     }
-
 
     public void addCheckList(View view) {
         checkListContainerAdapter.addToContainer (R.string.checkList);
