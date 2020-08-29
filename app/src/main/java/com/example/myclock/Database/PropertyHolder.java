@@ -4,15 +4,19 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import LitnerBox.LitnerBox;
 
 public class PropertyHolder {
-    private static ArrayList<ArrayList<Note>> litnerBoxValues;
+    private static ArrayList<ArrayList<Note>> litnerBox;
     private static ArrayList<Note> doneBoxes;
     private static ArrayList<Note> failedBoxes;
     private static Boolean litnerShouldBeUpdated = Boolean.TRUE; // pashmam :/
+    private final static List<Integer> readingDays = Arrays.asList(1,3,7,15,31);
+
 
     private static Long lastVisitedDay = 0L;
     private static Long pastDays = 0L;
@@ -116,7 +120,7 @@ public class PropertyHolder {
     }
 
     public static ArrayList<ArrayList<Note>> getLitnerBoxValues() {
-        return litnerBoxValues;
+        return litnerBox;
     }
 
     public static ArrayList<Note> getDoneBoxes() {
@@ -137,5 +141,44 @@ public class PropertyHolder {
 
     public static Boolean getLitnerShouldBeUpdated() {
         return litnerShouldBeUpdated;
+    }
+
+    public static void removeFromBox (int index, Note note) {
+        litnerBox.get(index).remove(note);
+    }
+
+    public static void addToBox (int index, Note note) {
+        litnerBox.get(index).add(note);
+    }
+
+    public static void clearBox (int index) {
+        litnerBox.get(index).clear();
+    }
+
+    public static void removeFromDoneBox (Note note) {
+        doneBoxes.remove(note);
+    }
+
+    public static void addToDoneBox (Note note) {
+        doneBoxes.add(note);
+    }
+
+    public static void removeFromFailedBox (Note note) {
+        failedBoxes.remove(note);
+    }
+
+    public static void addToFailedBox (Note note) {
+        failedBoxes.add(note);
+    }
+
+    public static void shiftBoxes () {
+        for (int i = 31; i >= 0; i--) {
+            if (readingDays.contains(i)) {
+                failedBoxes.addAll(litnerBox.get(i));
+                litnerBox.get(i).clear();
+            } else {
+                litnerBox.set(i + 1, litnerBox.get(i));
+            }
+        }
     }
 }
