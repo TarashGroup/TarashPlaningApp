@@ -9,22 +9,34 @@ import java.util.HashMap;
 import java.util.List;
 
 import LitnerBox.LitnerBox;
+import TestSheet.TestSheet;
 
 public class PropertyHolder {
+
+    // LitnerBox Fields
     private static ArrayList<ArrayList<Note>> litnerBox;
     private static ArrayList<Note> doneBoxes;
     private static ArrayList<Note> failedBoxes;
     private static Boolean litnerShouldBeUpdated = Boolean.TRUE; // pashmam :/
     private final static List<Integer> readingDays = Arrays.asList(1,3,7,15,31);
 
+    // Plans Fields
+    private static HashMap<Long, DailyInformation> days = new HashMap<>();
 
+    // Repeating Plans Fields
+    private static HashMap<Long, ArrayList<Plan>> repeatingDays = new HashMap<>();
+
+    // All values Fields (Not letting user make 2 same courses) TODO: Should be completed and used
+    private static ArrayList<Course> allCourse = new ArrayList<>();
+
+    // TestSheet Fields
+    private static ArrayList<TestSheet> testSheets = new ArrayList<>();
+
+    // Time Fields
     private static Long lastVisitedDay = 0L;
     private static Long pastDays = 0L;
 
-    private static HashMap<Long, DailyInformation> days = new HashMap<>();
-    private static HashMap<Long, ArrayList<Plan>> repeatingDays = new HashMap<>();
-    private static ArrayList<Course> allCourse = new ArrayList<>();
-
+    // Plans methods
     public static DailyInformation getPlansByDay (Long time) {
         return days.get(time);
     }
@@ -35,7 +47,10 @@ public class PropertyHolder {
         }
         days.get(time).addToDailyPlan(p);
     }
+    ///////////////////////////////////////////////////////////////////////////////////
 
+
+    // Repeating Plans methods
     public static void set_Repeating_Plans () {
         Long time = GetDay.getDay();
         ArrayList<Plan> plansForToday = getRepeatingPlans(time);
@@ -66,17 +81,14 @@ public class PropertyHolder {
     }
 
     public static ArrayList<Plan> getPlansWithNotification (Long time) {
-        ArrayList<Plan> temp = new ArrayList<>();
-        if (repeatingDays.get(time) == null)
-            return null;
-
-        for (Plan p : repeatingDays.get(time)) {
-            if (p.hasNotification())
-                temp.add(p);
-        }
-        return temp;
+        // TODO: Should be changed and be written for all plans as well
+        return null;
     }
+    ////////////////////////////////////////////////////////////////////////////////////
 
+
+
+    // All values methods
     public static void addToCourses (Course course) {
         allCourse.add(course);
     }
@@ -97,8 +109,10 @@ public class PropertyHolder {
         return null;
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////LoadFromSql
+    /////////////////////////////////////////////////////////////////////////////////
 
+
+    // Load From SqLite
     public static void loadDataBase () {
         lastVisitedDay = 0L; // Load
         pastDays = GetDay.getDay() - lastVisitedDay;
@@ -111,7 +125,7 @@ public class PropertyHolder {
 
         // TODO : Load local variables
     }
-
+    /////////////////////////////////////////////////////////////////////////////////
 
 
     // LitnerBoxMethods
@@ -151,10 +165,6 @@ public class PropertyHolder {
         litnerBox.get(index).add(note);
     }
 
-    public static void clearBox (int index) {
-        litnerBox.get(index).clear();
-    }
-
     public static void removeFromDoneBox (Note note) {
         doneBoxes.remove(note);
     }
@@ -180,5 +190,11 @@ public class PropertyHolder {
                 litnerBox.set(i + 1, litnerBox.get(i));
             }
         }
+    }
+    ////////////////////////////////////////////////////////////////////////////
+
+    // TestSheet methods
+    public static ArrayList<TestSheet> getTestSheets() {
+        return testSheets;
     }
 }
