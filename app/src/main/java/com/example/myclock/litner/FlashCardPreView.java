@@ -57,7 +57,7 @@ public class FlashCardPreView {
 
         LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT,  1 );
-        iconParams.setMargins(dp2px(15), dp2px(3), dp2px(15), dp2px(3));
+        iconParams.setMargins(dp2px(11), dp2px(3), dp2px(11), dp2px(3));
 
 
         int total = note.getTotalSeen();
