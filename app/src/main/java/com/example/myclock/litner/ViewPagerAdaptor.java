@@ -2,6 +2,7 @@ package com.example.myclock.litner;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,22 +15,24 @@ import java.util.List;
 public class ViewPagerAdaptor extends RecyclerView.Adapter<ViewPagerAdaptor.ViewHolder> {
 
     ArrayList<String> flashCard_GroupNames;
-
-    public ViewPagerAdaptor(ArrayList<String> flashCard_GroupNames){
+    ArrayList<ArrayList<FlashCardPreView>> allCards;
+    public ViewPagerAdaptor(ArrayList<String> flashCard_GroupNames ,  ArrayList<ArrayList<FlashCardPreView>> allCards){
         this.flashCard_GroupNames = flashCard_GroupNames;
+        this.allCards = allCards;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate
-                (R.layout.fragment_all, parent, false);
+                (R.layout.litner_view_pager, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(flashCard_GroupNames.get(position));
+        holder.bind(allCards.get(position));
+
     }
 
     @Override
@@ -38,13 +41,16 @@ public class ViewPagerAdaptor extends RecyclerView.Adapter<ViewPagerAdaptor.View
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView textView;
+        GridLayout gridLayout;
         ViewHolder(@NonNull View itemView){
             super(itemView);
-            textView = itemView.findViewById(R.id.ali);
+            gridLayout = itemView.findViewById(R.id.gridView);
+
         }
-        void bind(String name){
-            textView.setText(name);
+        void bind(ArrayList<FlashCardPreView> cards ){
+            for (FlashCardPreView flashcard : cards) {
+                gridLayout.addView(flashcard.getView());
+            }
         }
     }
 }

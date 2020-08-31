@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void test(View view){
-        startActivity(new Intent(MainActivity.this,Test.class));
+        startActivity(new Intent(MainActivity.this,LitnerBox.class));
         finish();
     }
 
