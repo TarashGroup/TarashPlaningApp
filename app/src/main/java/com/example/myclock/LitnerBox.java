@@ -38,7 +38,7 @@ public class LitnerBox extends AppCompatActivity {
         ArrayList<FlashCardPreView> favorite = new ArrayList<>();
         ArrayList<FlashCardPreView> unseen = new ArrayList<>();
 
-        Note note = new Note("مورد علاقه" , "javab ke mohem ni" , null);
+        Note note = new Note("123456789/123456789/123456789/123456 ...123456789/123456789/123456789/123456 ...123456789/123456789/123456789/123456 ..." , "javab ke mohem ni" , null);
         note.setCorrect(13);
         note.setTotalSeen(20);
         FlashCardPreView flashCardPreView = new FlashCardPreView(this , note);
@@ -46,7 +46,7 @@ public class LitnerBox extends AppCompatActivity {
         all.add(flashCardPreView);
 
 
-        Note note2 = new Note("مورد علاقه" , "javab ke mohem ni" , null);
+        Note note2 = new Note("نویسنده بی نوایان که بود؟" , "javab ke mohem ni" , null);
         note.setCorrect(13);
         note.setTotalSeen(20);
         flashCardPreView = new FlashCardPreView(this , note2);
@@ -64,6 +64,12 @@ public class LitnerBox extends AppCompatActivity {
         note.setCorrect(13);
         note.setTotalSeen(20);
         flashCardPreView = new FlashCardPreView(this , note4);
+        unseen.add(flashCardPreView);
+        all.add(flashCardPreView);
+        Note note5 = new Note("خوانده نشده" , "javab ke mohem ni" , null);
+        note.setCorrect(13);
+        note.setTotalSeen(20);
+        flashCardPreView = new FlashCardPreView(this , note5);
         unseen.add(flashCardPreView);
         all.add(flashCardPreView);
 

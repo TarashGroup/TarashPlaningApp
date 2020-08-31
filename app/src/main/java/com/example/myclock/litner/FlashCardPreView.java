@@ -1,6 +1,7 @@
 package com.example.myclock.litner;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.cardview.widget.CardView;
@@ -37,11 +39,10 @@ public class FlashCardPreView {
         DrawableCompat.setTint(wrappedDrawable, Color.RED);
 
         flashCard.setBackgroundResource(R.drawable.flash_card);
-        GridLayout.LayoutParams layoutParams= new GridLayout.LayoutParams(GridLayout.spec(
-                GridLayout.UNDEFINED,GridLayout.FILL),
-                GridLayout.spec(GridLayout.UNDEFINED,GridLayout.FILL, 1f));
-        layoutParams.height = dp2px(125);
-        layoutParams.width = 0;
+
+        GridLayout.LayoutParams layoutParams= new GridLayout.LayoutParams();
+        layoutParams.height = getScreenWidth()*35/100;
+        layoutParams.width = getScreenWidth()/2;
         layoutParams.setMargins(dp2px(10),dp2px(10),dp2px(10),dp2px(10));
         flashCard.setLayoutParams(layoutParams);
         //******************************************************************* In Card
@@ -52,12 +53,21 @@ public class FlashCardPreView {
         LinearLayout details = new LinearLayout(context);
         details.setOrientation(LinearLayout.HORIZONTAL);
         details.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams detailsParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT,  dp2px(40) );
+        LinearLayout.LayoutParams detailsParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT,  getScreenWidth()/10 );
         details.setLayoutParams(detailsParams);
 
-        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT,  1 );
-        iconParams.setMargins(dp2px(11), dp2px(3), dp2px(11), dp2px(3));
+
+        LinearLayout seenDetails = new LinearLayout(context);
+        seenDetails.setOrientation(LinearLayout.HORIZONTAL);
+        seenDetails.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams seenDetailsParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT ,1);
+        seenDetails.setLayoutParams(seenDetailsParams);
+
+        LinearLayout.LayoutParams inSeenDetails = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT );
+        inSeenDetails.gravity = Gravity.CENTER;
+        inSeenDetails.setMargins(dp2px(5), dp2px(3), dp2px(5), dp2px(5));
 
 
         int total = note.getTotalSeen();
@@ -65,21 +75,26 @@ public class FlashCardPreView {
 
         TextView allCount = new TextView(context);
         allCount.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        allCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         allCount.setText(Integer.toString(total));
-        allCount.setLayoutParams(iconParams);
-        details.addView(allCount);
+        allCount.setLayoutParams(inSeenDetails);
+        seenDetails.addView(allCount);
 
         TextView correctCount = new TextView(context);
         correctCount.setTextColor(context.getResources().getColor(R.color.GreenLight));
+        correctCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         correctCount.setText(Integer.toString(correct));
-        correctCount.setLayoutParams(iconParams);
-        details.addView(correctCount);
+        correctCount.setLayoutParams(inSeenDetails);
+        seenDetails.addView(correctCount);
 
         TextView wrongCount = new TextView(context);
         wrongCount.setTextColor(context.getResources().getColor(R.color.RedLight));
+        wrongCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         wrongCount.setText(Integer.toString(total-correct));
-        wrongCount.setLayoutParams(iconParams);
-        details.addView(wrongCount);
+        wrongCount.setLayoutParams(inSeenDetails);
+        seenDetails.addView(wrongCount);
+
+        details.addView(seenDetails);
 
         ImageView like = new ImageView(context);
         if (note.isFavorite())
@@ -101,21 +116,26 @@ public class FlashCardPreView {
                 }
             }
         });
-        like.setLayoutParams(iconParams);
+        LinearLayout.LayoutParams likeParams = new LinearLayout.LayoutParams( getScreenWidth()/15,
+               getScreenWidth()/15 );
+        likeParams.setMargins(0, dp2px(3), dp2px(20), dp2px(5));
+        like.setLayoutParams(likeParams);
         details.addView(like);
         //************************************************** Title
+        ScrollView scrollView = new ScrollView(context);
+        LinearLayout.LayoutParams scrollViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT ,
+                ViewGroup.LayoutParams.WRAP_CONTENT , 1);
+        scrollViewParams.setMargins(dp2px(17), dp2px(10), dp2px(20), dp2px(5));
+
         TextView title = new TextView(context);
         title.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
         title.setText(note.getTitle());
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT ,
-                ViewGroup.LayoutParams.WRAP_CONTENT , 1);
-        titleParams.gravity = Gravity.CENTER;
-        titleParams.setMargins(dp2px(10), dp2px(10), dp2px(20), 0);
+        scrollView.addView(title);
 
 
 
-        inCard.addView(title , titleParams);
+        inCard.addView(scrollView , scrollViewParams);
         inCard.addView(details);
         flashCard.addView(inCard);
 
@@ -123,5 +143,9 @@ public class FlashCardPreView {
     }
     private int dp2px(float dp){
         return (int) (dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+    public int getScreenWidth() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels - dp2px(60);
     }
 }
