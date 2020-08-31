@@ -1,5 +1,4 @@
 package com.example.myclock.Database;
-
 import android.graphics.Color;
 import java.util.ArrayList;
 

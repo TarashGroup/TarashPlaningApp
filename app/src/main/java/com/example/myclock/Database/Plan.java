@@ -15,8 +15,6 @@ public class Plan {
     private Test test;
     private HashMap<String, Boolean> checklists = new HashMap<>();
     private boolean notification;
-
-
     ArrayList<String> checkList;
 
     public Plan(Course course, int duration, ArrayList<Long> repeatingDays, Long notification
