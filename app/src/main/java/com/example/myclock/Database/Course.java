@@ -1,12 +1,15 @@
 package com.example.myclock.Database;
 import android.graphics.Color;
+
+import com.example.myclock.litner.All;
+
 import java.util.ArrayList;
 
 public class Course {
     private String name;
     private Double totalHours = 0.0;
     private Color color;
-    private ArrayList<Lesson> parts = new ArrayList<>();
+    private ArrayList<Integer> lessonsID = new ArrayList<>();
 
     public Course(String name, Color color) {
         this.name = name;
@@ -14,19 +17,21 @@ public class Course {
     }
 
     public void removeFromPart (Lesson lesson) {
-        parts.remove(lesson);
+        int ID = AllLessons.removeByItem(lesson);
+        lessonsID.remove(ID);
     }
 
     public void addPart (Lesson lesson) {
-        parts.add(lesson);
+        int LessonID = AllLessons.AddToList(lesson);
+        lessonsID.add(LessonID);
     }
 
-    public boolean containsPart (Lesson part) {
-        return parts.contains(part);
-    }
-
-    public ArrayList<Lesson> getParts() {
-        return parts;
+    public ArrayList<Lesson> getLessons() {
+        ArrayList<Lesson> temp = new ArrayList<>();
+        for (Integer ID : lessonsID) {
+            temp.add(AllLessons.getByID(ID));
+        }
+        return temp;
     }
 
     public String getName() {
