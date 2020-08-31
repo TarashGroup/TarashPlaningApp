@@ -6,13 +6,14 @@ public class Note {
     private String text;
     private Image image;
     private int totalSeen, correct;
-
+    private boolean favorite;
 
     public Note(String title, String text, Image image) {
         this.title = title;
         this.text = text;
         this.image = image;
         totalSeen = 0;
+        favorite = false;
     }
 
     public String getText() {
@@ -41,5 +42,13 @@ public class Note {
 
     public void setCorrect(int correct) {
         this.correct = correct;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }

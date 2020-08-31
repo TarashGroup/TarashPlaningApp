@@ -31,4 +31,11 @@
     <string name="limitErrorCheckList">حداکثر تعداد مجاز چک لیست است</string>
     <string name="limitErrorLinkedNote">حداکثر تعداد مجاز نوشته است</string>
     <string name="limitErrorLessons">حداکثر تعداد مجاز زیربخش است</string>
+    <string name="litnerBox">جعبه لایتنر</string>
+    <string name="all">همه</string>
+    <string name="unSeen">خوانده نشده</string>
+    <string name="favorite">مورد علاقه</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -11,13 +11,17 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
+
+import com.example.myclock.Database.Note;
 import com.example.myclock.Views.ProgressBuilder;
+import com.example.myclock.litner.FlashCardPreView;
 import com.hanks.htextview.base.HTextView;
 
 import net.danlew.android.joda.JodaTimeAndroid;
@@ -41,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         JodaTimeAndroid.init(this);
         String a = "F android studio & git";
         setContentView(R.layout.activity_main);
+
+
+
+
+
 
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake_that);
 
@@ -171,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void test(View view){
-        startActivity(new Intent(MainActivity.this,AddCourseActivity.class));
+        startActivity(new Intent(MainActivity.this,Test.class));
         finish();
     }
 
