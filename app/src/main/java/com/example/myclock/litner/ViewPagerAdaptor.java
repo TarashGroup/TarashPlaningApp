@@ -40,14 +40,13 @@ public class ViewPagerAdaptor extends RecyclerView.Adapter<ViewPagerAdaptor.View
         return flashCard_GroupNames.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         GridLayout gridLayout;
         ViewHolder(@NonNull View itemView){
             super(itemView);
             gridLayout = itemView.findViewById(R.id.gridView);
-
         }
-        void bind(ArrayList<FlashCardPreView> cards ){
+        void bind(ArrayList<FlashCardPreView> cards ) {
             for (FlashCardPreView flashcard : cards) {
                 gridLayout.addView(flashcard.getView());
             }
