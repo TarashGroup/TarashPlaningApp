@@ -159,8 +159,8 @@ public class FlashCardPreView {
         title.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
         title.setText(note.getTitle());
         title.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize * 3/4);
-        title.setMaxLines(4);
+        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize*5/6 );
+        title.setMaxLines(3);
         title.setLayoutParams(titleParams);
 
 
