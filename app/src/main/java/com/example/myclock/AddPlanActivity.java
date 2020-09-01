@@ -33,7 +33,7 @@ public class AddPlanActivity extends AppCompatActivity {
     CheckListContainerAdapter checkListContainerAdapter;
     int limitForText = 20 , limitForCheckListView = 10;
     String course;
-    Long notification;
+    int notification; // in minutes
     private PersianDatePickerDialog persianDatePickerDialog;
     private PersianCalendar startingTime = new PersianCalendar();
     private TextView tvDate;

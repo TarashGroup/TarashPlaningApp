@@ -9,4 +9,8 @@ public class MaxID {
         return 0;
         // maxID++
     }
+    public static int planMaxID () {
+        return 0;
+        // maxID++
+    }
 }

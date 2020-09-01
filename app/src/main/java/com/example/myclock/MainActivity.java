@@ -15,10 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.myclock.Database.Lesson;
 import com.example.myclock.Views.ProgressBuilder;
 import com.hanks.htextview.base.HTextView;
 
 import net.danlew.android.joda.JodaTimeAndroid;
+
+import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
         JodaTimeAndroid.init(this);
         String a = "F android studio & git";
         setContentView(R.layout.activity_main);
-
-
-
 
 
 

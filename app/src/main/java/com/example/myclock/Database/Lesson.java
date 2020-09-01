@@ -1,7 +1,10 @@
 package com.example.myclock.Database;
 
+import com.example.myclock.litner.All;
+
 public class Lesson {
-    private boolean done = false;
+    private Integer self_ID;
+    private boolean done;
     private String name;
     private Integer value;
 
@@ -11,8 +14,17 @@ public class Lesson {
         this.value = value;
     }
 
+    public void setSelf_ID (Integer ID) {
+        this.self_ID = ID;
+    }
+
+    public Integer getSelf_ID() {
+        return self_ID;
+    }
+
     public void setStatus (boolean status) {
-        done = status;
+        this.done = status;
+        updateSql();
     }
 
     public String getName() {
@@ -23,7 +35,11 @@ public class Lesson {
         return value;
     }
 
-    public boolean isDone() {
+    public boolean getStatus() {
         return done;
+    }
+
+    private void updateSql () {
+        AllLessons.updateByID(self_ID, this);
     }
 }

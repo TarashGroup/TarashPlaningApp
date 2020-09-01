@@ -13,36 +13,44 @@ public class AllLessons {
             load();
 
         int ID = MaxID.lessonMaxID();
+        l.setSelf_ID(ID);
         lessonHashMap.put(ID, l);
 
         return ID;
     }
 
     public static Lesson getByID (int ID) {
+        if (!hasBeenLoaded)
+            load();
+
         return lessonHashMap.get(ID);
     }
 
-    public static void changeByLesson (Lesson first, Lesson changed) {
-        lessonHashMap.put(getIDByLesson(first), changed);
+    public static void updateByID (Integer ID, Lesson newLesson) {
+        if (!hasBeenLoaded)
+            load();
+
+        if (ID == -1)
+            return;
+
+        lessonHashMap.put(ID, newLesson);
     }
 
+
     public static int removeByLesson(Lesson l) {
-        int ID = getIDByLesson(l);
+        if (!hasBeenLoaded)
+            load();
+
+        int ID = l.getSelf_ID();
         removeByID(ID);
         return ID;
     }
 
-    public static int getIDByLesson (Lesson l) {
-        for (Integer ID : lessonHashMap.keySet()) {
-            Lesson found = getByID(ID);
-            if (found != null && found.equals(l)) {
-                return ID;
-            }
-        }
-        return -1;
-    }
 
     public static ArrayList<Lesson> getLessonsByListOfIDs (ArrayList<Integer> IDs) {
+        if (!hasBeenLoaded)
+            load();
+
         ArrayList<Lesson> temp = new ArrayList<>();
         for (Integer ID : IDs) {
             Lesson found = getByID(ID);
@@ -54,6 +62,9 @@ public class AllLessons {
     }
 
     public static void removeByID (int ID) {
+        if (!hasBeenLoaded)
+            load();
+
         lessonHashMap.remove(ID);
     }
 

@@ -4,40 +4,40 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class AllCourses {
-    private static HashMap<Integer, Course> coursesHashMap;
+public class AllPlans {
+    private static HashMap<Integer, Plan> plansHashMap;
     private static boolean hasBeenLoaded = false;
 
-    public static int AddToList(Course l) {
+    public static int AddToList(Plan l) {
         if (!hasBeenLoaded)
             load();
 
-        int ID = MaxID.courseMaxID();
+        int ID = MaxID.planMaxID();
         l.setSelf_ID(ID);
-        coursesHashMap.put(ID, l);
+        plansHashMap.put(ID, l);
 
         return ID;
     }
 
-    public static Course getByID (int ID) {
+    public static Plan getByID (int ID) {
         if (!hasBeenLoaded)
             load();
 
-        return coursesHashMap.get(ID);
+        return plansHashMap.get(ID);
     }
 
-    public static void updateByID (Integer ID, Course newCourse) {
+    public static void updateByID (Integer ID, Plan newPlan) {
         if (!hasBeenLoaded)
             load();
 
         if (ID == -1)
             return;
 
-        coursesHashMap.put(ID, newCourse);
+        plansHashMap.put(ID, newPlan);
     }
 
 
-    public static int removeByCourse(Course l) {
+    public static int removeByPlan(Plan l) {
         if (!hasBeenLoaded)
             load();
 
@@ -47,13 +47,13 @@ public class AllCourses {
     }
 
 
-    public static ArrayList<Course> getCoursesByListOfIDs (ArrayList<Integer> IDs) {
+    public static ArrayList<Plan> getPlansByListOfIDs (ArrayList<Integer> IDs) {
         if (!hasBeenLoaded)
             load();
 
-        ArrayList<Course> temp = new ArrayList<>();
+        ArrayList<Plan> temp = new ArrayList<>();
         for (Integer ID : IDs) {
-            Course found = getByID(ID);
+            Plan found = getByID(ID);
             if (found != null) {
                 temp.add(found);
             }
@@ -65,7 +65,7 @@ public class AllCourses {
         if (!hasBeenLoaded)
             load();
 
-        coursesHashMap.remove(ID);
+        plansHashMap.remove(ID);
     }
 
     public static void load () {
