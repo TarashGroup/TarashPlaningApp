@@ -13,8 +13,8 @@
     <color name="Gray">#707070</color>
     <color name="DarkLight">#1B3851</color>
     <color name="peach">#FEE4D9</color>
-
     <color name="BarColor">#FF9160</color>
     <color name="RimColor">#FEE4D9</color>
     <color name="ContourColor">#FF9160</color>
+
 </resources>

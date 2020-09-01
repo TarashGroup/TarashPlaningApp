@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -37,18 +38,27 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class FlashCardPreView {
     private Context context;
     private Note note;
-    final CardView flashCard ;
+    static private boolean isOpen = false;
+    View.OnClickListener listener;
 
 
-    public FlashCardPreView(Context context , Note note) {
+
+    CardView flashCard ;
+
+    public FlashCardPreView(Context context , Note note, View.OnClickListener listener) {
         this.context = context;
         this.note = note;
-        flashCard = new CardView(context);
+        this.listener = listener;
     }
 
     public View getView(){
+
+
         //************************************************** Main View
+        flashCard = new CardView(context);
         flashCard.setElevation(dp2px(8));
+
+
         //************************************************************************************color change
         Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.colored_flash_card_background);
         Drawable wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
@@ -86,7 +96,7 @@ public class FlashCardPreView {
         inSeenDetails.setMargins(dp2px(5), dp2px(3), dp2px(5), dp2px(5));
 
         int total = note.getTotalSeen();
-        int correct = note.getCorrect();
+        final int correct = note.getCorrect();
         int fontSize = getScreenWidth()/45;
         TextView allCount = new TextView(context);
         allCount.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
@@ -151,17 +161,20 @@ public class FlashCardPreView {
         title.setMaxLines(3);
         title.setLayoutParams(titleParams);
 
+
         inCard.addView(title);
         inCard.addView(details);
         flashCard.addView(inCard);
-        flashCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        flashCard.setOnClickListener(listener);
+        flashCard.setTag(note);
+        title.setOnClickListener(listener);
+        title.setTag(note);
 
-            }
-        });
+
         return flashCard;
     }
+
+
 
     private int dp2px(float dp){
         return (int) (dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));

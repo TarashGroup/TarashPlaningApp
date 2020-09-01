@@ -35,8 +35,7 @@
     <string name="all">همه</string>
     <string name="unSeen">خوانده نشده</string>
     <string name="favorite">مورد علاقه</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="seeAns">نمایش پاسخ</string>
+    <string name="answer">پشت کارت</string>
+
 
 </resources>
