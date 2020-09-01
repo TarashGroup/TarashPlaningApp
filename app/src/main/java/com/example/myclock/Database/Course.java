@@ -4,6 +4,7 @@ import android.graphics.Color;
 import java.util.ArrayList;
 
 public class Course {
+    private Integer self_ID;
     private String name;
     private Double totalHours = 0.0;
     private Color color;
@@ -14,12 +15,12 @@ public class Course {
         this.color = color;
     }
 
-    public void removeFromLessonsByID (Integer ID) {
-        AllLessons.removeByID(ID);
+    public void setSelf_ID (Integer ID) {
+        this.self_ID = ID;
     }
 
-    public void changeLesson (Lesson first, Lesson changed) {
-        AllLessons.changeByLesson(first, changed);
+    public Integer getSelf_ID() {
+        return self_ID;
     }
 
     public void removeFromLessons (Lesson lesson) {
@@ -42,6 +43,7 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+        updateSql();
     }
 
     public Color getColor() {
@@ -50,6 +52,7 @@ public class Course {
 
     public void setColor(Color color) {
         this.color = color;
+        updateSql();
     }
 
     public Double getTotalHours() {
@@ -58,5 +61,10 @@ public class Course {
 
     public void addToTotalHours (Double d) {
         totalHours += d;
+        updateSql();
+    }
+
+    private void updateSql () {
+        AllCourses.updateByID(self_ID, this);
     }
 }

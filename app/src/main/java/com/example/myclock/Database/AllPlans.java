@@ -1,47 +1,43 @@
 package com.example.myclock.Database;
 
-import com.example.myclock.MainActivity;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class AllLessons {
-    private static HashMap<Integer, Lesson> lessonHashMap = new HashMap<>();
+public class AllPlans {
+    private static HashMap<Integer, Plan> plansHashMap;
     private static boolean hasBeenLoaded = false;
-    static {
-        load();
-    }
 
-    public static int AddToList(Lesson l) {
+    public static int AddToList(Plan l) {
         if (!hasBeenLoaded)
             load();
-        int ID = MaxID.lessonMaxID();
+
+        int ID = MaxID.planMaxID();
         l.setSelf_ID(ID);
-        lessonHashMap.put(ID, l);
-        MainActivity.databaseAdapter.addLesson(ID,l);
+        plansHashMap.put(ID, l);
+
         return ID;
     }
 
-    public static Lesson getByID (int ID) {
+    public static Plan getByID (int ID) {
         if (!hasBeenLoaded)
             load();
 
-        return lessonHashMap.get(ID);
+        return plansHashMap.get(ID);
     }
 
-    public static void updateByID (Integer ID, Lesson newLesson) {
+    public static void updateByID (Integer ID, Plan newPlan) {
         if (!hasBeenLoaded)
             load();
 
         if (ID == -1)
             return;
 
-        lessonHashMap.put(ID, newLesson);
+        plansHashMap.put(ID, newPlan);
     }
 
 
-    public static int removeByLesson(Lesson l) {
+    public static int removeByPlan(Plan l) {
         if (!hasBeenLoaded)
             load();
 
@@ -51,13 +47,13 @@ public class AllLessons {
     }
 
 
-    public static ArrayList<Lesson> getLessonsByListOfIDs (ArrayList<Integer> IDs) {
+    public static ArrayList<Plan> getPlansByListOfIDs (ArrayList<Integer> IDs) {
         if (!hasBeenLoaded)
             load();
 
-        ArrayList<Lesson> temp = new ArrayList<>();
+        ArrayList<Plan> temp = new ArrayList<>();
         for (Integer ID : IDs) {
-            Lesson found = getByID(ID);
+            Plan found = getByID(ID);
             if (found != null) {
                 temp.add(found);
             }
@@ -69,11 +65,11 @@ public class AllLessons {
         if (!hasBeenLoaded)
             load();
 
-        lessonHashMap.remove(ID);
+        plansHashMap.remove(ID);
     }
 
     public static void load () {
-        lessonHashMap =  MainActivity.databaseAdapter.getLessons();
+        // HashMap.put(ID, l);-
         hasBeenLoaded = true;
     }
 }

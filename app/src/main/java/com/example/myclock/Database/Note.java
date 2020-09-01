@@ -2,6 +2,7 @@ package com.example.myclock.Database;
 import android.media.Image;
 
 public class Note {
+    private Integer self_ID;
     private String title;
     private String text;
     private Image image;
@@ -20,6 +21,14 @@ public class Note {
         return text;
     }
 
+    public void setSelf_ID (Integer ID) {
+        this.self_ID = ID;
+    }
+
+    public Integer getSelf_ID() {
+        return self_ID;
+    }
+
     public Image getImage() {
         return image;
     }
@@ -34,6 +43,7 @@ public class Note {
 
     public void setTotalSeen(int totalSeen) {
         this.totalSeen = totalSeen;
+        updateSql();
     }
 
     public int getCorrect() {
@@ -42,6 +52,7 @@ public class Note {
 
     public void setCorrect(int correct) {
         this.correct = correct;
+        updateSql();
     }
 
     public boolean isFavorite() {
@@ -50,5 +61,10 @@ public class Note {
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
+        updateSql();
+    }
+
+    private void updateSql () {
+        AllNotes.updateByID(self_ID, this);
     }
 }

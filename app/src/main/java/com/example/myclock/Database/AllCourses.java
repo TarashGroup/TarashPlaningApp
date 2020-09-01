@@ -13,36 +13,44 @@ public class AllCourses {
             load();
 
         int ID = MaxID.courseMaxID();
+        l.setSelf_ID(ID);
         coursesHashMap.put(ID, l);
 
         return ID;
     }
 
     public static Course getByID (int ID) {
+        if (!hasBeenLoaded)
+            load();
+
         return coursesHashMap.get(ID);
     }
 
-    public static void changeByCourse (Course first, Course changed) {
-        coursesHashMap.put(getIDByCourse(first), changed);
+    public static void updateByID (Integer ID, Course newCourse) {
+        if (!hasBeenLoaded)
+            load();
+
+        if (ID == -1)
+            return;
+
+        coursesHashMap.put(ID, newCourse);
     }
 
-    public static int removeByItem (Course l) {
-        int ID = getIDByCourse(l);
+
+    public static int removeByCourse(Course l) {
+        if (!hasBeenLoaded)
+            load();
+
+        int ID = l.getSelf_ID();
         removeByID(ID);
         return ID;
     }
 
-    public static int getIDByCourse (Course l) {
-        for (Integer ID : coursesHashMap.keySet()) {
-            Course found = getByID(ID);
-            if (found != null && found.equals(l)) {
-                return ID;
-            }
-        }
-        return -1;
-    }
 
     public static ArrayList<Course> getCoursesByListOfIDs (ArrayList<Integer> IDs) {
+        if (!hasBeenLoaded)
+            load();
+
         ArrayList<Course> temp = new ArrayList<>();
         for (Integer ID : IDs) {
             Course found = getByID(ID);
@@ -54,6 +62,9 @@ public class AllCourses {
     }
 
     public static void removeByID (int ID) {
+        if (!hasBeenLoaded)
+            load();
+
         coursesHashMap.remove(ID);
     }
 
