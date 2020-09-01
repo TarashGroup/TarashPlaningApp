@@ -25,6 +25,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.drawable.DrawableCompat;
 import com.example.myclock.Database.Note;
+import com.example.myclock.Dialigs.MyDialog;
 import com.example.myclock.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -43,27 +44,7 @@ public class FlashCardPreView {
         //************************************************** Main View
         final CardView flashCard = new CardView(context);
         flashCard.setElevation(dp2px(8));
-        flashCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                AlertDialog alertDialog = builder.create();
-
-
-                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-                Window mWindow = alertDialog.getWindow();
-                lp.copyFrom(mWindow.getAttributes());
-                lp.width = getScreenWidth();
-                lp.height = getScreenWidth()*4/5;
-                mWindow.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT );
-                ((ViewGroup)flashCard.getParent()).removeView(flashCard);
-                alertDialog.setView(flashCard);
-                alertDialog.show();
-                mWindow.setAttributes(lp);
-
-            }
-        });
 
         //************************************************************************************color change
         Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.colored_flash_card_background);
@@ -101,27 +82,26 @@ public class FlashCardPreView {
         inSeenDetails.gravity = Gravity.CENTER;
         inSeenDetails.setMargins(dp2px(5), dp2px(3), dp2px(5), dp2px(5));
 
-
         int total = note.getTotalSeen();
         int correct = note.getCorrect();
-
+        int fontSize = getScreenWidth()/45;
         TextView allCount = new TextView(context);
         allCount.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
-        allCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        allCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
         allCount.setText(Integer.toString(total));
         allCount.setLayoutParams(inSeenDetails);
         seenDetails.addView(allCount);
 
         TextView correctCount = new TextView(context);
         correctCount.setTextColor(context.getResources().getColor(R.color.GreenLight));
-        correctCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        correctCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
         correctCount.setText(Integer.toString(correct));
         correctCount.setLayoutParams(inSeenDetails);
         seenDetails.addView(correctCount);
 
         TextView wrongCount = new TextView(context);
         wrongCount.setTextColor(context.getResources().getColor(R.color.RedLight));
-        wrongCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        wrongCount.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
         wrongCount.setText(Integer.toString(total-correct));
         wrongCount.setLayoutParams(inSeenDetails);
         seenDetails.addView(wrongCount);
@@ -159,10 +139,13 @@ public class FlashCardPreView {
         TextView title = new TextView(context);
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT ,
                 ViewGroup.LayoutParams.WRAP_CONTENT , 1);
+        titleParams.gravity = Gravity.CENTER;
         titleParams.setMargins(dp2px(17), dp2px(10), dp2px(20), dp2px(5));
         title.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
         title.setText(note.getTitle());
-        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        title.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize * 3/4);
+        title.setMaxLines(4);
         title.setLayoutParams(titleParams);
 
 
