@@ -1,14 +1,20 @@
 package com.example.myclock.litner;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.text.Layout;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,35 +22,61 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.drawable.DrawableCompat;
 import com.example.myclock.Database.Note;
 import com.example.myclock.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class FlashCardPreView {
     private Context context;
     private Note note;
+
     public FlashCardPreView(Context context , Note note) {
         this.context = context;
         this.note = note;
+
     }
 
     public View getView(){
 
         //************************************************** Main View
-        CardView flashCard = new CardView(context);
+        final CardView flashCard = new CardView(context);
         flashCard.setElevation(dp2px(8));
+        flashCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                AlertDialog alertDialog = builder.create();
+
+
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                Window mWindow = alertDialog.getWindow();
+                lp.copyFrom(mWindow.getAttributes());
+                lp.width = getScreenWidth();
+                lp.height = getScreenWidth()*4/5;
+                mWindow.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT );
+                ((ViewGroup)flashCard.getParent()).removeView(flashCard);
+                alertDialog.setView(flashCard);
+                alertDialog.show();
+                mWindow.setAttributes(lp);
+
+            }
+        });
+
+        //************************************************************************************color change
         Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.colored_flash_card_background);
         Drawable wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
         DrawableCompat.setTint(wrappedDrawable, Color.RED);
-
         flashCard.setBackgroundResource(R.drawable.flash_card);
 
-        GridLayout.LayoutParams layoutParams= new GridLayout.LayoutParams();
-        layoutParams.height = getScreenWidth()*35/100;
-        layoutParams.width = getScreenWidth()/2;
-        layoutParams.setMargins(dp2px(10),dp2px(10),dp2px(10),dp2px(10));
-        flashCard.setLayoutParams(layoutParams);
+
+       GridLayout.LayoutParams layoutParams= new GridLayout.LayoutParams();
+       layoutParams.height = getScreenWidth()*35/100;
+       layoutParams.width = getScreenWidth()/2;
+       layoutParams.setMargins(dp2px(10),dp2px(10),dp2px(10),dp2px(10));
+       flashCard.setLayoutParams(layoutParams);
         //******************************************************************* In Card
         LinearLayout inCard = new LinearLayout(context);
         inCard.setOrientation(LinearLayout.VERTICAL);
@@ -122,20 +154,19 @@ public class FlashCardPreView {
         like.setLayoutParams(likeParams);
         details.addView(like);
         //************************************************** Title
-        ScrollView scrollView = new ScrollView(context);
-        LinearLayout.LayoutParams scrollViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT ,
-                ViewGroup.LayoutParams.WRAP_CONTENT , 1);
-        scrollViewParams.setMargins(dp2px(17), dp2px(10), dp2px(20), dp2px(5));
+
 
         TextView title = new TextView(context);
+        LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT ,
+                ViewGroup.LayoutParams.WRAP_CONTENT , 1);
+        titleParams.setMargins(dp2px(17), dp2px(10), dp2px(20), dp2px(5));
         title.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
         title.setText(note.getTitle());
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        scrollView.addView(title);
+        title.setLayoutParams(titleParams);
 
 
-
-        inCard.addView(scrollView , scrollViewParams);
+        inCard.addView(title);
         inCard.addView(details);
         flashCard.addView(inCard);
 

@@ -17,7 +17,7 @@ public class TimeDurationDialog extends MyDialog {
     private Context context;
     private Button btnDuration;
     private Button btnSetDuration;
-    private int minute=0 , hour=1;
+    private int minute = 0 , hour=1;
 
     public TimeDurationDialog(LinearLayout setDurationLayout, Context context, Button btnDuration, int layout) {
         this.context = context;

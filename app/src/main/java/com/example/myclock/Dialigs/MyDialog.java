@@ -25,7 +25,7 @@ public class MyDialog {
     public static void setButtonSelected(Button button){
         button.setBackgroundResource(R.drawable.button3);
     }
-    //todo: amir ino to remove kardan check lista seda bezan yani vaghti ke size array listesh 0 shod
+
     public static void setButtonUnSelected(Button button){
         button.setBackgroundResource(R.drawable.button4);
         button.setText("");
