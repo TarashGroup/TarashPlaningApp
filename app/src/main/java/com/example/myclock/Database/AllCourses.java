@@ -12,7 +12,7 @@ public class AllCourses {
         if (!hasBeenLoaded)
             load();
 
-        int ID = GetMaxID.getCoursesMaxID();
+        int ID = MaxID.courseMaxID();
         coursesHashMap.put(ID, l);
 
         return ID;
