@@ -13,4 +13,8 @@ public class MaxID {
         return 0;
         // maxID++
     }
+    public static int noteMaxID () {
+        return 0;
+        // maxID++
+    }
 }
