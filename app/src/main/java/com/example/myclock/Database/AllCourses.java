@@ -2,7 +2,6 @@ package com.example.myclock.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class AllCourses {
     private static HashMap<Integer, Course> coursesHashMap;
