@@ -1,33 +1,39 @@
 package com.example.myclock.Database;
-
 import android.graphics.Color;
+
 import java.util.ArrayList;
 
 public class Course {
     private String name;
     private Double totalHours = 0.0;
     private Color color;
-    private ArrayList<Lesson> parts = new ArrayList<>();
+    private ArrayList<Integer> lessonsID = new ArrayList<>();
 
     public Course(String name, Color color) {
         this.name = name;
         this.color = color;
     }
 
-    public void removeFromPart (Lesson lesson) {
-        parts.remove(lesson);
+    public void removeFromLessonsByID (Integer ID) {
+        AllLessons.removeByID(ID);
     }
 
-    public void addPart (Lesson lesson) {
-        parts.add(lesson);
+    public void changeLesson (Lesson first, Lesson changed) {
+        AllLessons.changeByLesson(first, changed);
     }
 
-    public boolean containsPart (Lesson part) {
-        return parts.contains(part);
+    public void removeFromLessons (Lesson lesson) {
+        int ID = AllLessons.removeByLesson(lesson);
+        lessonsID.remove(ID);
     }
 
-    public ArrayList<Lesson> getParts() {
-        return parts;
+    public void addLesson (Lesson lesson) {
+        int LessonID = AllLessons.AddToList(lesson);
+        lessonsID.add(LessonID);
+    }
+
+    public ArrayList<Lesson> getLessons() {
+        return AllLessons.getLessonsByListOfIDs(lessonsID);
     }
 
     public String getName() {
