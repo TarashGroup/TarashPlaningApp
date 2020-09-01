@@ -25,10 +25,8 @@ public class Plan {
         this.duration = duration;
         this.notificationInMinutes = notificationInMinutes;
         this.notification = notification;
-        if (repeatingDays != null) {
-            for (Long time : repeatingDays) {
-                PropertyHolder.addRepeatingPlan(this, time);
-            }
+        for (Long day : repeatingDays) {
+            DailyInformationHandler.addPlan(day, this);
         }
         this.checkList = checkList;
     }

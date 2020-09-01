@@ -24,8 +24,8 @@ public class PropertyHolder {
     // Plans Fields
     private static HashMap<Long, DailyInformation> days = new HashMap<>();
 
-    // Repeating Plans Fields
-    private static HashMap<Long, ArrayList<Plan>> repeatingDays = new HashMap<>();
+//    // Repeating Plans Fields
+//    private static HashMap<Long, ArrayList<Plan>> repeatingDays = new HashMap<>();
 
     // All values Fields (Not letting user make 2 same courses) TODO: Should be completed and used
     private static ArrayList<Course> allCourse = new ArrayList<>();
@@ -48,42 +48,42 @@ public class PropertyHolder {
         }
         days.get(time).addToDailyPlan(p);
     }
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Repeating Plans methods
-    public static void set_Repeating_Plans () {
-        Long time = GetDay.getDay();
-        ArrayList<Plan> plansForToday = getRepeatingPlans(time);
-        if (plansForToday != null) {
-            for (Plan p : plansForToday) {
-                addToDaily(time, p);
-            }
-        }
-        repeatingDays.remove(time);
-    }
-
-    public static void addRepeatingPlan (Plan p, Long time) {
-        if (repeatingDays.get(time) == null) {
-            repeatingDays.put(time, new ArrayList<Plan>());
-        }
-        repeatingDays.get(time).add(p);
-    }
-
-    public static ArrayList<Plan> getRepeatingPlans (Long time) {
-        return repeatingDays.get(time);
-    }
-
-    public static void removeRepeatingPlan (Plan p) {
-        for (ArrayList<Plan> list : repeatingDays.values()) {
-            while (list.contains(p))
-                list.remove(p);
-        }
-    }
-
-    public static ArrayList<Plan> getPlansWithNotification (Long time) {
-        // TODO: Should be changed and be written for all plans as well
-        return null;
-    }
-    /////////////////////////////////////////////////////////////////////////////////
+//    ///////////////////////////////////////////////////////////////////////////////////
+//    // Repeating Plans methods
+//    public static void set_Repeating_Plans () {
+//        Long time = GetDay.getDay();
+//        ArrayList<Plan> plansForToday = getRepeatingPlans(time);
+//        if (plansForToday != null) {
+//            for (Plan p : plansForToday) {
+//                addToDaily(time, p);
+//            }
+//        }
+//        repeatingDays.remove(time);
+//    }
+//
+//    public static void addRepeatingPlan (Plan p, Long time) {
+//        if (repeatingDays.get(time) == null) {
+//            repeatingDays.put(time, new ArrayList<Plan>());
+//        }
+//        repeatingDays.get(time).add(p);
+//    }
+//
+//    public static ArrayList<Plan> getRepeatingPlans (Long time) {
+//        return repeatingDays.get(time);
+//    }
+//
+//    public static void removeRepeatingPlan (Plan p) {
+//        for (ArrayList<Plan> list : repeatingDays.values()) {
+//            while (list.contains(p))
+//                list.remove(p);
+//        }
+//    }
+//
+//    public static ArrayList<Plan> getPlansWithNotification (Long time) {
+//        // TODO: Should be changed and be written for all plans as well
+//        return null;
+//    }
+//    /////////////////////////////////////////////////////////////////////////////////
 
 
 

@@ -7,6 +7,10 @@ public class DailyInformationHandler {
         return null;
     }
 
+    public static void addPlan (Long day, Plan plan) {
+        getByDay(day).addToDailyPlan(plan);
+    }
+
     public static ArrayList<DailyInformation> getSlice (Long from, Long to) {
         return null;
     }
