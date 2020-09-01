@@ -49,11 +49,11 @@ public class ViewPagerAdaptor extends RecyclerView.Adapter<ViewPagerAdaptor.View
         }
         void bind(ArrayList<FlashCardPreView> cards ){
             for (FlashCardPreView flashcard : cards) {
+                if (flashcard.getView().getParent() != null)
+                    ((ViewGroup) flashcard.getView().getParent()).removeView(flashcard.getView());
                 gridLayout.addView(flashcard.getView());
             }
         }
     }
-    public void update(){
-        notifyDataSetChanged();
-    }
+
 }
