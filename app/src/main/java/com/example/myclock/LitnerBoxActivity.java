@@ -1,21 +1,19 @@
 package com.example.myclock;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.myclock.Database.Note;
@@ -25,8 +23,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
-
-import LitnerBox.LitnerBox;
+import java.util.Objects;
 
 
 public class LitnerBoxActivity extends AppCompatActivity {
@@ -54,6 +51,36 @@ public class LitnerBoxActivity extends AppCompatActivity {
                 Note note = (Note) view.getTag();
                 LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(LitnerBoxActivity.this).
                         inflate(R.layout.dialog_for_fullview_card,null);
+                viewPagerAdaptor.setNeedEnterAnimation(true);
+                if (view instanceof  TextView){
+                    View inCard = (View)view.getParent();
+                    View flashCard = (View) inCard.getParent();
+
+                    int flashCardPos = ((ViewGroup)flashCard.getParent()).indexOfChild(flashCard);
+                    viewPagerAdaptor.setLastUsedFlashCardPos(flashCardPos);
+                    Animation animation;
+                    if (flashCardPos % 2 == 0)
+                        animation = AnimationUtils.loadAnimation(LitnerBoxActivity.this , R.anim.slide_left_exit);
+                    else
+                        animation = AnimationUtils.loadAnimation(LitnerBoxActivity.this , R.anim.slide_right_exit);
+
+                    flashCard.startAnimation(animation);
+
+                    flashCard.setVisibility(View.INVISIBLE);
+                }
+                else{
+                    int flashCardPos = ((ViewGroup)view.getParent()).indexOfChild(view);
+                    viewPagerAdaptor.setLastUsedFlashCardPos(flashCardPos);
+                    Animation animation;
+                    if (flashCardPos % 2 == 0)
+                        animation = AnimationUtils.loadAnimation(LitnerBoxActivity.this , R.anim.slide_left_exit);
+                    else
+                        animation = AnimationUtils.loadAnimation(LitnerBoxActivity.this , R.anim.slide_right_exit);
+
+                    view.startAnimation(animation);
+                    view.setVisibility(View.INVISIBLE);
+                }
+
 
                 int totalSeen = note.getTotalSeen();
                 int correct = note.getCorrect();
@@ -72,10 +99,10 @@ public class LitnerBoxActivity extends AppCompatActivity {
 
                 builder.setView(linearLayout);
                 AlertDialog alertDialog = builder.create();
+                Objects.requireNonNull(alertDialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 alertDialog.show();
 
-                    /////////////////////////////////////
 
 
                 alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -142,7 +169,7 @@ public class LitnerBoxActivity extends AppCompatActivity {
         cardGroups.add(favorite);
 //************************************************************************
 
-        viewPagerAdaptor = new ViewPagerAdaptor(listOfTabsNames , cardGroups);
+        viewPagerAdaptor = new ViewPagerAdaptor(this, listOfTabsNames , cardGroups);
         viewPager.setAdapter(viewPagerAdaptor);
 
 
