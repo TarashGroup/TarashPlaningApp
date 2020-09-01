@@ -1,4 +1,5 @@
 package com.example.myclock.litner;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,11 +48,12 @@ public class ViewPagerAdaptor extends RecyclerView.Adapter<ViewPagerAdaptor.View
         ViewHolder(@NonNull View itemView){
             super(itemView);
             gridLayout = itemView.findViewById(R.id.gridView);
-
         }
         void bind(ArrayList<FlashCardPreView> cards ){
+            gridLayout.removeAllViews();
             for (FlashCardPreView flashcard : cards) {
                 gridLayout.addView(flashcard.getView());
+                
             }
         }
 

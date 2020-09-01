@@ -48,7 +48,7 @@ public class LitnerBoxActivity extends AppCompatActivity {
 
        View.OnClickListener listener = new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(LitnerBoxActivity.this);
                 Note note = (Note) view.getTag();
@@ -77,10 +77,12 @@ public class LitnerBoxActivity extends AppCompatActivity {
 
                     /////////////////////////////////////
 
+
                 alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialogInterface) {
-                            viewPagerAdaptor.notifyItemChanged(0);
+                            viewPagerAdaptor.notifyDataSetChanged();
+
                         }
                     });
             }

@@ -1,6 +1,5 @@
 package com.example.myclock.Database;
 
-import com.example.myclock.litner.All;
 
 public class Lesson {
     private Integer self_ID;
