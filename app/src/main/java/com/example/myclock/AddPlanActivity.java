@@ -130,9 +130,9 @@ public class AddPlanActivity extends AppCompatActivity {
 //*****************************************************************************
 // TODO: 8/27/2020 course / repeatingDays/ notification must be set
     private void sendPlanToDataBase(){
-        PropertyHolder.addToDaily(getStartingTime(),
-                new Plan(PropertyHolder.getCourseByName(course), timeDurationDialog.getHour() *60 + timeDurationDialog.getMinute(),
-                        getAllDaysToAdd(null, 0), notification , checkListContainerAdapter.getCheckListsAsString() ));
+       // PropertyHolder.addToDaily(getStartingTime(),
+               // new Plan(PropertyHolder.getCourseByName(course), timeDurationDialog.getHour() *60 + timeDurationDialog.getMinute(),
+                 //       getAllDaysToAdd(null, 0), notification , checkListContainerAdapter.getCheckListsAsString() ));
     }
 
     public void repeat_button_listener(View view) {

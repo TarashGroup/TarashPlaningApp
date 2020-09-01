@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.myclock.Database.DatabaseAdapter;
 import com.example.myclock.Database.Lesson;
 import com.example.myclock.Views.ProgressBuilder;
 import com.hanks.htextview.base.HTextView;
@@ -25,6 +26,7 @@ import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
+    public static DatabaseAdapter databaseAdapter;
     private int timeInSecondsUntilKonkur = 722000 , seconds , minutes , hours , days ;
     private Handler mainTimerHandler = new Handler();
     private LinearLayout dailySchedule;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         JodaTimeAndroid.init(this);
         String a = "F android studio & git";
         setContentView(R.layout.activity_main);
+        databaseAdapter = new DatabaseAdapter(this);
 
 
 

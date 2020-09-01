@@ -65,6 +65,6 @@ public class Note {
     }
 
     private void updateSql () {
-        AllNotes.updateByID(self_ID, this);
+        //AllNotes.updateByID(self_ID, this);
     }
 }

@@ -40,10 +40,6 @@ public class MaxID {
         MainActivity.databaseAdapter.updateMaxID(DAY_MAX_ID,dayMaxID);
         return dayMaxID;
     }
-    public static int planMaxID () {
-        return 0;
-        // maxID++
-    }
     public static int noteMaxID () {
         return 0;
         // maxID++
