@@ -19,7 +19,6 @@ public class AllLessons {
         int ID = MaxID.lessonMaxID();
         l.setSelf_ID(ID);
         lessonHashMap.put(ID, l);
-        MainActivity.databaseAdapter.addLesson(ID,l);
         return ID;
     }
 
@@ -73,7 +72,7 @@ public class AllLessons {
     }
 
     public static void load () {
-        lessonHashMap =  MainActivity.databaseAdapter.getLessons();
+        ///
         hasBeenLoaded = true;
     }
 }
