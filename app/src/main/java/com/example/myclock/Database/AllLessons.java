@@ -1,20 +1,24 @@
 package com.example.myclock.Database;
 
+import com.example.myclock.MainActivity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class AllLessons {
-    private static HashMap<Integer, Lesson> lessonHashMap;
+    private static HashMap<Integer, Lesson> lessonHashMap = new HashMap<>();
     private static boolean hasBeenLoaded = false;
+    static {
+        load();
+    }
 
     public static int AddToList(Lesson l) {
         if (!hasBeenLoaded)
             load();
-
         int ID = MaxID.lessonMaxID();
         lessonHashMap.put(ID, l);
-
+        MainActivity.databaseAdapter.addLesson(ID,l);
         return ID;
     }
 
@@ -58,7 +62,7 @@ public class AllLessons {
     }
 
     public static void load () {
-        // HashMap.put(ID, l);-
+        lessonHashMap =  MainActivity.databaseAdapter.getLessons();
         hasBeenLoaded = true;
     }
 }

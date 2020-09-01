@@ -21,10 +21,6 @@ public class LitnerBoxActivity extends AppCompatActivity {
     ArrayList<ArrayList<FlashCardPreView>> cardGroups;
     private static ViewPagerAdaptor viewPagerAdaptor;
 
-    public static ViewPagerAdaptor getViewPagerAdaptor() {
-        return viewPagerAdaptor;
-    }
-
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +28,6 @@ public class LitnerBoxActivity extends AppCompatActivity {
         setContentView(R.layout.litner_box_layout);
         ViewPager2 viewPager = findViewById(R.id.viewPagerForLitner);
         TabLayout tabLayout = findViewById(R.id.tabsForLitner);
-
         listOfTabsNames = new ArrayList<>();
         listOfTabsNames.add("همه");
         listOfTabsNames.add("خوانده نشده");

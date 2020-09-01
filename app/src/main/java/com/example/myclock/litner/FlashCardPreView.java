@@ -37,16 +37,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class FlashCardPreView {
     private Context context;
     private Note note;
-    private boolean isOpen = false;
     final CardView flashCard ;
 
-    public void setOpen(boolean open) {
-        isOpen = open;
-    }
-
-    public boolean isOpen() {
-        return isOpen;
-    }
 
     public FlashCardPreView(Context context , Note note) {
         this.context = context;
@@ -55,12 +47,8 @@ public class FlashCardPreView {
     }
 
     public View getView(){
-
         //************************************************** Main View
-
         flashCard.setElevation(dp2px(8));
-
-
         //************************************************************************************color change
         Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.colored_flash_card_background);
         Drawable wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
@@ -163,29 +151,13 @@ public class FlashCardPreView {
         title.setMaxLines(3);
         title.setLayoutParams(titleParams);
 
-
         inCard.addView(title);
         inCard.addView(details);
         flashCard.addView(inCard);
         flashCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!isOpen) {
-                    isOpen = true;
-                    LinearLayout flashCardLayout = new LinearLayout(context);
-                    flashCardLayout.setGravity(Gravity.CENTER);
-                    flashCardLayout.setOrientation(LinearLayout.VERTICAL);
-                    ((ViewGroup) flashCard.getParent()).removeView(flashCard);
-                    flashCardLayout.addView(flashCard);
-                    AlertDialog dialog = MyDialog.dialogBuilder(context, flashCardLayout);
-                    dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialogInterface) {
-                            isOpen = false;
-                            LitnerBoxActivity.getViewPagerAdaptor().notifyDataSetChanged();
-                        }
-                    });
-                }
+
             }
         });
         return flashCard;

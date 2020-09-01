@@ -9,6 +9,7 @@ public class Lesson {
         this.done = isDone;
         this.name = name;
         this.value = value;
+        AllLessons.AddToList(this);
     }
 
     public void setStatus (boolean status) {
