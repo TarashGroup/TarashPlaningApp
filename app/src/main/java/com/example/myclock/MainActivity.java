@@ -1,8 +1,6 @@
 package com.example.myclock;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
@@ -11,23 +9,16 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.example.myclock.Database.Note;
 import com.example.myclock.Views.ProgressBuilder;
-import com.example.myclock.litner.FlashCardPreView;
 import com.hanks.htextview.base.HTextView;
 
 import net.danlew.android.joda.JodaTimeAndroid;
-
-import java.util.Objects;
-import yuku.ambilwarna.AmbilWarnaDialog;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -180,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void test(View view){
-        startActivity(new Intent(MainActivity.this,LitnerBox.class));
+        startActivity(new Intent(MainActivity.this, LitnerBoxActivity.class));
         finish();
     }
 

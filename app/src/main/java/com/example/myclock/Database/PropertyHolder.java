@@ -13,6 +13,7 @@ import TestSheet.TestSheet;
 
 public class PropertyHolder {
 
+
     // LitnerBox Fields
     private static ArrayList<ArrayList<Note>> litnerBox;
     private static ArrayList<Note> doneBoxes;
@@ -48,8 +49,6 @@ public class PropertyHolder {
         days.get(time).addToDailyPlan(p);
     }
     ///////////////////////////////////////////////////////////////////////////////////
-
-
     // Repeating Plans methods
     public static void set_Repeating_Plans () {
         Long time = GetDay.getDay();

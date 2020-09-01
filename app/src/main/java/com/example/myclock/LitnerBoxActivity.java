@@ -16,10 +16,17 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 
 
-public class LitnerBox extends AppCompatActivity {
+public class LitnerBoxActivity extends AppCompatActivity {
     ArrayList<String> listOfTabsNames;
     ArrayList<ArrayList<FlashCardPreView>> cardGroups;
+    private static ViewPagerAdaptor viewPagerAdaptor;
+
+    public static ViewPagerAdaptor getViewPagerAdaptor() {
+        return viewPagerAdaptor;
+    }
+
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.litner_box_layout);
@@ -78,7 +85,7 @@ public class LitnerBox extends AppCompatActivity {
         cardGroups.add(favorite);
 //************************************************************************
 
-        ViewPagerAdaptor viewPagerAdaptor = new ViewPagerAdaptor(listOfTabsNames , cardGroups);
+        viewPagerAdaptor = new ViewPagerAdaptor(listOfTabsNames , cardGroups);
         viewPager.setAdapter(viewPagerAdaptor);
 
 
@@ -99,4 +106,5 @@ public class LitnerBox extends AppCompatActivity {
 
 
     }
+
 }

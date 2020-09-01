@@ -2,9 +2,11 @@ package com.example.myclock.litner;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -20,29 +22,42 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.drawable.DrawableCompat;
 import com.example.myclock.Database.Note;
 import com.example.myclock.Dialigs.MyDialog;
+import com.example.myclock.LitnerBoxActivity;
 import com.example.myclock.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class FlashCardPreView {
     private Context context;
     private Note note;
+    private boolean isOpen = false;
+    final CardView flashCard ;
+
+    public void setOpen(boolean open) {
+        isOpen = open;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
 
     public FlashCardPreView(Context context , Note note) {
         this.context = context;
         this.note = note;
-
+        flashCard = new CardView(context);
     }
 
     public View getView(){
 
         //************************************************** Main View
-        final CardView flashCard = new CardView(context);
+
         flashCard.setElevation(dp2px(8));
 
 
@@ -53,11 +68,11 @@ public class FlashCardPreView {
         flashCard.setBackgroundResource(R.drawable.flash_card);
 
 
-       GridLayout.LayoutParams layoutParams= new GridLayout.LayoutParams();
-       layoutParams.height = getScreenWidth()*35/100;
-       layoutParams.width = getScreenWidth()/2;
-       layoutParams.setMargins(dp2px(10),dp2px(10),dp2px(10),dp2px(10));
-       flashCard.setLayoutParams(layoutParams);
+        GridLayout.LayoutParams layoutParams= new GridLayout.LayoutParams();
+        layoutParams.height = getScreenWidth()*35/100;
+        layoutParams.width = getScreenWidth()/2;
+        layoutParams.setMargins(dp2px(10),dp2px(10),dp2px(10),dp2px(10));
+        flashCard.setLayoutParams(layoutParams);
         //******************************************************************* In Card
         LinearLayout inCard = new LinearLayout(context);
         inCard.setOrientation(LinearLayout.VERTICAL);
@@ -152,9 +167,30 @@ public class FlashCardPreView {
         inCard.addView(title);
         inCard.addView(details);
         flashCard.addView(inCard);
-
+        flashCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isOpen) {
+                    isOpen = true;
+                    LinearLayout flashCardLayout = new LinearLayout(context);
+                    flashCardLayout.setGravity(Gravity.CENTER);
+                    flashCardLayout.setOrientation(LinearLayout.VERTICAL);
+                    ((ViewGroup) flashCard.getParent()).removeView(flashCard);
+                    flashCardLayout.addView(flashCard);
+                    AlertDialog dialog = MyDialog.dialogBuilder(context, flashCardLayout);
+                    dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            isOpen = false;
+                            LitnerBoxActivity.getViewPagerAdaptor().notifyDataSetChanged();
+                        }
+                    });
+                }
+            }
+        });
         return flashCard;
     }
+
     private int dp2px(float dp){
         return (int) (dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
     }

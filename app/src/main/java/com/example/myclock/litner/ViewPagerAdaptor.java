@@ -53,4 +53,7 @@ public class ViewPagerAdaptor extends RecyclerView.Adapter<ViewPagerAdaptor.View
             }
         }
     }
+    public void update(){
+        notifyDataSetChanged();
+    }
 }

@@ -17,6 +17,14 @@ public class MyDialog {
         dialog = builder.create();
         dialog.setView(linearLayout);
     }
+   public static AlertDialog dialogBuilder(Context context, LinearLayout linearLayout){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog dialog = builder.create();
+        dialog.setView(linearLayout);
+        Objects.requireNonNull(dialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.show();
+        return dialog;
+    }
 
     public void showDialog(){
         Objects.requireNonNull(dialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
