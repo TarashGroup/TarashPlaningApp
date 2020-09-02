@@ -8,7 +8,7 @@ public class Note {
     private Image image;
     private int totalSeen, correct;
     private boolean favorite;
-
+    private int Color;
     public Note(String title, String text, Image image) {
         this.title = title;
         this.text = text;
