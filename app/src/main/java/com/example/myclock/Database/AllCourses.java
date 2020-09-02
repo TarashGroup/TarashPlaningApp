@@ -1,5 +1,7 @@
 package com.example.myclock.Database;
 
+import com.example.myclock.MainActivity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -7,15 +9,17 @@ import java.util.Objects;
 public class AllCourses {
     private static HashMap<Integer, Course> coursesHashMap;
     private static boolean hasBeenLoaded = false;
-
-    public static int AddToList(Course l) {
+    static {
+        load();
+    }
+    public static int AddToList(Course c) {
         if (!hasBeenLoaded)
             load();
 
         int ID = MaxID.courseMaxID();
-        l.setSelf_ID(ID);
-        coursesHashMap.put(ID, l);
-
+        c.setSelf_ID(ID);
+        coursesHashMap.put(ID, c);
+        MainActivity.databaseAdapter.addCourse(ID,c);
         return ID;
     }
 
@@ -34,6 +38,7 @@ public class AllCourses {
             return;
 
         coursesHashMap.put(ID, newCourse);
+        MainActivity.databaseAdapter.updateCourse(ID,newCourse); //update sqLite
     }
 
 
@@ -66,10 +71,19 @@ public class AllCourses {
             load();
 
         coursesHashMap.remove(ID);
+        MainActivity.databaseAdapter.removeCourse(ID);
     }
 
     public static void load () {
-        // HashMap.put(ID, l);-
+        coursesHashMap =  MainActivity.databaseAdapter.getCourses();
         hasBeenLoaded = true;
+    }
+
+    public static boolean isDuplicate (String name) {
+        for (Course course : coursesHashMap.values())
+            if (course.getName().equals(name))
+                return true;
+
+        return false;
     }
 }

@@ -1,20 +1,26 @@
 package com.example.myclock.Database;
 
+import com.example.myclock.MainActivity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class AllPlans {
-    private static HashMap<Integer, Plan> plansHashMap;
+    private static HashMap<Integer, Plan> plansHashMap = new HashMap<>();
     private static boolean hasBeenLoaded = false;
+    static {
+        load();
+    }
 
-    public static int AddToList(Plan l) {
+    public static int AddToList(Plan p) {
         if (!hasBeenLoaded)
             load();
 
         int ID = MaxID.planMaxID();
-        l.setSelf_ID(ID);
-        plansHashMap.put(ID, l);
+        p.setSelf_ID(ID);
+        plansHashMap.put(ID, p);
+        MainActivity.databaseAdapter.addPlan(ID,p);
 
         return ID;
     }
@@ -34,6 +40,7 @@ public class AllPlans {
             return;
 
         plansHashMap.put(ID, newPlan);
+        MainActivity.databaseAdapter.updatePlan(ID,newPlan);
     }
 
 
@@ -43,6 +50,7 @@ public class AllPlans {
 
         int ID = l.getSelf_ID();
         removeByID(ID);
+
         return ID;
     }
 
@@ -66,10 +74,11 @@ public class AllPlans {
             load();
 
         plansHashMap.remove(ID);
+        MainActivity.databaseAdapter.removePlan(ID);
     }
 
     public static void load () {
-        // HashMap.put(ID, l);-
+        plansHashMap = MainActivity.databaseAdapter.getPlans();
         hasBeenLoaded = true;
     }
 }

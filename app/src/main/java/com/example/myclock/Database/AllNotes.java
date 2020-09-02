@@ -1,21 +1,26 @@
 package com.example.myclock.Database;
 
+import com.example.myclock.MainActivity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class AllNotes {
-    private static HashMap<Integer, Note> NotesHashMap;
+    private static HashMap<Integer, Note> NotesHashMap = new HashMap<>();
     private static boolean hasBeenLoaded = false;
+    static {
+        load();
+    }
 
-    public static int AddToList(Note l) {
+    public static int AddToList(Note n) {
         if (!hasBeenLoaded)
             load();
 
         int ID = MaxID.noteMaxID();
-        l.setSelf_ID(ID);
-        NotesHashMap.put(ID, l);
-
+        n.setSelf_ID(ID);
+        NotesHashMap.put(ID, n);
+        MainActivity.databaseAdapter.addNote(ID,n);
         return ID;
     }
 
@@ -34,6 +39,7 @@ public class AllNotes {
             return;
 
         NotesHashMap.put(ID, newNote);
+        MainActivity.databaseAdapter.updateNote(ID,newNote);
     }
 
 
@@ -43,6 +49,7 @@ public class AllNotes {
 
         int ID = l.getSelf_ID();
         removeByID(ID);
+
         return ID;
     }
 
@@ -66,10 +73,11 @@ public class AllNotes {
             load();
 
         NotesHashMap.remove(ID);
+        MainActivity.databaseAdapter.removeNote(ID);
     }
 
     public static void load () {
-        // HashMap.put(ID, l);-
+        NotesHashMap = MainActivity.databaseAdapter.getNote();
         hasBeenLoaded = true;
     }
 }

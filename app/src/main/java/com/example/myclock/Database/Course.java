@@ -13,6 +13,7 @@ public class Course {
     public Course(String name, Color color) {
         this.name = name;
         this.color = color;
+        AllCourses.AddToList(this);
     }
 
     public void setSelf_ID (Integer ID) {
