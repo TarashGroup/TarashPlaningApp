@@ -72,4 +72,12 @@ public class AllCourses {
         // HashMap.put(ID, l);-
         hasBeenLoaded = true;
     }
+
+    public static boolean isDuplicate (String name) {
+        for (Course course : coursesHashMap.values())
+            if (course.getName().equals(name))
+                return true;
+
+        return false;
+    }
 }

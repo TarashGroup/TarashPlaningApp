@@ -72,4 +72,13 @@ public class AllLessons {
         // HashMap.put(ID, l);-
         hasBeenLoaded = true;
     }
+
+    public boolean isDuplicate (ArrayList<Integer> IDs, String name) {
+        for (Integer ID : IDs) {
+            if (getByID(ID).getName().equals(name))
+                return true;
+        }
+
+        return false;
+    }
 }
