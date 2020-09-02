@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -37,27 +38,24 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class FlashCardPreView {
     private Context context;
     private Note note;
-    private boolean isOpen = false;
-    final CardView flashCard ;
+    static private boolean isOpen = false;
+    View.OnClickListener listener;
 
-    public void setOpen(boolean open) {
-        isOpen = open;
-    }
 
-    public boolean isOpen() {
-        return isOpen;
-    }
 
-    public FlashCardPreView(Context context , Note note) {
+    CardView flashCard ;
+
+    public FlashCardPreView(Context context , Note note, View.OnClickListener listener) {
         this.context = context;
         this.note = note;
-        flashCard = new CardView(context);
+        this.listener = listener;
     }
 
     public View getView(){
 
-        //************************************************** Main View
 
+        //************************************************** Main View
+        flashCard = new CardView(context);
         flashCard.setElevation(dp2px(8));
 
 
@@ -98,7 +96,7 @@ public class FlashCardPreView {
         inSeenDetails.setMargins(dp2px(5), dp2px(3), dp2px(5), dp2px(5));
 
         int total = note.getTotalSeen();
-        int correct = note.getCorrect();
+        final int correct = note.getCorrect();
         int fontSize = getScreenWidth()/45;
         TextView allCount = new TextView(context);
         allCount.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
@@ -167,29 +165,16 @@ public class FlashCardPreView {
         inCard.addView(title);
         inCard.addView(details);
         flashCard.addView(inCard);
-        flashCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!isOpen) {
-                    isOpen = true;
-                    LinearLayout flashCardLayout = new LinearLayout(context);
-                    flashCardLayout.setGravity(Gravity.CENTER);
-                    flashCardLayout.setOrientation(LinearLayout.VERTICAL);
-                    ((ViewGroup) flashCard.getParent()).removeView(flashCard);
-                    flashCardLayout.addView(flashCard);
-                    AlertDialog dialog = MyDialog.dialogBuilder(context, flashCardLayout);
-                    dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialogInterface) {
-                            isOpen = false;
-                            LitnerBoxActivity.getViewPagerAdaptor().notifyDataSetChanged();
-                        }
-                    });
-                }
-            }
-        });
+        flashCard.setOnClickListener(listener);
+        flashCard.setTag(note);
+        title.setOnClickListener(listener);
+        title.setTag(note);
+
+
         return flashCard;
     }
+
+
 
     private int dp2px(float dp){
         return (int) (dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));

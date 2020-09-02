@@ -22,7 +22,6 @@ public class MyDialog {
         AlertDialog dialog = builder.create();
         dialog.setView(linearLayout);
         Objects.requireNonNull(dialog.getWindow()).getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.show();
         return dialog;
     }
 
