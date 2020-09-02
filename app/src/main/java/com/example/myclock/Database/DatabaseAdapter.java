@@ -115,9 +115,109 @@ public class DatabaseAdapter {
         db.delete(DatabaseHelper.ALL_COURSES_TABLE_NAME ,
                 DatabaseHelper.KEY_ID + "=?" , whereArgs);
     }
-
-
     //*******************************************course/
+
+    //*******************************************plan
+    public HashMap<Integer,Plan> getPlans(){
+        HashMap<Integer,Plan> plans = new HashMap<>();
+        String[] cul = {DatabaseHelper.KEY_ID,DatabaseHelper.KEY_VALUE};
+        Cursor cursor = db.query(DatabaseHelper.ALL_PLANS_TABLE_NAME,cul,
+                null, null ,null,null,null);
+        while (cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.KEY_ID));
+            Plan plan = gson.fromJson(cursor.getString(
+                    cursor.getColumnIndex(DatabaseHelper.KEY_VALUE)),Plan.class);
+            plans.put(id,plan);
+        }
+        return plans;
+    }
+    public void addPlan(int id, Plan plan) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.KEY_ID , id);
+        contentValues.put(DatabaseHelper.KEY_VALUE, gson.toJson(plan));
+        db.insert(DatabaseHelper.ALL_PLANS_TABLE_NAME , null , contentValues);
+    }
+    public void updatePlan(int id, Plan plan){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.KEY_VALUE,gson.toJson(plan));
+        String []whereArgs = {String.valueOf(id)};
+        db.update(DatabaseHelper.ALL_PLANS_TABLE_NAME, contentValues,
+                DatabaseHelper.KEY_ID + "=?",whereArgs);
+    }
+    public void removePlan(int id ){
+        String [] whereArgs = {String.valueOf(id)};
+        db.delete(DatabaseHelper.ALL_PLANS_TABLE_NAME ,
+                DatabaseHelper.KEY_ID + "=?" , whereArgs);
+    }
+    //*******************************************plan/
+
+    //*******************************************Day
+    public HashMap<Integer,DailyInformation> getDay(){
+        HashMap<Integer,DailyInformation> days = new HashMap<>();
+        String[] cul = {DatabaseHelper.KEY_ID,DatabaseHelper.KEY_VALUE};
+        Cursor cursor = db.query(DatabaseHelper.ALL_DAYS_TABLE_NAME,cul,
+                null, null ,null,null,null);
+        while (cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.KEY_ID));
+            DailyInformation day = gson.fromJson(cursor.getString(
+                    cursor.getColumnIndex(DatabaseHelper.KEY_VALUE)),DailyInformation.class);
+            days.put(id,day);
+        }
+        return days;
+    }
+    public void addDay(int id, DailyInformation day) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.KEY_ID , id);
+        contentValues.put(DatabaseHelper.KEY_VALUE, gson.toJson(day));
+        db.insert(DatabaseHelper.ALL_DAYS_TABLE_NAME , null , contentValues);
+    }
+    public void updateDay(int id, DailyInformation day){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.KEY_VALUE,gson.toJson(day));
+        String []whereArgs = {String.valueOf(id)};
+        db.update(DatabaseHelper.ALL_DAYS_TABLE_NAME, contentValues,
+                DatabaseHelper.KEY_ID + "=?",whereArgs);
+    }
+    public void removeDay(int id ){
+        String [] whereArgs = {String.valueOf(id)};
+        db.delete(DatabaseHelper.ALL_DAYS_TABLE_NAME ,
+                DatabaseHelper.KEY_ID + "=?" , whereArgs);
+    }
+    //*******************************************Day/
+
+    //*******************************************Note
+    public HashMap<Integer,Note> getNote(){
+        HashMap<Integer,Note> notes = new HashMap<>();
+        String[] cul = {DatabaseHelper.KEY_ID,DatabaseHelper.KEY_VALUE};
+        Cursor cursor = db.query(DatabaseHelper.ALL_NOTES_TABLE_NAME,cul,
+                null, null ,null,null,null);
+        while (cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.KEY_ID));
+            Note note = gson.fromJson(cursor.getString(
+                    cursor.getColumnIndex(DatabaseHelper.KEY_VALUE)),Note.class);
+            notes.put(id,note);
+        }
+        return notes;
+    }
+    public void addNote(int id, Note note) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.KEY_ID , id);
+        contentValues.put(DatabaseHelper.KEY_VALUE, gson.toJson(note));
+        db.insert(DatabaseHelper.ALL_NOTES_TABLE_NAME , null , contentValues);
+    }
+    public void updateNote(int id, Note note){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.KEY_VALUE,gson.toJson(note));
+        String []whereArgs = {String.valueOf(id)};
+        db.update(DatabaseHelper.ALL_NOTES_TABLE_NAME, contentValues,
+                DatabaseHelper.KEY_ID + "=?",whereArgs);
+    }
+    public void removeNote(int id ){
+        String [] whereArgs = {String.valueOf(id)};
+        db.delete(DatabaseHelper.ALL_NOTES_TABLE_NAME ,
+                DatabaseHelper.KEY_ID + "=?" , whereArgs);
+    }
+    //*******************************************Note/
 
 
 
@@ -126,6 +226,9 @@ public class DatabaseAdapter {
         private static final String MAXID_TABLE_NAME = "maxes";
         private static final String ALL_LESSON_TABLE_NAME = "lessons";
         private static final String ALL_COURSES_TABLE_NAME = "courses";
+        private static final String ALL_PLANS_TABLE_NAME = "plans";
+        private static final String ALL_DAYS_TABLE_NAME = "days";
+        private static final String ALL_NOTES_TABLE_NAME = "notes";
         private static final int DATABASE_VERSION = 1;
         private static final String KEY_ID = "id";
         private static final String KEY_VALUE = "value";
@@ -139,6 +242,15 @@ public class DatabaseAdapter {
         private static final String CREATE_ALL_COURSES = "create table " + ALL_COURSES_TABLE_NAME +
                 " (" + KEY_ID + " integer, " + KEY_VALUE + " text)";
 
+        private static final String CREATE_ALL_PLANS = "create table " + ALL_PLANS_TABLE_NAME +
+                " (" + KEY_ID + " integer, " + KEY_VALUE + " text)";
+
+        private static final String CREATE_ALL_DAYS = "create table " + ALL_DAYS_TABLE_NAME +
+                " (" + KEY_ID + " integer, " + KEY_VALUE + " text)";
+
+        private static final String CREATE_ALL_NOTES = "create table " + ALL_NOTES_TABLE_NAME +
+                " (" + KEY_ID + " integer, " + KEY_VALUE + " text)";
+
          Context context;
         public DatabaseHelper(@Nullable Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -150,6 +262,9 @@ public class DatabaseAdapter {
             sqLiteDatabase.execSQL(CREATE_MAXID_TABLE);
             sqLiteDatabase.execSQL(CREATE_ALL_LESSON);
             sqLiteDatabase.execSQL(CREATE_ALL_COURSES);
+            sqLiteDatabase.execSQL(CREATE_ALL_PLANS);
+            sqLiteDatabase.execSQL(CREATE_ALL_DAYS);
+            sqLiteDatabase.execSQL(CREATE_ALL_NOTES);
         }
 
         @Override

@@ -38,7 +38,7 @@ public class AllCourses {
             return;
 
         coursesHashMap.put(ID, newCourse);
-        MainActivity.databaseAdapter.updateCourse(ID,newCourse);
+        MainActivity.databaseAdapter.updateCourse(ID,newCourse); //update sqLite
     }
 
 
@@ -71,7 +71,7 @@ public class AllCourses {
             load();
 
         coursesHashMap.remove(ID);
-        MainActivity.databaseAdapter.removeLesson(ID);
+        MainActivity.databaseAdapter.removeCourse(ID);
     }
 
     public static void load () {
