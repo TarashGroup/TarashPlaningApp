@@ -1,5 +1,6 @@
 package com.example.myclock;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,11 +11,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.example.myclock.Database.AllLessons;
+import com.example.myclock.Database.Course;
 import com.example.myclock.Database.DatabaseAdapter;
 import com.example.myclock.Database.Lesson;
 import com.example.myclock.Views.ProgressBuilder;
@@ -39,11 +43,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         JodaTimeAndroid.init(this);
-        String a = "F android studio & git";
         setContentView(R.layout.activity_main);
         databaseAdapter = new DatabaseAdapter(this);
-
-
 
         shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake_that);
 
